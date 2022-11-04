@@ -21,4 +21,52 @@ public class PhotosServiceImpl implements PhotosService{
 		}
 		return null;
 	}
+
+	@Override
+	public List<Photo> getUserFavouritePhotos(int userId) {
+		try {
+			return photosDao.getUserFavouritePhotos(userId);
+		}
+		catch(Exception ex){
+			//throw photo-api custom exception here
+			//log
+		}
+		return null;
+	}
+
+	@Override
+	public List<Photo> getUserLikedPhotos(int userId) {
+		try {
+			return photosDao.getUserLikedPhotos(userId);
+		}
+		catch(Exception ex){
+			//throw photo-api custom exception here
+			//log
+		}
+		return null;
+	}
+
+	@Override
+	public int getUserIdByUsername(String username) {
+		try {
+			return photosDao.getUserIdByUsername(username);
+		}
+		catch(Exception ex){
+			//throw photo-api custom exception here
+			//log
+		}
+		return -1;
+	}
+
+	@Override
+	public String getPasswordByUsername(String username) {
+		try {
+			return photosDao.getPasswordByUsername(username);
+		}
+		catch(Exception ex){
+			//throw photo-api custom exception here
+			//log
+		}
+		return null;
+	}
 }

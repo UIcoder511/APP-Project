@@ -16,7 +16,7 @@ import org.json.JSONTokener;
 
 public class JSONReader {
 	
-	private final String resourceName = ".\\data\\photos.json";
+	private final String resourceName = ".\\resources\\photos.json";
 	private static Connection conn = null;
 	
 	public void selectAll(Connection conn) throws SQLException
