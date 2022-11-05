@@ -9,7 +9,14 @@ import "./assets/fonts/PlusJakartaDisplay-Regular.otf";
 import "./assets/fonts/PlusJakartaDisplay-Medium.otf";
 import "./assets/fonts/PlusJakartaDisplay-Bold.otf";
 
-const theme = createTheme({});
+const theme = createTheme({
+  pallete: {
+    primary: "#151f32",
+    colors: {
+      pink: "#ea4c89",
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

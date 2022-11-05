@@ -10,8 +10,8 @@ function App() {
   return (
     <div className="App" style={{}}>
       {/* <header className="App-header"></header> */}
-      {/* <ImageCards /> */}
-      <PhotographerCards />
+      <ImageCards />
+      {/* <PhotographerCards /> */}
     </div>
   );
 }

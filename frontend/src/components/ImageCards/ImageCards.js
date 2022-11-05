@@ -8,33 +8,37 @@ const ImageCards = () => {
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr 1fr",
+        gridTemplateColumns: "1fr 1fr 1fr",
         gap: "30px",
       }}
     >
       <ImageCard
-        imageSrc={photo}
+        thumbnailSrc={photo}
         noOfLikes={12}
         photographerName="Umang"
       ></ImageCard>
       <ImageCard
-        imageSrc={photo}
+        thumbnailSrc={photo}
         noOfLikes={12}
         photographerName="Umang"
       ></ImageCard>
       <ImageCard
-        imageSrc={photo}
+        thumbnailSrc={photo}
         noOfLikes={12}
         photographerName="Umang"
+        isLiked
       ></ImageCard>
       <ImageCard
-        imageSrc={photo}
+        thumbnailSrc={photo}
         noOfLikes={12}
         photographerName="Umang"
+        isLiked
+        isBookmarked
       ></ImageCard>
       <ImageCard
-        imageSrc={photo}
+        thumbnailSrc={photo}
         noOfLikes={12}
+        isBookmarked
         photographerName="Umang"
       ></ImageCard>
     </Box>
