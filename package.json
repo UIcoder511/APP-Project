@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "APPProject",
   "version": "1.0.0",
-  "description": "APP Project backend with NodeJS and SQLite",
+  "description": "APP Project with NodeJS and SQLite",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

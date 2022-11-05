@@ -1,0 +1,16 @@
+const sqlite3 = require("sqlite3");
+
+// Connecting Database
+const db = new sqlite3.Database(
+  "C:/sqlite/photos.db",
+  sqlite3.OPEN_READWRITE,
+  (err) => {
+    if (err) {
+      console.log("Error Occurred - " + err.message);
+    } else {
+      console.log("DataBase Connected");
+    }
+  }
+);
+
+module.exports = db;
