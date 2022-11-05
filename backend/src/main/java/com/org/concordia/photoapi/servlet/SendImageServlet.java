@@ -1,10 +1,10 @@
 package com.org.concordia.photoapi.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,44 +42,24 @@ public class SendImageServlet extends HttpServlet {
 				{
 					System.out.println("Photo id match found in DB");
 					System.out.println(photos.get(i).getPhoto_id());
-					ServletContext sc = getServletContext();
-					String url_medium_Image= sc.getRealPath("/WEB-INF/photos/"+photos.get(i).getImageMediumSize());
-					String url_large_Image= sc.getRealPath("/WEB-INF/photos/"+photos.get(0).getImageLargeSize());
-					String url_original_Image= sc.getRealPath("/WEB-INF/photos/"+photos.get(0).getImageOrignalSize());
+					String current_dir = System.getProperty("user.dir");
+					current_dir = current_dir.substring(0, current_dir.lastIndexOf('\\'));
+			
+					String url_medium_Image= new File(current_dir+"\\resources\\photos\\"+photos.get(i).getImageMediumSize()).getPath();
+					String url_large_Image=new File(current_dir+"\\resources\\photos\\"+photos.get(i).getImageLargeSize()).getPath();
+					String url_original_Image=new File(current_dir+"\\resources\\photos\\"+photos.get(i).getImageOrignalSize()).getPath();
 					
 					List<String> listOfUrls = new ArrayList<String>();
 					listOfUrls.add(url_medium_Image);
 					listOfUrls.add(url_large_Image);
 					listOfUrls.add(url_original_Image);
-					
-//					String page = "/photo-api/assets/" + photos.get(0).getImageMediumSize();
-					//OutputStream os = resp.getOutputStream();
-//					String currentDir  = System.getProperty("user.dir");
-//					System.out.println(currentDir + "\\resources\\Photos\\"+photos.get(i).getImageMediumSize());
-//					InputStream is = sc.getResourceAsStream("/WEB-INF/photos/"+photos.get(0).getImageMediumSize());
-//					if (is == null) {
-//
-//		                resp.setContentType("text/plain");
-//		                resp.getOutputStream().write("Failed to send image".getBytes());
-//		            } else { 	
-//		            	
-//		                resp.setContentType("image/jpeg");
-//		                resp.sendRedirect(page);
-//		                
-//		                byte[] buffer = new byte[1024];
-//		    			int bytesRead;
-//		    			
-//		                while ((bytesRead = is.read(buffer)) != -1) {
-//
-//		                	resp.getOutputStream().write(buffer, 0, bytesRead);
-//		                }
-		                
-		                ObjectMapper mapper = new ObjectMapper();
-		    			String jsonString = mapper.writeValueAsString(listOfUrls);
-		                System.out.println(jsonString);
-		                resp.setContentType("application/json");
-		    			resp.setCharacterEncoding("UTF-8");
-		    			resp.getWriter().write(jsonString);
+
+		            ObjectMapper mapper = new ObjectMapper();
+		    		String jsonString = mapper.writeValueAsString(listOfUrls);
+		            System.out.println(jsonString);
+		            resp.setContentType("application/json");
+		    		resp.setCharacterEncoding("UTF-8");
+		    		resp.getWriter().write(jsonString);
 		            }
 				}
 				
