@@ -1,5 +1,18 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
 .App {
   text-align: center;
+  padding: 20px;
 }
 
 .App-logo {
