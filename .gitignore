@@ -3,6 +3,7 @@
 # dependencies
 frontend/node_modules
 backend/node_modules
+backend/target
 # frontend/app-project-frontend/.pnp
 # frontend/app-project-frontend/.pnp.js
 
