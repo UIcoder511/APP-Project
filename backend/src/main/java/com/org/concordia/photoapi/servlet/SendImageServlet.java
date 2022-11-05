@@ -27,16 +27,16 @@ public class SendImageServlet extends HttpServlet {
       List<Photo> photos = photosService.getPhotos();
 
       System.out.println(photos.size());
-      System.out.println(photos.get(0).getphotoId());
+      System.out.println(photos.get(0).getPhotoId());
 
-      String photoId = req.getParameter("photoId");
-      System.out.println(photoId);
-      Integer photoId = Integer.parseInt(photoId);
+      String photoIdString = req.getParameter("photoId");
+      // System.out.println(aphotoId);
+      Integer photoId = Integer.parseInt(photoIdString);
 
       for (int i = 0; i < photos.size(); i++) {
-        if (photos.get(i).getphotoId().equals(photoId)) {
+        if (photos.get(i).getPhotoId().equals(photoId)) {
           System.out.println("Photo id match found in DB");
-          System.out.println(photos.get(i).getphotoId());
+          System.out.println(photos.get(i).getPhotoId());
           String current_dir = System.getProperty("user.dir");
           current_dir = current_dir.substring(0, current_dir.lastIndexOf('\\'));
 
@@ -76,7 +76,4 @@ public class SendImageServlet extends HttpServlet {
       e.printStackTrace();
     }
   }
-}
-        }	
-	}
 }

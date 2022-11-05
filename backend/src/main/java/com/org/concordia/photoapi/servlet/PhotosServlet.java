@@ -26,7 +26,7 @@ public class PhotosServlet extends HttpServlet {
       List<Photo> photos = photosService.getPhotos();
 
       System.out.println(photos.size());
-      System.out.println(photos.get(0).getphotoId());
+      System.out.println(photos.get(0).getPhotoId());
 
       ObjectMapper mapper = new ObjectMapper();
       String jsonString = mapper.writeValueAsString(photos);

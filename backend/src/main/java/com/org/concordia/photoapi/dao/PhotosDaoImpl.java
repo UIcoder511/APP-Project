@@ -71,9 +71,9 @@ public class PhotosDaoImpl implements PhotosDao {
         );
 
         Photo photo = new Photo();
-        photo.setphotoId(rs.getInt("photoId"));
-        photo.setphotographerId(rs.getInt("photographerId"));
-        photo.setavgColor(rs.getString("avgColor"));
+        photo.setPhotoId(rs.getInt("photoId"));
+        photo.setPhotographerId(rs.getInt("photographerId"));
+        photo.setAvgColor(rs.getString("avgColor"));
         photo.setTitle(rs.getString("title"));
         photo.setImageMediumSize(rs.getString("imageMediumSize"));
         photo.setImageLargeSize(rs.getString("imageLargeSize"));
@@ -137,65 +137,4 @@ public class PhotosDaoImpl implements PhotosDao {
 
     return password;
   }
-}
-				listOfPhotos.add(photo);
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} finally {
-			try {
-				if (conn != null) {
-					conn.close();
-				}
-			} catch (SQLException ex) {
-				System.out.println(ex.getMessage());
-			}
-
-		}
-		
-		return listOfPhotos;
-		
-	}
-
-	@Override
-	public int getUserIdByUsername(String username) {
-		
-		int userId = -1;
-		Statement stmt;
-		
-		try {
-			stmt = conn.createStatement();
-			String userIdSql = "SELECT user_id FROM Users where username='"+username+"'";
-			
-			ResultSet rs = stmt.executeQuery(userIdSql);
-			while (rs.next()) {
-				userId = rs.getInt("user_id");
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} 
-		
-		return userId;
-	}
-
-	@Override
-	public String getPasswordByUsername(String username) {
-		
-		String password = "";
-		Statement stmt;
-		
-		try {
-			stmt = conn.createStatement();
-			String passwordSql = "SELECT password FROM Users where username='"+username+"'";
-			
-			ResultSet rs = stmt.executeQuery(passwordSql);
-			while (rs.next()) {
-				password = rs.getString("password");
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} 
-		
-		return password;
-	}
 }

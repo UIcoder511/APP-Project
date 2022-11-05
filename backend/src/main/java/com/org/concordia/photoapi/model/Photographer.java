@@ -10,7 +10,7 @@ public class Photographer {
     return photographerId;
   }
 
-  public void setphotographerId(Integer photographerId) {
+  public void setPhotographerId(Integer photographerId) {
     this.photographerId = photographerId;
   }
 
