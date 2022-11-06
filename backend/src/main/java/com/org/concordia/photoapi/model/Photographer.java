@@ -3,8 +3,18 @@ package com.org.concordia.photoapi.model;
 public class Photographer {
 
   private Integer photographerId;
-  private String photographer_name;
-  private String photographer_url;
+  private String photographerName;
+  private String photographerUrl;
+
+  public Photographer(
+    Integer photographerId,
+    String photographerName,
+    String photographerUrl
+  ) {
+    this.photographerId = photographerId;
+    this.photographerName = photographerName;
+    this.photographerUrl = photographerUrl;
+  }
 
   public Integer getphotographerId() {
     return photographerId;
@@ -14,19 +24,19 @@ public class Photographer {
     this.photographerId = photographerId;
   }
 
-  public String getPhotographer_name() {
-    return photographer_name;
+  public String getphotographerName() {
+    return photographerName;
   }
 
-  public void setPhotographer_name(String photographer_name) {
-    this.photographer_name = photographer_name;
+  public void setphotographerName(String photographerName) {
+    this.photographerName = photographerName;
   }
 
-  public String getPhotographer_url() {
-    return photographer_url;
+  public String getphotographerUrl() {
+    return photographerUrl;
   }
 
-  public void setPhotographer_url(String photographer_url) {
-    this.photographer_url = photographer_url;
+  public void setphotographerUrl(String photographerUrl) {
+    this.photographerUrl = photographerUrl;
   }
 }

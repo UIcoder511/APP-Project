@@ -1,6 +1,7 @@
 package com.org.concordia.photoapi.dao;
 
 import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.model.Photographer;
 import com.org.concordia.photoapi.util.DBConnect;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -16,7 +17,8 @@ public class PhotosDaoImpl implements PhotosDao {
 
   @Override
   public List<Photo> getPhotos() {
-    String photosSQL = "SELECT * FROM Photos";
+    String photosSQL =
+      "SELECT * FROM Photos p INNER JOIN Photographer ph ON p.photo_id = ph.photographer_id";
 
     listOfPhotos = getListOfPhotosByQuery(photosSQL);
 
@@ -28,7 +30,7 @@ public class PhotosDaoImpl implements PhotosDao {
     String favSQL =
       "SELECT p.* FROM Photos p, Favourites f where f.user_id='" +
       userId +
-      "' and p.photoId=f.photoId";
+      "' and p.photo_id=f.photo_id";
 
     listOfPhotos = getListOfPhotosByQuery(favSQL);
 
@@ -40,7 +42,7 @@ public class PhotosDaoImpl implements PhotosDao {
     String likesSQL =
       "SELECT p.* FROM Photos p,Likes l where l.user_id='" +
       userId +
-      "' and p.photoId=l.photoId ";
+      "' and p.photo_id=l.photo_id ";
 
     listOfPhotos = getListOfPhotosByQuery(likesSQL);
 
@@ -54,11 +56,11 @@ public class PhotosDaoImpl implements PhotosDao {
       ResultSet rs = stmt.executeQuery(sqlQuery);
       while (rs.next()) {
         System.out.println(
-          rs.getInt("photoId") +
+          rs.getInt("photo_id") +
           "\t" +
-          rs.getInt("photographerId") +
+          rs.getInt("photographer_id") +
           "\t" +
-          rs.getString("avgColor") +
+          rs.getString("avg_color") +
           "\t" +
           rs.getString("title") +
           "\t" +
@@ -71,9 +73,16 @@ public class PhotosDaoImpl implements PhotosDao {
         );
 
         Photo photo = new Photo();
-        photo.setPhotoId(rs.getInt("photoId"));
-        photo.setPhotographerId(rs.getInt("photographerId"));
-        photo.setAvgColor(rs.getString("avgColor"));
+        photo.setPhotoId(rs.getInt("photo_id"));
+        // photo.setPhotographerId(rs.getInt("photographer_id"));
+        photo.setPhotographer(
+          new Photographer(
+            rs.getInt("photographer_id"),
+            rs.getString("p_name"),
+            rs.getString("p_url")
+          )
+        );
+        photo.setAvgColor(rs.getString("avg_color"));
         photo.setTitle(rs.getString("title"));
         photo.setImageMediumSize(rs.getString("imageMediumSize"));
         photo.setImageLargeSize(rs.getString("imageLargeSize"));

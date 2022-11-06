@@ -10,10 +10,12 @@ import "./assets/fonts/PlusJakartaDisplay-Medium.otf";
 import "./assets/fonts/PlusJakartaDisplay-Bold.otf";
 
 const theme = createTheme({
-  pallete: {
-    primary: "#151f32",
+  palette: {
+    primary: { main: "#151f32" },
+
     colors: {
       pink: "#ea4c89",
+      textWhite: "#dddddd",
     },
   },
 });

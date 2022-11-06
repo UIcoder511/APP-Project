@@ -20,7 +20,7 @@ public class DBConnect {
         currentRelativePath.toAbsolutePath().toString() +
         "\\resources\\photos.db";
       String url = "jdbc:sqlite:" + dbRelativePath;
-
+      System.out.println(url);
       // create a connection to the database
       conn = DriverManager.getConnection(url);
 

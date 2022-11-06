@@ -4,6 +4,7 @@ public class Photo {
 
   private Integer photoId;
   private Integer photographerId;
+  private Photographer photographer;
   private String avgColor;
   private String title;
   private String imageMediumSize;
@@ -24,6 +25,14 @@ public class Photo {
 
   public void setPhotographerId(Integer photographerId) {
     this.photographerId = photographerId;
+  }
+
+  public Photographer getPhotographer() {
+    return photographer;
+  }
+
+  public void setPhotographer(Photographer photographer) {
+    this.photographer = photographer;
   }
 
   public String getAvgColor() {

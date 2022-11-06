@@ -6,6 +6,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { IconButtonStyled } from "./ImageCard.style.js";
+import { getPhotoPath } from "./../../../utils/photoUtil";
 
 const ImageCard = ({
   thumbnailSrc = "",
@@ -16,6 +17,7 @@ const ImageCard = ({
   imageBgColor = "#444",
   showOnlyImage = false,
   sxCard = {},
+  title = "",
 }) => {
   return (
     <Card
@@ -48,7 +50,7 @@ const ImageCard = ({
       >
         <Box
           component="img"
-          src={thumbnailSrc}
+          src={getPhotoPath(thumbnailSrc)}
           sx={{ height: "100%", width: "100%", objectFit: "contain" }}
         ></Box>
         <Box
@@ -57,7 +59,7 @@ const ImageCard = ({
             // display: "flex",
             display: "none",
             padding: "10px",
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
             alignItems: "flex-end",
             gap: "10px",
             position: "absolute",
@@ -71,34 +73,39 @@ const ImageCard = ({
           }}
         >
           {" "}
-          <Tooltip
-            disableInteractive
-            title={isBookmarked ? "Remove from Favourites" : "Collect"}
-          >
-            <IconButtonStyled>
-              {isBookmarked ? (
-                <BookmarkIcon
-                  sx={{ color: (theme) => theme.pallete.primary }}
-                />
-              ) : (
-                <BookmarkBorderIcon />
-              )}
-            </IconButtonStyled>
-          </Tooltip>
-          <Tooltip
-            disableInteractive
-            title={isLiked ? "You liked this. Click to undo" : "Like"}
-          >
-            <IconButtonStyled>
-              {isLiked ? (
-                <FavoriteIcon
-                  sx={{ color: (theme) => theme.pallete.colors.pink }}
-                />
-              ) : (
-                <FavoriteBorderIcon />
-              )}
-            </IconButtonStyled>
-          </Tooltip>
+          <Box sx={{ color: (theme) => theme.palette.colors.textWhite }}>
+            {title.replace("Free stock photo of ", "")}
+          </Box>
+          <Box sx={{ display: "flex", gap: "10px" }}>
+            <Tooltip
+              disableInteractive
+              title={isBookmarked ? "Remove from Favourites" : "Collect"}
+            >
+              <IconButtonStyled>
+                {isBookmarked ? (
+                  <BookmarkIcon
+                    sx={{ color: (theme) => theme.palette.primary.main }}
+                  />
+                ) : (
+                  <BookmarkBorderIcon />
+                )}
+              </IconButtonStyled>
+            </Tooltip>
+            <Tooltip
+              disableInteractive
+              title={isLiked ? "You liked this. Click to undo" : "Like"}
+            >
+              <IconButtonStyled>
+                {isLiked ? (
+                  <FavoriteIcon
+                    sx={{ color: (theme) => theme.palette.colors.pink }}
+                  />
+                ) : (
+                  <FavoriteBorderIcon />
+                )}
+              </IconButtonStyled>
+            </Tooltip>
+          </Box>
         </Box>
       </Box>
       {!showOnlyImage && (
@@ -118,7 +125,17 @@ const ImageCard = ({
               gap: "5px",
             }}
           >
-            <Avatar sx={{ width: 24, height: 24, fontSize: "0.8rem" }}>
+            <Avatar
+              sx={{
+                width: 24,
+                height: 24,
+                fontSize: "0.8rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                lineHeight: "initial",
+              }}
+            >
               {photographerName.charAt(0)}
             </Avatar>
             <Box sx={{ fontSize: "1rem" }}>{photographerName}</Box>
@@ -133,7 +150,7 @@ const ImageCard = ({
             <Tooltip title="No of Likes">
               <FavoriteIcon
                 fontSize="10px"
-                sx={{ color: (theme) => isLiked && theme.pallete.colors.pink }}
+                sx={{ color: (theme) => isLiked && theme.palette.colors.pink }}
               />
             </Tooltip>
             <div>{noOfLikes}</div>

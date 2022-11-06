@@ -5,13 +5,15 @@ import ImageCard from "./components/ImageCards/ImageCard/ImageCard";
 
 import ImageCards from "./components/ImageCards/ImageCards";
 import PhotographerCards from "./components/PhotographerCards/PhotographerCards";
+import Pages from "./pages/Pages";
 
 function App() {
   return (
-    <div className="App" style={{}}>
+    <div className="App" style={{ height: "100vh", width: "100%" }}>
       {/* <header className="App-header"></header> */}
-      <ImageCards />
+      {/* <ImageCards /> */}
       {/* <PhotographerCards /> */}
+      <Pages />
     </div>
   );
 }

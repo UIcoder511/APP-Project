@@ -20,7 +20,7 @@ public class PhotographerDaoImpl implements PhotographerDao {
     try {
       conn = DBConnect.getDBConnection();
       String photosByPhotographerNameSQL =
-        "SELECT * FROM Photos p, Photographer pg where p.photographerId = pg.photographerId " +
+        "SELECT * FROM Photos p, Photographer pg where p.photographer_id = pg.photographer_id " +
         "and pg.p_name='" +
         name +
         "'";
@@ -29,11 +29,11 @@ public class PhotographerDaoImpl implements PhotographerDao {
       ResultSet rs = stmt.executeQuery(photosByPhotographerNameSQL);
       while (rs.next()) {
         System.out.println(
-          rs.getInt("photoId") +
+          rs.getInt("photo_id") +
           "\t" +
-          rs.getInt("photographerId") +
+          rs.getInt("photographer_id") +
           "\t" +
-          rs.getString("avgColor") +
+          rs.getString("avg_color") +
           "\t" +
           rs.getString("title") +
           "\t" +
@@ -46,9 +46,9 @@ public class PhotographerDaoImpl implements PhotographerDao {
         );
 
         Photo photo = new Photo();
-        photo.setPhotoId(rs.getInt("photoId"));
-        photo.setPhotographerId(rs.getInt("photographerId"));
-        photo.setAvgColor(rs.getString("avgColor"));
+        photo.setPhotoId(rs.getInt("photo_id"));
+        photo.setPhotographerId(rs.getInt("photographer_id"));
+        photo.setAvgColor(rs.getString("avg_color"));
         photo.setTitle(rs.getString("title"));
         photo.setImageMediumSize(rs.getString("imageMediumSize"));
         photo.setImageLargeSize(rs.getString("imageLargeSize"));
