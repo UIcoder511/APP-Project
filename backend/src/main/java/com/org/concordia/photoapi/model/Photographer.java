@@ -1,29 +1,42 @@
 package com.org.concordia.photoapi.model;
 
 public class Photographer {
-	
-	private Integer photographer_id;
-	private String photographer_name;
-	private String photographer_url;
-	
-	public Integer getPhotographer_id() {
-		return photographer_id;
-	}
-	public void setPhotographer_id(Integer photographer_id) {
-		this.photographer_id = photographer_id;
-	}
-	public String getPhotographer_name() {
-		return photographer_name;
-	}
-	public void setPhotographer_name(String photographer_name) {
-		this.photographer_name = photographer_name;
-	}
-	public String getPhotographer_url() {
-		return photographer_url;
-	}
-	public void setPhotographer_url(String photographer_url) {
-		this.photographer_url = photographer_url;
-	}
-	
-	
+
+  private Integer photographerId;
+  private String photographerName;
+  private String photographerUrl;
+
+  public Photographer(
+    Integer photographerId,
+    String photographerName,
+    String photographerUrl
+  ) {
+    this.photographerId = photographerId;
+    this.photographerName = photographerName;
+    this.photographerUrl = photographerUrl;
+  }
+
+  public Integer getphotographerId() {
+    return photographerId;
+  }
+
+  public void setPhotographerId(Integer photographerId) {
+    this.photographerId = photographerId;
+  }
+
+  public String getphotographerName() {
+    return photographerName;
+  }
+
+  public void setphotographerName(String photographerName) {
+    this.photographerName = photographerName;
+  }
+
+  public String getphotographerUrl() {
+    return photographerUrl;
+  }
+
+  public void setphotographerUrl(String photographerUrl) {
+    this.photographerUrl = photographerUrl;
+  }
 }

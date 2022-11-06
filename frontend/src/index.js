@@ -1,13 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import "./assets/fonts/PlusJakartaText-Light.otf";
+import "./assets/fonts/PlusJakartaDisplay-Regular.otf";
+import "./assets/fonts/PlusJakartaDisplay-Medium.otf";
+import "./assets/fonts/PlusJakartaDisplay-Bold.otf";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const theme = createTheme({
+  palette: {
+    primary: { main: "#151f32" },
+
+    colors: {
+      pink: "#ea4c89",
+      textWhite: "#dddddd",
+    },
+  },
+});
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
