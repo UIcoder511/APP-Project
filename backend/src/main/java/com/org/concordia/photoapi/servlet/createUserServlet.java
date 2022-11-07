@@ -1,10 +1,8 @@
 package com.org.concordia.photoapi.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Base64.Decoder;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.service.UsersService;
 import com.org.concordia.photoapi.service.UsersServiceImpl;
 
@@ -39,8 +38,7 @@ public class createUserServlet extends HttpServlet {
 		String decodedPassword = new String(bytes);
 		System.out.println("Decrypted password:" + decodedPassword);
 		
-		//create a class response object
-		List<Object> createUserSuccessOrFailure = new ArrayList<Object>();
+		ResponseForUserCreation responseForUser=null;
 		
 		try
 		{
@@ -49,18 +47,16 @@ public class createUserServlet extends HttpServlet {
 			{
 				if(userService.addUser(username, password))
 				{
-					createUserSuccessOrFailure.add("type:" +"success");
-					createUserSuccessOrFailure.add("User successfully created");
+					new ResponseForUserCreation("success","User successfully created");
 				}
 			}
 			else
 			{
-				createUserSuccessOrFailure.add("type:" +"error");
-				createUserSuccessOrFailure.add("User" + username + "already exists in the system");
+				new ResponseForUserCreation("error", "User " + username + " already exists in the system");
 			}
 			
 			ObjectMapper mapper = new ObjectMapper();
-		    String jsonString = mapper.writeValueAsString(createUserSuccessOrFailure);
+		    String jsonString = mapper.writeValueAsString(responseForUser);
 		    System.out.println(jsonString);
 		    resp.setContentType("application/json");
 		    resp.setCharacterEncoding("UTF-8");
