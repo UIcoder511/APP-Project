@@ -42,7 +42,7 @@ const Init = () => {
   });
 
   const getAllPhotos = () => {
-    axios.get("/photo-api/getAllPhotos").then(({ data }) => {
+    axios.get("/photo-api/get-all-photos").then(({ data }) => {
       // console.log(data);
       dispatch({ type: storeActions.SET_PHOTOS, payload: data });
     });

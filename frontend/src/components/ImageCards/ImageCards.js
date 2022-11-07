@@ -8,8 +8,8 @@ import { GlobalContext } from "./../../Init";
 const ImageCards = ({ photos = [], user }) => {
   const handleLikeButton = (photoId, isAlreadyLiked) => {
     const url = isAlreadyLiked
-      ? "/photo-api/removeUserLikedPhotos?"
-      : "/photo-api/addUserLikedPhotos?";
+      ? "/photo-api/remove-liked-photos?"
+      : "/photo-api/add-liked-photos?";
     return axios
       .post(url + "username=" + user.username + "&photoId=" + photoId)
       .then((data) => {
@@ -18,8 +18,8 @@ const ImageCards = ({ photos = [], user }) => {
   };
   const handleBookmarkButton = (photoId, isAlreadyBookmarked) => {
     const url = isAlreadyBookmarked
-      ? "/photo-api/removeUserFavPhotos?"
-      : "/photo-api/addUserFavPhotos?";
+      ? "/photo-api/remove-fav-photos?"
+      : "/photo-api/add-fav-photos?";
     return axios
       .post(url + "username=" + user.username + "&photoId=" + photoId)
       .then((data) => {
