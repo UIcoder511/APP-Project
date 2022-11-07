@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "likesServlet", urlPatterns = "/getLikedPhotos")
+@WebServlet(name = "likesServlet", urlPatterns = "/get-liked-photos")
 public class LikesServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;

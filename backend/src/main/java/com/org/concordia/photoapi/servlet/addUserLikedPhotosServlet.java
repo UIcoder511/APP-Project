@@ -13,7 +13,7 @@ import com.org.concordia.photoapi.service.PhotosServiceImpl;
 import com.org.concordia.photoapi.service.UsersService;
 import com.org.concordia.photoapi.service.UsersServiceImpl;
 
-@WebServlet(name = "addUserLikedPhotosServlet", urlPatterns = "/addUserLikedPhotos")
+@WebServlet(name = "addUserLikedPhotosServlet", urlPatterns = "/add-liked-photos")
 public class addUserLikedPhotosServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;

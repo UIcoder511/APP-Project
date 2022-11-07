@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "favouritesServlet", urlPatterns = "/getFavouritePhotos")
+@WebServlet(name = "favouritesServlet", urlPatterns = "/get-fav-photos")
 public class FavouritesServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;

@@ -9,6 +9,8 @@ public class User {
 	private String password;
 	private ArrayList<Integer> favourite;
 	private ArrayList<Integer> like;
+	
+	public User() {}
 
 	public User(int userId, String username, ArrayList<Integer> favourite,ArrayList<Integer> like) {
 		this.userId = userId;

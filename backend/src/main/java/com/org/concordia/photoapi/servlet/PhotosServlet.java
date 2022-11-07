@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "photosServlet", urlPatterns = "/getAllPhotos")
+@WebServlet(name = "photosServlet", urlPatterns = "/get-all-photos")
 public class PhotosServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;
@@ -23,6 +23,7 @@ public class PhotosServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
     try {
+   
       List<Photo> photos = photosService.getPhotos();
 
       System.out.println(photos.size());

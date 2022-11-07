@@ -10,7 +10,8 @@ public class Photo {
   private String imageMediumSize;
   private String imageLargeSize;
   private String imageOrignalSize;
-
+  
+  
   public Integer getPhotoId() {
     return photoId;
   }

@@ -13,7 +13,7 @@ import com.org.concordia.photoapi.service.PhotosServiceImpl;
 import com.org.concordia.photoapi.service.UsersService;
 import com.org.concordia.photoapi.service.UsersServiceImpl;
 
-@WebServlet(name = "addUserFavPhotosServlet", urlPatterns = "/addUserFavPhotos")
+@WebServlet(name = "addUserFavPhotosServlet", urlPatterns = "/add-fav-photos")
 public class addUserFavPhotosServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;
