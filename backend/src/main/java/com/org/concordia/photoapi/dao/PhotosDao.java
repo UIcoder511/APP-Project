@@ -8,6 +8,9 @@ public interface PhotosDao {
 	public List<Photo> getPhotos();
 	public List<Photo> getUserFavouritePhotos(int userId);
 	public List<Photo> getUserLikedPhotos(int userId);
-	public int getUserIdByUsername(String username);
-	public String getPasswordByUsername(String username);
+	public List<Photo> getPhotos(int photoId);
+	public void addUserLikedPhotos(int userId, int photoId);
+	public void addUserFavPhotos(int userId, int photoId);
+	public void removeUserLikedPhotos(int userId, int photoId);
+	public void removeUserFavPhotos(int userId, int photoId);
 }
