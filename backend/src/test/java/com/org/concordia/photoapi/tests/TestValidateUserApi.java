@@ -4,7 +4,7 @@ import static io.restassured.RestAssured.given;
 
 import java.io.IOException;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.testng.Assert;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -15,7 +15,7 @@ public class TestValidateUserApi extends BaseSetup {
 	@Test
 	public void userAuthenticationSuccess() throws JsonParseException, JsonMappingException, IOException {
 
-		String getMessageAsResponse = given().when().queryParam("username", "admin").queryParams("password", "admin")
+		String getMessageAsResponse = given().when().queryParam("username", "testuser").queryParams("password", "test")
 				.get("/validate-user").then().statusCode(200).extract().response().asPrettyString();
 
 		// assert values in json response
@@ -26,7 +26,7 @@ public class TestValidateUserApi extends BaseSetup {
 	@Test
 	public void userAuthenticationWrongPassword() throws JsonParseException, JsonMappingException, IOException {
 
-		String getMessageAsResponse = given().when().queryParam("username", "admin").queryParams("password", "test")
+		String getMessageAsResponse = given().when().queryParam("username", "testuser").queryParams("password", "123")
 				.get("/validate-user").then().statusCode(200).extract().response().asPrettyString();
 
 		// assert values in json response

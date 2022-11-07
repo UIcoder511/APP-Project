@@ -15,148 +15,143 @@ import org.json.JSONTokener;
 
 public class JSONReader {
 
-  private final String resourceName = ".\\resources\\photos.json";
-  private static Connection conn = null;
+	private final String resourceNameForPhotos = ".\\resources\\photos.json";
+	private final String resourceNameForPhotographer = ".\\resources\\photographer.json";
+	private static Connection conn = null;
 
-  public void selectAll(Connection conn) throws SQLException {
-    String sql = "SELECT * FROM Photos";
-    Statement stmt = conn.createStatement();
-    ResultSet rs = stmt.executeQuery(sql);
-    while (rs.next()) {
-      System.out.println(
-        rs.getInt("photoId") +
-        "\t" +
-        rs.getInt("photographerId") +
-        "\t" +
-        rs.getString("avgColor") +
-        "\t" +
-        rs.getString("title") +
-        "\t" +
-        rs.getString("imageMediumSize") +
-        "\t" +
-        rs.getString("imageLargeSize") +
-        "\t" +
-        rs.getString("imageOrignalSize") +
-        "\t"
-      );
-    }
+	public void selectAll(Connection conn) throws SQLException {
+		String sql = "SELECT * FROM Photos";
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sql);
+		while (rs.next()) {
+			System.out.println(rs.getInt("photo_id") + "\t" + rs.getInt("photographer_id") + "\t"
+					+ rs.getString("avg_color") + "\t" + rs.getString("title") + "\t" + rs.getString("imageMediumSize")
+					+ "\t" + rs.getString("imageLargeSize") + "\t" + rs.getString("imageOrignalSize") + "\t");
+		}
 
-    String sql1 = "SELECT * FROM Photographer";
-    Statement stmt1 = conn.createStatement();
-    ResultSet rs1 = stmt1.executeQuery(sql1);
-    while (rs1.next()) {
-      System.out.println(
-        rs1.getInt("photographerId") +
-        "\t" +
-        rs1.getString("p_name") +
-        "\t" +
-        rs1.getString("p_url")
-      );
-    }
-  }
+		String sql1 = "SELECT * FROM Photographer";
+		Statement stmt1 = conn.createStatement();
+		ResultSet rs1 = stmt1.executeQuery(sql1);
+		while (rs1.next()) {
+			System.out.println(
+					rs1.getInt("photographer_id") + "\t" + rs1.getString("p_name") + "\t" + rs1.getString("p_url"));
+		}
+	}
 
-  public static void insertDataIntoDB(
-    int photoId,
-    int photographerId,
-    String avgColor,
-    String title,
-    String imageMediumSize,
-    String imageLargeSize,
-    String imageOrignalSize
-  ) throws SQLException {
-    String photosSql =
-      "INSERT INTO Photos(photoId,photographerId,avgColor,title,imageMediumSize,imageLargeSize,imageOrignalSize) VALUES(?,?,?,?,?,?,?)";
+	public static void insertDataIntoPhotos(int photoId, int photographerId, String avgColor, String title,
+			String imageMediumSize, String imageLargeSize, String imageOrignalSize) throws SQLException {
+		String photosSql = "INSERT INTO Photos(photo_id,photographer_id,avg_color,title,imageMediumSize,imageLargeSize,imageOrignalSize) VALUES(?,?,?,?,?,?,?)";
 
-    try (PreparedStatement pstmt = conn.prepareStatement(photosSql)) {
-      pstmt.setInt(1, photoId);
-      pstmt.setInt(2, photographerId);
-      pstmt.setString(3, avgColor);
-      pstmt.setString(4, title);
-      pstmt.setString(5, imageMediumSize);
-      pstmt.setString(6, imageLargeSize);
-      pstmt.setString(7, imageOrignalSize);
-      pstmt.executeUpdate();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-    //		String photographerSql = "INSERT INTO Photographer(photographerId,p_name,p_url) VALUES(?,?,?)";
-    //		try (PreparedStatement pstmt = conn.prepareStatement(photographerSql)) {
-    //            pstmt.setInt(1, photographerId);
-    //            pstmt.setString(2, photographer_name);
-    //            pstmt.setString(3, photographer_url);
-    //            pstmt.executeUpdate();
-    //        } catch (SQLException e) {
-    //            System.out.println(e.getMessage());
-    //        }
-  }
+		try (PreparedStatement pstmt = conn.prepareStatement(photosSql)) {
+			pstmt.setInt(1, photoId);
+			pstmt.setInt(2, photographerId);
+			pstmt.setString(3, avgColor);
+			pstmt.setString(4, title);
+			pstmt.setString(5, imageMediumSize);
+			pstmt.setString(6, imageLargeSize);
+			pstmt.setString(7, imageOrignalSize);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public static void insertDataIntoPhotographer(int photographerId, String photographerName,String photographerProfile) throws SQLException {
+		String photosSql = "INSERT INTO Photographer(photographer_id,p_name,p_url) VALUES(?,?,?)";
 
-  public void parse() throws JSONException, SQLException {
-    FileReader fr = null;
+		try (PreparedStatement pstmt = conn.prepareStatement(photosSql)) {
+			 pstmt.setInt(1, photographerId);
+			 pstmt.setString(2, photographerName);
+			 pstmt.setString(3, photographerProfile);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
-    try {
-      fr = new FileReader(new File(resourceName));
-    } catch (FileNotFoundException e) {
-      System.out.println("Cannot find resource file " + resourceName);
-    }
+	public void parsePhotographerJson() throws JSONException, SQLException {
+		FileReader fr = null;
 
-    JSONTokener tokener = new JSONTokener(fr);
-    JSONObject jsonObject = new JSONObject(tokener);
+		try {
+			fr = new FileReader(new File(resourceNameForPhotographer));
+		} catch (FileNotFoundException e) {
+			System.out.println("Cannot find resource file " + resourceNameForPhotographer);
+		}
 
-    System.out.println(jsonObject);
+		JSONTokener tokener = new JSONTokener(fr);
+		JSONObject jsonObject = new JSONObject(tokener);
 
-    JSONArray jsonArray = (JSONArray) jsonObject.get("photos");
+		System.out.println(jsonObject);
 
-    for (int i = 0; i < jsonArray.length(); i++) {
-      JSONObject photosObject = jsonArray.getJSONObject(i);
+		JSONArray jsonArray = (JSONArray) jsonObject.get("photographer");
 
-      int photoId = Integer.parseInt(photosObject.get("id").toString());
-      int photographerId = Integer.parseInt(
-        photosObject.get("photographerId").toString()
-      );
-      String avgColor = photosObject.get("avgColor").toString();
-      String title = photosObject.get("title").toString();
-      String imageMediumSize = photosObject.get("imageMediumSize").toString();
-      String imageLargeSize = photosObject.get("imageLargeSize").toString();
-      String imageOrignalSize = photosObject.get("imageOrignalSize").toString();
-      //        	String photographer_name = photosObject.get("photographer").toString();
-      //        	String photographer_url = photosObject.get("photographer_url").toString();
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject photographerObject = jsonArray.getJSONObject(i);
 
-      //insertDataIntoDB(photoId,width,height,liked,photographerId,photographer_name,photographer_url);
-      insertDataIntoDB(
-        photoId,
-        photographerId,
-        avgColor,
-        title,
-        imageMediumSize,
-        imageLargeSize,
-        imageOrignalSize
-      );
-    }
-  }
+			int photographerId = Integer.parseInt(photographerObject.get("photographerId").toString());
+			String photographerName = photographerObject.get("photographerName").toString();
+			String photographerProfile = photographerObject.get("photographerProfile").toString();
 
-  public static void main(String[] args) throws JSONException {
-    //establish connection with DB
-    JSONReader jsonReader = new JSONReader();
+			insertDataIntoPhotographer(photographerId, photographerName, photographerProfile);
+		}
+	}
+	
+	public void parsePhotosJson() throws JSONException, SQLException {
+		FileReader fr = null;
 
-    try {
-      conn = DBConnect.getDBConnection();
-      JSONReader jsonreader = new JSONReader();
+		try {
+			fr = new FileReader(new File(resourceNameForPhotos));
+		} catch (FileNotFoundException e) {
+			System.out.println("Cannot find resource file " + resourceNameForPhotos);
+		}
 
-      //read json
-      jsonReader.parse();
+		JSONTokener tokener = new JSONTokener(fr);
+		JSONObject jsonObject = new JSONObject(tokener);
 
-      //execute select query
-      jsonreader.selectAll(conn);
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    } finally {
-      try {
-        if (conn != null) {
-          conn.close();
-        }
-      } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-      }
-    }
-  }
+		System.out.println(jsonObject);
+
+		JSONArray jsonArray = (JSONArray) jsonObject.get("photos");
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject photosObject = jsonArray.getJSONObject(i);
+
+			int photoId = Integer.parseInt(photosObject.get("id").toString());
+			int photographerId = Integer.parseInt(photosObject.get("photographer_id").toString());
+			String avgColor = photosObject.get("avg_color").toString();
+			String title = photosObject.get("title").toString();
+			String imageMediumSize = photosObject.get("imageMediumSize").toString();
+			String imageLargeSize = photosObject.get("imageLargeSize").toString();
+			String imageOrignalSize = photosObject.get("imageOrignalSize").toString();
+
+			insertDataIntoPhotos(photoId, photographerId, avgColor, title, imageMediumSize, imageLargeSize,
+					imageOrignalSize);
+		}
+	}
+
+	public static void main(String[] args) throws JSONException {
+		// establish connection with DB
+		JSONReader jsonReader = new JSONReader();
+
+		try {
+			conn = DBConnect.getDBConnection();
+			JSONReader jsonreader = new JSONReader();
+
+			// read json
+			jsonReader.parsePhotosJson();
+			jsonReader.parsePhotographerJson();
+
+			// execute select query
+			jsonreader.selectAll(conn);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException ex) {
+				System.out.println(ex.getMessage());
+			}
+		}
+	}
 }

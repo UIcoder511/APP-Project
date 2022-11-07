@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.given;
 import java.io.IOException;
 import java.util.List;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.testng.Assert;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -16,9 +16,25 @@ import com.org.concordia.photoapi.model.Photo;
 
 public class TestGetAllFavPhotosByUsernameApi extends BaseSetup
 {
-	public static final String user = "admin";
+	public static final String user = "testuser";
+	public static final String photoId = "1234567";
 	
-	@Test
+	@Test(priority=0)
+	public void addUserFavPhotos() throws JsonParseException, JsonMappingException, IOException
+	{
+	
+	    given().
+		when().
+		queryParam("username", user).
+		queryParams("photoId",photoId).
+		post("/add-fav-photos").
+		then().
+		assertThat().
+		statusCode(200);
+
+	}
+	
+	@Test(priority=1)
 	public void getFavPhotos() throws JsonParseException, JsonMappingException, IOException
 	{
 	
@@ -36,12 +52,12 @@ public class TestGetAllFavPhotosByUsernameApi extends BaseSetup
 		List<Photo> photos = mapper.readValue(getAllFavPhotosInResponse, new TypeReference<List<Photo>>() {});
 		
 		//assert values in json response
-		Assert.assertEquals(photos.get(0).getPhotoId(),14168949);
-		Assert.assertEquals(photos.get(0).getPhotographerId(),250460536);
-		Assert.assertEquals(photos.get(0).getAvgColor(),"#777B7A");
-		Assert.assertEquals(photos.get(0).getTitle(),"Free stock photo of 35mm, 35mm camera, 35mm film");
-		Assert.assertEquals(photos.get(0).getImageMediumSize(),"photo-14168949-md.jpeg");
-		Assert.assertEquals(photos.get(0).getImageLargeSize(),"photo-14168949-lg.jpeg");
-		Assert.assertEquals(photos.get(0).getImageOrignalSize(),"photo-14168949-o.jpeg");
+		Assert.assertEquals(photos.get(0).getPhotoId(),1234567);
+		Assert.assertEquals(photos.get(0).getPhotographerId(),1234);
+		Assert.assertEquals(photos.get(0).getAvgColor(),"#515149");
+		Assert.assertEquals(photos.get(0).getTitle(),"Its Test Data");
+		Assert.assertEquals(photos.get(0).getImageMediumSize(),"photo-1234567-md.jpeg");
+		Assert.assertEquals(photos.get(0).getImageLargeSize(),"photo-1234567-lg.jpeg");
+		Assert.assertEquals(photos.get(0).getImageOrignalSize(),"photo-1234567-o.jpeg");
 	}
 }

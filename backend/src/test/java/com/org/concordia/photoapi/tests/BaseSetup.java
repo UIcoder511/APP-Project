@@ -1,6 +1,7 @@
 package com.org.concordia.photoapi.tests;
 
-import org.junit.BeforeClass;
+
+import org.testng.annotations.BeforeClass;
 
 import io.restassured.RestAssured;
 
@@ -13,5 +14,4 @@ public class BaseSetup {
 		RestAssured.basePath = "/photo-api/";
 		RestAssured.baseURI = "http://localhost";
 	}
-
 }

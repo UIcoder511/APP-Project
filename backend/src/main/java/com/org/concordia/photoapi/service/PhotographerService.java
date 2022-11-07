@@ -1,11 +1,11 @@
 package com.org.concordia.photoapi.service;
 
+import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.model.Photographer;
 import java.util.List;
 
-import com.org.concordia.photoapi.model.Photo;
-
 public interface PhotographerService {
-	
-	public List<Photo> getPhotosByPhotographerName(String name);
+  public List<Photographer> getPhotographers();
 
+  public List<Photo> getPhotosByPhotographerId(int photographerId);
 }

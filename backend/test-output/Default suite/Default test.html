@@ -1,0 +1,170 @@
+<html>
+<head>
+<title>TestNG:  Default test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Default test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>18/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Mon Nov 07 12:48:05 EST 2022</td>
+</tr>
+<tr><td>Total time:</td><td>3 seconds (3880 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestValidateUserApi.userAuthenticationFailure()'><b>userAuthenticationFailure</b><br>Test class: com.org.concordia.photoapi.tests.TestValidateUserApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestValidateUserApi@6ae5aa72</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi.getLikedPhotos()'><b>getLikedPhotos</b><br>Test class: com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@3a93b025</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestAddNewUserApi.deleteNewUserCreated()'><b>deleteNewUserCreated</b><br>Test class: com.org.concordia.photoapi.tests.TestAddNewUserApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestAddNewUserApi@38c6f217</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestGetAllPhotosApi.showAllPhotosToUser()'><b>showAllPhotosToUser</b><br>Test class: com.org.concordia.photoapi.tests.TestGetAllPhotosApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestGetAllPhotosApi@1189dd52</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi.addUserFavPhotos()'><b>addUserFavPhotos</b><br>Test class: com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi</td>
+<td></td>
+<td>1</td>
+<td>com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@5b239d7d</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestDBConnection.setupConnection()'><b>setupConnection</b><br>Test class: com.org.concordia.photoapi.tests.TestDBConnection</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestDBConnection@399f45b1</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestDBConnection.closeConnection()'><b>closeConnection</b><br>Test class: com.org.concordia.photoapi.tests.TestDBConnection</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestDBConnection@399f45b1</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi.addPhotosLikedByUser()'><b>addPhotosLikedByUser</b><br>Test class: com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@3a93b025</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin.userDetailsAfterLogin()'><b>userDetailsAfterLogin</b><br>Test class: com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin@35cabb2a</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestValidateUserApi.userAuthenticationWrongPassword()'><b>userAuthenticationWrongPassword</b><br>Test class: com.org.concordia.photoapi.tests.TestValidateUserApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestValidateUserApi@6ae5aa72</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestAddNewUserApi.addNewUserSuccess()'><b>addNewUserSuccess</b><br>Test class: com.org.concordia.photoapi.tests.TestAddNewUserApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestAddNewUserApi@38c6f217</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi.getFavPhotos()'><b>getFavPhotos</b><br>Test class: com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@2d7275fc</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestAddNewUserApi.addNewUserFailure()'><b>addNewUserFailure</b><br>Test class: com.org.concordia.photoapi.tests.TestAddNewUserApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestAddNewUserApi@38c6f217</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi.addUserFavPhotos()'><b>addUserFavPhotos</b><br>Test class: com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@2d7275fc</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestValidateUserApi.userAuthenticationSuccess()'><b>userAuthenticationSuccess</b><br>Test class: com.org.concordia.photoapi.tests.TestValidateUserApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestValidateUserApi@6ae5aa72</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi.removeUserFavPhotos()'><b>removeUserFavPhotos</b><br>Test class: com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@5b239d7d</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi.addPhotosLikedByUser()'><b>addPhotosLikedByUser</b><br>Test class: com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@7e07db1f</td></tr>
+<tr>
+<td title='com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi.removePhotosDislikedByUser()'><b>removePhotosDislikedByUser</b><br>Test class: com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi</td>
+<td></td>
+<td>0</td>
+<td>com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@7e07db1f</td></tr>
+</table><p>
+</body>
+</html>

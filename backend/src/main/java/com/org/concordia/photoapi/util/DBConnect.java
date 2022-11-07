@@ -33,4 +33,18 @@ public class DBConnect {
   public static Connection getDBConnection() {
     return conn;
   }
+  
+  public static boolean closeConnection(Connection conn) {
+	  try {
+        if (conn != null) {
+          conn.close();
+          
+          return true;
+        }
+      } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+      }
+	  
+	  return false;
+  }
 }

@@ -22,12 +22,12 @@ public class PhotographerServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
-    String photographerName = req.getParameter("photographerName");
-    System.out.println(photographerName);
+    int photographerId = Integer.parseInt(req.getParameter("photographerId"));
+    System.out.println(photographerId);
 
     try {
-      List<Photo> photos = photographerService.getPhotosByPhotographerName(
-        photographerName
+      List<Photo> photos = photographerService.getPhotosByPhotographerId(
+        photographerId
       );
 
       System.out.println(photos.size());
