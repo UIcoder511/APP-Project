@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.org.concordia.photoapi.model.Photo;
 import com.org.concordia.photoapi.service.PhotosService;
 import com.org.concordia.photoapi.service.PhotosServiceImpl;
+import com.org.concordia.photoapi.service.UsersService;
+import com.org.concordia.photoapi.service.UsersServiceImpl;
+
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,6 +21,7 @@ public class LikesServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;
   private PhotosService photosService = new PhotosServiceImpl();
+  private UsersService userService = new UsersServiceImpl();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -26,7 +30,7 @@ public class LikesServlet extends HttpServlet {
     System.out.println(username);
 
     try {
-      int user_id = photosService.getUserIdByUsername(username);
+      int user_id = userService.getUserIdByUsername(username);
       List<Photo> photos = photosService.getUserLikedPhotos(user_id);
 
       System.out.println(photos.size());

@@ -14,12 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.org.concordia.photoapi.service.PhotosService;
 import com.org.concordia.photoapi.service.PhotosServiceImpl;
+import com.org.concordia.photoapi.service.UsersService;
+import com.org.concordia.photoapi.service.UsersServiceImpl;
 
-@WebServlet(name = "userServlet", urlPatterns = "/getUser")
+@WebServlet(name = "validateUserServlet", urlPatterns = "/validateUser")
 public class UserServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 2872241476921678269L;
-	private PhotosService photosService = new PhotosServiceImpl();
+	private UsersService userService = new UsersServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -44,14 +46,14 @@ public class UserServlet extends HttpServlet {
 		
 		try
 		{
-			int user_id = photosService.getUserIdByUsername(username);
+			int user_id = userService.getUserIdByUsername(username);
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("UTF-8");
 			
 			if(user_id!=-1)
 			{
 				//check password 
-				String passwordFromDB = photosService.getPasswordByUsername(username);
+				String passwordFromDB = userService.getPasswordByUsername(username);
 				if(passwordFromDB.equals(decodedPassword))
 				{
 					String jsonString = "User Authenticated";
