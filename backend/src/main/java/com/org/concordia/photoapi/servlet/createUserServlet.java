@@ -39,6 +39,7 @@ public class createUserServlet extends HttpServlet {
 		String decodedPassword = new String(bytes);
 		System.out.println("Decrypted password:" + decodedPassword);
 		
+		//create a class response object
 		List<Object> createUserSuccessOrFailure = new ArrayList<Object>();
 		
 		try

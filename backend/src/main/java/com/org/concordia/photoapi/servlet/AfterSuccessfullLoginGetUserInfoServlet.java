@@ -19,7 +19,7 @@ import com.org.concordia.photoapi.service.PhotosServiceImpl;
 import com.org.concordia.photoapi.service.UsersService;
 import com.org.concordia.photoapi.service.UsersServiceImpl;
 
-@WebServlet(name = "validateUserServlet", urlPatterns = "/getUser")
+@WebServlet(name = "validateUserServlet", urlPatterns = "/get-user")
 public class AfterSuccessfullLoginGetUserInfoServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 2872241476921678269L;
@@ -58,7 +58,7 @@ public class AfterSuccessfullLoginGetUserInfoServlet extends HttpServlet {
 		    }
 		    
 		    
-		    User userObject = new User(user_id,username,liked_photo_ids,fav_photo_ids);
+		    User userObject = new User(user_id,username,fav_photo_ids,liked_photo_ids);
 		    
 		    ObjectMapper mapper = new ObjectMapper();
 		    String jsonString = mapper.writeValueAsString(userObject);
