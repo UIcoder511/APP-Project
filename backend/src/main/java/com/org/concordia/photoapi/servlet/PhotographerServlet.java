@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "photographerServlet", urlPatterns = "/photographer")
+@WebServlet(name = "photographerServlet", urlPatterns = "/get-photographer")
 public class PhotographerServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;

@@ -21,6 +21,18 @@ public class PhotosServiceImpl implements PhotosService{
 		}
 		return null;
 	}
+	
+	@Override
+	public List<Photo> getPhotos(int photoId) {
+		try {
+			return photosDao.getPhotos(photoId);
+		}
+		catch(Exception ex){
+			//throw photo-api custom exception here
+			//log
+		}
+		return null;
+	}
 
 	@Override
 	public List<Photo> getUserFavouritePhotos(int userId) {
@@ -47,26 +59,46 @@ public class PhotosServiceImpl implements PhotosService{
 	}
 
 	@Override
-	public int getUserIdByUsername(String username) {
+	public void addUserLikedPhotos(int userId,int photoId) {
 		try {
-			return photosDao.getUserIdByUsername(username);
+			photosDao.addUserLikedPhotos(userId,photoId);
 		}
 		catch(Exception ex){
 			//throw photo-api custom exception here
 			//log
 		}
-		return -1;
 	}
 
 	@Override
-	public String getPasswordByUsername(String username) {
+	public void addUserFavPhotos(int userId, int photoId) {
 		try {
-			return photosDao.getPasswordByUsername(username);
+			photosDao.addUserFavPhotos(userId,photoId);
 		}
 		catch(Exception ex){
 			//throw photo-api custom exception here
 			//log
 		}
-		return null;
+	}
+
+	@Override
+	public void removeUserLikedPhotos(int userId, int photoId) {
+		try {
+			photosDao.removeUserLikedPhotos(userId,photoId);
+		}
+		catch(Exception ex){
+			//throw photo-api custom exception here
+			//log
+		}
+	}
+
+	@Override
+	public void removeUserFavPhotos(int userId, int photoId) {
+		try {
+			photosDao.removeUserFavPhotos(userId,photoId);
+		}
+		catch(Exception ex){
+			//throw photo-api custom exception here
+			//log
+		}
 	}
 }

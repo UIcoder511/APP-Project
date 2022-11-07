@@ -58,14 +58,14 @@ public class PhotographerDaoImpl implements PhotographerDao {
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
-    } finally {
-      try {
-        if (conn != null) {
-          conn.close();
-        }
-      } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-      }
+//    } finally {
+//      try {
+//        if (conn != null) {
+//          conn.close();
+//        }
+//      } catch (SQLException ex) {
+//        System.out.println(ex.getMessage());
+//      }
     }
 
     return listOfPhotosByPhotographerName;
