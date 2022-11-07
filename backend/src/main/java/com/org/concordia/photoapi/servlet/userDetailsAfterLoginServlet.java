@@ -19,8 +19,8 @@ import com.org.concordia.photoapi.service.PhotosServiceImpl;
 import com.org.concordia.photoapi.service.UsersService;
 import com.org.concordia.photoapi.service.UsersServiceImpl;
 
-@WebServlet(name = "validateUserServlet", urlPatterns = "/get-user")
-public class AfterSuccessfullLoginGetUserInfoServlet extends HttpServlet {
+@WebServlet(name = "userDetailsAfterLoginServlet", urlPatterns = "/get-user")
+public class userDetailsAfterLoginServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 2872241476921678269L;
 	private PhotosService photosService = new PhotosServiceImpl();

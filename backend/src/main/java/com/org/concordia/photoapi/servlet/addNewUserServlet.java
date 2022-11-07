@@ -16,8 +16,8 @@ import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.service.UsersService;
 import com.org.concordia.photoapi.service.UsersServiceImpl;
 
-@WebServlet(name = "createUserServlet", urlPatterns = "/add-user")
-public class createUserServlet extends HttpServlet {
+@WebServlet(name = "addNewUserServlet", urlPatterns = "/add-user")
+public class addNewUserServlet extends HttpServlet {
 	
 	private static final long serialVersionUID = 2872241476921678269L;
 	private UsersService userService = new UsersServiceImpl();

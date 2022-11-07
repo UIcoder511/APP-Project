@@ -4,6 +4,8 @@ public class ResponseForUserCreation {
 
 	private String type;
 	private String message;
+	
+	public ResponseForUserCreation() {}
 
 	public ResponseForUserCreation(String type, String message) {
 		this.type = type;
