@@ -3,9 +3,12 @@ package com.org.concordia.photoapi.servlet;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.model.Photographer;
+import com.org.concordia.photoapi.model.PhotographerWithPhotos;
 import com.org.concordia.photoapi.service.PhotographerService;
 import com.org.concordia.photoapi.service.PhotographerServiceImpl;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +16,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "photographerServlet", urlPatterns = "/get-photographer")
-public class PhotographerServlet extends HttpServlet {
+@WebServlet(
+  name = "photographersWithPhotosServlet",
+  urlPatterns = "/get-photographers-with-photos"
+)
+public class PhotographersWithPhotosServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;
   private PhotographerService photographerService = new PhotographerServiceImpl();
@@ -22,19 +28,21 @@ public class PhotographerServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
-    int photographerId = Integer.parseInt(req.getParameter("photographerId"));
-    System.out.println(photographerId);
-
     try {
-      List<Photo> photos = photographerService.getPhotosByPhotographerId(
-        photographerId
-      );
+      List<PhotographerWithPhotos> photographerWithPhotoslist = new ArrayList<PhotographerWithPhotos>();
+      List<Photographer> photographers = photographerService.getPhotographers();
 
-      System.out.println(photos.size());
-      System.out.println(photos.get(0).getPhotoId());
+      for (Photographer photographer : photographers) {
+        List<Photo> photos = photographerService.getPhotosByPhotographerId(
+          photographer.getphotographerId()
+        );
+        photographerWithPhotoslist.add(
+          new PhotographerWithPhotos(photographer, photos)
+        );
+      }
 
       ObjectMapper mapper = new ObjectMapper();
-      String jsonString = mapper.writeValueAsString(photos);
+      String jsonString = mapper.writeValueAsString(photographerWithPhotoslist);
       System.out.println(jsonString);
       resp.setContentType("application/json");
       resp.setCharacterEncoding("UTF-8");

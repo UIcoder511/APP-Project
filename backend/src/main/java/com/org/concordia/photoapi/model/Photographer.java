@@ -8,6 +8,8 @@ public class Photographer {
   
   public Photographer() {}
 
+  public Photographer() {}
+
   public Photographer(
     Integer photographerId,
     String photographerName,

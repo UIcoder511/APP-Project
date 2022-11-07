@@ -3,16 +3,29 @@ import ImageCard from "./ImageCard/ImageCard";
 import photo from "../../assets/photo.jpeg";
 import { Box } from "@mui/material";
 import axios from "axios";
+import { GlobalContext } from "./../../Init";
 
-const ImageCards = () => {
-  const [photosData, setPhotosData] = useState([]);
-
-  useEffect(() => {
-    axios.get("/photo-api/getAllPhotos").then(({ data }) => {
-      // console.log(data);
-      setPhotosData(data);
-    });
-  }, []);
+const ImageCards = ({ photos = [], user }) => {
+  const handleLikeButton = (photoId, isAlreadyLiked) => {
+    const url = isAlreadyLiked
+      ? "/photo-api/remove-liked-photos?"
+      : "/photo-api/add-liked-photos?";
+    return axios
+      .post(url + "username=" + user.username + "&photoId=" + photoId)
+      .then((data) => {
+        console.log(data);
+      });
+  };
+  const handleBookmarkButton = (photoId, isAlreadyBookmarked) => {
+    const url = isAlreadyBookmarked
+      ? "/photo-api/remove-fav-photos?"
+      : "/photo-api/add-fav-photos?";
+    return axios
+      .post(url + "username=" + user.username + "&photoId=" + photoId)
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return (
     <Box
@@ -23,7 +36,7 @@ const ImageCards = () => {
         overflow: "auto",
       }}
     >
-      {photosData.map(
+      {photos.map(
         ({
           avgColor,
           imageMediumSize,
@@ -34,11 +47,16 @@ const ImageCards = () => {
         }) => (
           <ImageCard
             key={photoId}
+            isLiked={user.like?.includes(photoId)}
+            isBookmarked={user.favourite?.includes(photoId)}
             thumbnailSrc={imageMediumSize}
             noOfLikes={12}
             photographerName={photographerName}
             imageBgColor={avgColor}
             title={title}
+            photoId={photoId}
+            handleLikeButton={handleLikeButton}
+            handleBookmarkButton={handleBookmarkButton}
           />
         )
       )}

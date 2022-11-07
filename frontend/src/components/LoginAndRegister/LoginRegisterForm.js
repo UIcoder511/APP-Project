@@ -13,11 +13,12 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useState } from "react";
 import { Alert, AlertTitle, Button } from "@mui/material";
+import { setUserObjectFromLocalStorage } from "./../../utils/Util";
 
 const LoginRegisterForm = ({ loginUser, registerUser }) => {
   const [data, setData] = useState({ username: "", password: "" });
   const [showPassword, setshowPassword] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [APIMessage, setAPIMessage] = useState({
     type: "",
     message: "",
@@ -41,16 +42,23 @@ const LoginRegisterForm = ({ loginUser, registerUser }) => {
 
   const handleSubmit = () => {
     if (isLogin) {
-      loginUser(data)
-        .then(() => {})
-        .catch(({ data }) => {
+      loginUser(data.username, data.password)
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((data) => {
+          console.log(data);
           setAPIMessage(data);
         })
         .finally(() => {});
     } else {
-      registerUser(data)
-        .then(() => {})
-        .catch(() => {
+      registerUser(data.username, data.password)
+        .then(({ data }) => {
+          console.log(data);
+          setAPIMessage(data);
+        })
+        .catch(({ data }) => {
+          console.log(data);
           setAPIMessage(data);
         })
         .finally(() => {});
@@ -62,9 +70,11 @@ const LoginRegisterForm = ({ loginUser, registerUser }) => {
       {APIMessage.message && (
         <Box sx={{ marginBottom: "20px", width: "100%" }}>
           <Alert
+            variant="filled"
             severity={APIMessage.type}
             sx={{
-              fontWeight: 600,
+              // fontWeight: 600,
+
               display: "flex",
               alignItems: "center",
               "& .MuiTypography-root": {
@@ -139,7 +149,7 @@ const LoginRegisterForm = ({ loginUser, registerUser }) => {
       >
         {isLogin
           ? "Click here to create a new account"
-          : "Already have an account Click to login"}
+          : "Already have an account? click to login"}
       </Box>
     </>
   );
