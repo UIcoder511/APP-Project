@@ -47,12 +47,12 @@ public class createUserServlet extends HttpServlet {
 			{
 				if(userService.addUser(username, password))
 				{
-					new ResponseForUserCreation("success","User successfully created");
+					responseForUser = new ResponseForUserCreation("success","User successfully created");
 				}
 			}
 			else
 			{
-				new ResponseForUserCreation("error", "User " + username + " already exists in the system");
+				responseForUser = new ResponseForUserCreation("error", "User " + username + " already exists in the system");
 			}
 			
 			ObjectMapper mapper = new ObjectMapper();
