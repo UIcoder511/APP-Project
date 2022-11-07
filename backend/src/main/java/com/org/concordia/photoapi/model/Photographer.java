@@ -6,6 +6,8 @@ public class Photographer {
   private String photographerName;
   private String photographerUrl;
 
+  public Photographer() {}
+
   public Photographer(
     Integer photographerId,
     String photographerName,

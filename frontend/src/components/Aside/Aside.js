@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { pageToSectionMap } from "./../../pages/Pages";
 import AsideLink from "./AsideLink/AsideLink";
 import { Box, Button } from "@mui/material";
 import Logo from "./../../ui/Logo/Logo";
 import User from "../User/User";
+import { GlobalContext, storeActions } from "./../../Init";
 
 const Aside = ({ activeLink = "", setActiveLink }) => {
+  const { dispatch } = useContext(GlobalContext);
+  const handleLogout = () => {
+    dispatch({ type: storeActions.LOGOUT });
+  };
+
   return (
     <Box
       component="aside"
@@ -39,7 +45,22 @@ const Aside = ({ activeLink = "", setActiveLink }) => {
           />
         ))}
       </Box>
-      <Button>Signout</Button>
+      <Button
+        sx={{
+          margin: "10px",
+          borderRadius: "10px",
+          border: " 2px solid #fff",
+          color: "#fff",
+          "&:hover": {
+            border: " 2px solid #fff",
+            opacity: 0.6,
+          },
+        }}
+        variant="outlined"
+        onClick={handleLogout}
+      >
+        Logout
+      </Button>
     </Box>
   );
 };

@@ -2,18 +2,28 @@ import React from "react";
 import { Box } from "@mui/material";
 import PhotographerCard from "./PhotographerCard/PhotographerCard";
 
-const PhotographerCards = () => {
+const PhotographerCards = ({ photographers = [] }) => {
   return (
     <Box
       sx={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
+        gridTemplateColumns: "1fr 1fr",
         gap: "30px",
+        height: "100%",
+        overflow: "auto",
+        padding: "10px",
+        margin: "-10px",
       }}
     >
-      <PhotographerCard photographerName="Umang" />
-      <PhotographerCard photographerName="Umang" />
-      <PhotographerCard photographerName="Umang" />
+      {photographers.map(
+        ({ photographer: { photographerName, photographerId }, photos }) => (
+          <PhotographerCard
+            key={photographerId}
+            photos={photos}
+            photographerName={photographerName}
+          />
+        )
+      )}
     </Box>
   );
 };
