@@ -32,7 +32,7 @@ public class removeUserLikedPhotosServlet extends HttpServlet {
     try {
       int userId = userService.getUserIdByUsername(username);
       System.out.println(userId);
-      photosService.addUserLikedPhotos(userId,photoId);
+      photosService.removeUserLikedPhotos(userId,photoId);
       
     } catch (Exception e) {
       e.printStackTrace();

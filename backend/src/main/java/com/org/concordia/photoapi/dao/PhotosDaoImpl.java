@@ -194,6 +194,7 @@ public class PhotosDaoImpl implements PhotosDao {
 			stmt = conn.createStatement();
 			String removeUserLikedPhotosSql = "DELETE FROM Likes where user_id='"+userId+"' and  photo_id='"+photoId+"'";
 
+			//change to executeUpdate
 			stmt.executeQuery(removeUserLikedPhotosSql);
 			
 		} catch (SQLException e) {
