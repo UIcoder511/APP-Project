@@ -53,6 +53,7 @@ public class addNewUserServlet extends HttpServlet {
 			else
 			{
 				responseForUser = new ResponseForUserCreation("error", "User " + username + " already exists in the system");
+				resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
 			
 			ObjectMapper mapper = new ObjectMapper();

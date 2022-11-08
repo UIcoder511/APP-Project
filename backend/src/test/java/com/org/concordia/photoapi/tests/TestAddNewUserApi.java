@@ -53,7 +53,7 @@ public class TestAddNewUserApi extends BaseSetup
 		queryParams("password",pass).
 		post("/add-user").
 		then().
-		statusCode(200).
+		statusCode(500).
 		extract().
 		response().
 		asPrettyString();

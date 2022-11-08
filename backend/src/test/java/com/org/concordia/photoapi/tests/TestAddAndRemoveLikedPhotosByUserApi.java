@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.model.ResponseForUserCreation;
 
 public class TestAddAndRemoveLikedPhotosByUserApi extends BaseSetup {
 	public static final String user = "testuser";
@@ -37,7 +39,12 @@ public class TestAddAndRemoveLikedPhotosByUserApi extends BaseSetup {
 		String response = given().when().queryParam("username", invalidUser).queryParams("photoId", photoId)
 				.post("/add-liked-photos").then().extract().response().asPrettyString();
 
-		Assert.assertEquals(response, "\"Please check username: "+invalidUser+"\"");
+		ObjectMapper mapper = new ObjectMapper();
+		ResponseForUserCreation responseFromApi = mapper.readValue(response, ResponseForUserCreation.class);
+		
+		// assert values in json response
+		Assert.assertEquals(responseFromApi.getType(),"error");
+		Assert.assertEquals(responseFromApi.getMessage(),"User "+invalidUser+" does not exists in the system");
 
 	}
 
@@ -49,7 +56,12 @@ public class TestAddAndRemoveLikedPhotosByUserApi extends BaseSetup {
 		String response = given().when().queryParam("username", invalidUser).queryParams("photoId", photoId)
 				.post("/remove-liked-photos").then().extract().response().asPrettyString();
 
-		Assert.assertEquals(response, "\"Please check username: "+invalidUser+"\"");
+		ObjectMapper mapper = new ObjectMapper();
+		ResponseForUserCreation responseFromApi = mapper.readValue(response, ResponseForUserCreation.class);
+		
+		// assert values in json response
+		Assert.assertEquals(responseFromApi.getType(),"error");
+		Assert.assertEquals(responseFromApi.getMessage(),"Please check username: "+invalidUser+"");
 	}
 
 }

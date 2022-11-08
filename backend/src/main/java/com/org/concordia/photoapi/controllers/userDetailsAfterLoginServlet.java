@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.model.User;
 import com.org.concordia.photoapi.service.PhotosService;
 import com.org.concordia.photoapi.service.PhotosServiceImpl;
@@ -67,17 +68,23 @@ public class userDetailsAfterLoginServlet extends HttpServlet {
 			    
 			   
 			    jsonString = mapper.writeValueAsString(userObject);
+			    System.out.println(jsonString);
+			    resp.setContentType("application/json");
+			    resp.setCharacterEncoding("UTF-8");
+			    resp.getWriter().write(jsonString);
 			
 			}
 			else {
 				
-				 jsonString = mapper.writeValueAsString("User Authentication Failed");
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error", "User " + username + " does not exists in the system");
+				jsonString = mapper.writeValueAsString(responseForUser);
+				resp.setContentType("application/json");
+			    resp.setCharacterEncoding("UTF-8");
+			    resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			    resp.getWriter().write(jsonString);
 			}
 			
-			System.out.println(jsonString);
-		    resp.setContentType("application/json");
-		    resp.setCharacterEncoding("UTF-8");
-		    resp.getWriter().write(jsonString);
+			
 		
         } catch (JsonProcessingException e) {
             e.printStackTrace();

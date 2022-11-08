@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.service.PhotosService;
 import com.org.concordia.photoapi.service.PhotosServiceImpl;
 import com.org.concordia.photoapi.service.UsersService;
@@ -37,11 +38,12 @@ public class addUserFavPhotosServlet extends HttpServlet {
 			else
 			{
 				ObjectMapper mapper = new ObjectMapper();
-				String jsonString = mapper.writeValueAsString("Please check username: "+ username);
-				System.out.println(jsonString);
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error", "User " + username + " does not exists in the system");
+				String jsonString = mapper.writeValueAsString(responseForUser);
 				resp.setContentType("application/json");
-				resp.setCharacterEncoding("UTF-8");
-				resp.getWriter().write(jsonString);
+			    resp.setCharacterEncoding("UTF-8");
+			    resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			    resp.getWriter().write(jsonString);
 			}
 
 		} catch (Exception e) {
