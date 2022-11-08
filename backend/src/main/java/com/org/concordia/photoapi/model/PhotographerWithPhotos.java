@@ -6,6 +6,8 @@ public class PhotographerWithPhotos {
 
   private Photographer photographer;
   private List<Photo> photos;
+  
+  public PhotographerWithPhotos() {}
 
   public PhotographerWithPhotos(Photographer photographer, List<Photo> photos) {
     this.photographer = photographer;
