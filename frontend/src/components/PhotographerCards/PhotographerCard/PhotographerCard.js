@@ -55,15 +55,13 @@ const PhotographerCard = ({ photographerName, photos = [] }) => {
         }}
       >
         {photos.map(({ avgColor, imageMediumSize, photoId }) => (
-          <>
-            <ImageCard
-              showOnlyImage={true}
-              sxCard={{ height: "100%", flex: "1 0 32%" }}
-              key={photoId}
-              thumbnailSrc={imageMediumSize}
-              imageBgColor={avgColor}
-            />
-          </>
+          <ImageCard
+            showOnlyImage={true}
+            sxCard={{ height: "100%", flex: "1 0 32%" }}
+            key={photoId}
+            thumbnailSrc={imageMediumSize}
+            imageBgColor={avgColor}
+          />
         ))}
       </Box>
     </Card>

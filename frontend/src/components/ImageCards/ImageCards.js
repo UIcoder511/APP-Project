@@ -5,7 +5,14 @@ import { Box } from "@mui/material";
 import axios from "axios";
 import { GlobalContext } from "./../../Init";
 
-const ImageCards = ({ photos = [], user }) => {
+const ImageCards = ({
+  photos = [],
+  user,
+  getAllLikedPhotosForUser,
+  getAllFavPhotosForUser,
+  getLikesOfPhoto,
+  photoLikesMap,
+}) => {
   const handleLikeButton = (photoId, isAlreadyLiked) => {
     const url = isAlreadyLiked
       ? "/photo-api/remove-liked-photos?"
@@ -13,7 +20,8 @@ const ImageCards = ({ photos = [], user }) => {
     return axios
       .post(url + "username=" + user.username + "&photoId=" + photoId)
       .then((data) => {
-        console.log(data);
+        getAllLikedPhotosForUser();
+        getLikesOfPhoto(photoId);
       });
   };
   const handleBookmarkButton = (photoId, isAlreadyBookmarked) => {
@@ -23,7 +31,7 @@ const ImageCards = ({ photos = [], user }) => {
     return axios
       .post(url + "username=" + user.username + "&photoId=" + photoId)
       .then((data) => {
-        console.log(data);
+        getAllFavPhotosForUser();
       });
   };
 
@@ -50,7 +58,7 @@ const ImageCards = ({ photos = [], user }) => {
             isLiked={user.like?.includes(photoId)}
             isBookmarked={user.favourite?.includes(photoId)}
             thumbnailSrc={imageMediumSize}
-            noOfLikes={12}
+            noOfLikes={photoLikesMap?.[photoId]}
             photographerName={photographerName}
             imageBgColor={avgColor}
             title={title}

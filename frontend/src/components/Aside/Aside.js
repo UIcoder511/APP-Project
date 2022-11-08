@@ -23,6 +23,7 @@ const Aside = ({ activeLink = "", setActiveLink }) => {
         height: "100%",
         width: "200px",
         borderRadius: (theme) => theme.shape.borderRadius,
+        alignItems: "center",
       }}
     >
       <Logo />
@@ -32,6 +33,7 @@ const Aside = ({ activeLink = "", setActiveLink }) => {
           flex: 1,
           display: "flex",
           flexDirection: "column",
+          width: "100%",
           //   justifyContent: "center",
         }}
       >
@@ -51,6 +53,7 @@ const Aside = ({ activeLink = "", setActiveLink }) => {
           borderRadius: "10px",
           border: " 2px solid #fff",
           color: "#fff",
+
           "&:hover": {
             border: " 2px solid #fff",
             opacity: 0.6,

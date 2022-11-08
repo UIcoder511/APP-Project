@@ -48,7 +48,7 @@ const ImageCard = ({
           zIndex: 1,
           transition: "100ms all ease-in-out",
           "&:hover  .overlay": {
-            display: "flex",
+            visibility: "initial",
           },
         }}
       >
@@ -62,7 +62,9 @@ const ImageCard = ({
             className="overlay"
             sx={{
               // display: "flex",
-              display: "none",
+              // display: "none",
+              visibility: "hidden",
+              display: "flex",
               padding: "10px",
               justifyContent: "space-between",
               alignItems: "flex-end",

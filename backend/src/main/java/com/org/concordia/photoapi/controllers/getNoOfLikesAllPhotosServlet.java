@@ -3,12 +3,10 @@ package com.org.concordia.photoapi.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.org.concordia.photoapi.model.Photo;
-import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.service.PhotosService;
 import com.org.concordia.photoapi.service.PhotosServiceImpl;
-import com.org.concordia.photoapi.service.UsersService;
-import com.org.concordia.photoapi.service.UsersServiceImpl;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,38 +14,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "likesServlet", urlPatterns = "/get-liked-photos")
-public class LikesServlet extends HttpServlet {
+@WebServlet(
+  name = "getNoOfLikesAllPhotosServlet",
+  urlPatterns = "/get-likes-of-all-photos"
+)
+public class getNoOfLikesAllPhotosServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;
   private PhotosService photosService = new PhotosServiceImpl();
-  private UsersService userService = new UsersServiceImpl();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
-    String username = req.getParameter("username");
-    System.out.println(username);
-
-    ObjectMapper mapper = new ObjectMapper();
-    String jsonString;
-
     try {
-      int userId = userService.getUserIdByUsername(username);
-      if (userId != -1) {
-        List<Photo> photos = photosService.getUserLikedPhotos(userId);
-
-        // System.out.println(photos.get(0).getPhotoId());
-        jsonString = mapper.writeValueAsString(photos);
-      } else {
-        ResponseForUserCreation responseForUser = new ResponseForUserCreation(
-          "error",
-          "User " + username + " does not exists in the system"
+      List<Photo> photos = photosService.getPhotos();
+      HashMap<Integer, Integer> mapPhotoIdToLikes = new HashMap<>();
+      for (Photo photo : photos) {
+        mapPhotoIdToLikes.put(
+          photo.getPhotoId(),
+          photosService.getNoOfLikesOfPhoto(photo.getPhotoId())
         );
-        jsonString = mapper.writeValueAsString(responseForUser);
-        resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
       }
 
+      ObjectMapper mapper = new ObjectMapper();
+      String jsonString = mapper.writeValueAsString(mapPhotoIdToLikes);
       System.out.println(jsonString);
       resp.setContentType("application/json");
       resp.setCharacterEncoding("UTF-8");

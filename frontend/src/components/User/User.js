@@ -12,7 +12,7 @@ const User = () => {
         gap: "5px",
         borderRadius: "10px",
         border: " 2px solid #fff",
-        margin: "10px 10px 30px 10px",
+        margin: "30px 10px",
         padding: "10px",
       }}
     >

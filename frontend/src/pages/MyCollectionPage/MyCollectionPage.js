@@ -4,8 +4,11 @@ import ImageCards from "./../../components/ImageCards/ImageCards";
 
 const MyCollectionPage = () => {
   const {
-    state: { photos, user },
-    getAllPhotos,
+    state: { photos, user, photoLikesMap },
+    // getAllPhotos,
+    getAllLikedPhotosForUser,
+    getAllFavPhotosForUser,
+    getLikesOfPhoto,
   } = React.useContext(GlobalContext);
 
   const [likeDataArray, setLikeDataArray] = useState([]);
@@ -20,7 +23,16 @@ const MyCollectionPage = () => {
     }
   }, [user?.favourite]);
 
-  return <ImageCards photos={likeDataArray} user={user} />;
+  return (
+    <ImageCards
+      photos={likeDataArray}
+      photoLikesMap={photoLikesMap}
+      user={user}
+      getAllLikedPhotosForUser={getAllLikedPhotosForUser}
+      getAllFavPhotosForUser={getAllFavPhotosForUser}
+      getLikesOfPhoto={getLikesOfPhoto}
+    />
+  );
 };
 
 export default MyCollectionPage;

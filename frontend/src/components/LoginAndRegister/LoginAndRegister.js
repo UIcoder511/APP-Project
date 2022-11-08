@@ -4,11 +4,12 @@ import LoginRegisterForm from "./LoginRegisterForm";
 import axios from "axios";
 import { storeActions } from "../../Init";
 import { GlobalContext } from "./../../Init";
+import logoURL from "../../assets/logo_outlined.png";
 
 const LoginAndRegister = () => {
   const { dispatch } = React.useContext(GlobalContext);
 
-  const loginUser = (username, password) => {
+  const getUser = (username, password) => {
     return axios
       .get(
         "/photo-api/get-user?username=" +
@@ -21,6 +22,19 @@ const LoginAndRegister = () => {
           dispatch({ type: storeActions.SET_USER, payload: data.data });
         }
         return data?.data;
+      });
+  };
+
+  const loginUser = (username, password) => {
+    return axios
+      .get(
+        "/photo-api/validate-user?username=" +
+          username +
+          "&password=" +
+          btoa(password)
+      )
+      .then((data) => {
+        getUser(username, password);
       });
   };
 
@@ -42,6 +56,17 @@ const LoginAndRegister = () => {
         justifyContent: "center",
       }}
     >
+      <Box
+        sx={{
+          height: "auto",
+          width: "200px",
+          marginTop: "-80px",
+          marginBottom: "10px",
+        }}
+        component={"img"}
+        src={logoURL}
+      />
+
       <Box
         sx={{
           width: "max-content",

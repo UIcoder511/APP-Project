@@ -48,18 +48,18 @@ const LoginRegisterForm = ({ loginUser, registerUser }) => {
         })
         .catch((data) => {
           console.log(data);
-          setAPIMessage(data);
+          setAPIMessage(data.response?.data);
         })
         .finally(() => {});
     } else {
       registerUser(data.username, data.password)
-        .then(({ data }) => {
+        .then((data) => {
           console.log(data);
           setAPIMessage(data);
         })
-        .catch(({ data }) => {
+        .catch((data) => {
           console.log(data);
-          setAPIMessage(data);
+          setAPIMessage(data.response?.data);
         })
         .finally(() => {});
     }
@@ -74,15 +74,22 @@ const LoginRegisterForm = ({ loginUser, registerUser }) => {
             severity={APIMessage.type}
             sx={{
               // fontWeight: 600,
-
+              padding: "5px",
               display: "flex",
               alignItems: "center",
+              "& .MuiAlert-message": {
+                padding: "5px",
+              },
               "& .MuiTypography-root": {
                 marginBottom: 0,
+                padding: "0px",
+                marginTop: 0,
               },
             }}
           >
-            <AlertTitle>{APIMessage.message}</AlertTitle>
+            <AlertTitle sx={{ fontSize: "0.8rem" }}>
+              {APIMessage.message}
+            </AlertTitle>
           </Alert>
         </Box>
       )}
