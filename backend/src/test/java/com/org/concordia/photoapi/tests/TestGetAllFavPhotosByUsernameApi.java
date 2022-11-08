@@ -19,6 +19,8 @@ public class TestGetAllFavPhotosByUsernameApi extends BaseSetup
 	public static final String user = "testuser";
 	public static final String photoId = "1234567";
 	
+	
+	//positive tests
 	@Test(priority=0)
 	public void addUserFavPhotos() throws JsonParseException, JsonMappingException, IOException
 	{
@@ -59,5 +61,25 @@ public class TestGetAllFavPhotosByUsernameApi extends BaseSetup
 		Assert.assertEquals(photos.get(0).getImageMediumSize(),"photo-1234567-md.jpeg");
 		Assert.assertEquals(photos.get(0).getImageLargeSize(),"photo-1234567-lg.jpeg");
 		Assert.assertEquals(photos.get(0).getImageOrignalSize(),"photo-1234567-o.jpeg");
+	}
+	
+	//negative tests
+	@Test(priority=2)
+	public void getUserFavPhotosWithInvalidUser() throws JsonParseException, JsonMappingException, IOException
+	{
+	
+		String invalidUser = "123";
+		
+	    String response = given().
+		when().
+		queryParam("username", invalidUser).
+		queryParams("photoId",photoId).
+		get("/get-fav-photos").
+		then().
+		extract().
+		response().asPrettyString();
+	    
+	    Assert.assertEquals(response, "\"Please check username: "+invalidUser+"\"");
+
 	}
 }

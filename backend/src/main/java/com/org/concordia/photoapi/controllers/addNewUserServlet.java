@@ -1,4 +1,4 @@
-package com.org.concordia.photoapi.servlet;
+package com.org.concordia.photoapi.controllers;
 
 import java.io.IOException;
 import java.util.Base64;

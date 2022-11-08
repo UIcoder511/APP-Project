@@ -3,12 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.org.concordia.photoapi.tests.TestAddNewUserApi">
+      <class name="com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi">
         <methods>
-          <include name="addNewUserSuccess"/>
           <include name="setup"/>
+          <include name="addPhotosLikedByInvalidUser"/>
+          <include name="removePhotosDislikedByInvalidUser"/>
         </methods>
-      </class> <!-- com.org.concordia.photoapi.tests.TestAddNewUserApi -->
+      </class> <!-- com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

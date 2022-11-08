@@ -1,4 +1,4 @@
-package com.org.concordia.photoapi.servlet;
+package com.org.concordia.photoapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
