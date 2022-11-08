@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.model.ResponseForUserCreation;
 
 public class TestGetAllLikedPhotosByUsernameApi extends BaseSetup {
 	public static final String user = "testuser";
@@ -55,9 +56,14 @@ public class TestGetAllLikedPhotosByUsernameApi extends BaseSetup {
 		String invalidUser = "123";
 
 		String response = given().when().queryParam("username", invalidUser).queryParams("photoId", photoId)
-				.get("/get-liked-photos").then().extract().response().asPrettyString();
+				.get("/get-liked-photos").then().statusCode(500).extract().response().asPrettyString();
 
-		Assert.assertEquals(response, "\"Please check username: "+invalidUser+"\"");
+		ObjectMapper mapper = new ObjectMapper();
+		ResponseForUserCreation responseFromApi = mapper.readValue(response, ResponseForUserCreation.class);
+		
+		// assert values in json response
+		Assert.assertEquals(responseFromApi.getType(),"error");
+		Assert.assertEquals(responseFromApi.getMessage(),"User "+invalidUser+" does not exists in the system");
 
 	}
 }

@@ -3,6 +3,7 @@ package com.org.concordia.photoapi.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.service.PhotosService;
 import com.org.concordia.photoapi.service.PhotosServiceImpl;
 import java.io.IOException;
@@ -35,7 +36,9 @@ public class PhotosServlet extends HttpServlet {
 			}
 			else
 			{
-				jsonString = mapper.writeValueAsString("No photos found in DB");
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error","No photos found in DB");
+				jsonString = mapper.writeValueAsString(responseForUser);
+				resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
 			
 			System.out.println(jsonString);

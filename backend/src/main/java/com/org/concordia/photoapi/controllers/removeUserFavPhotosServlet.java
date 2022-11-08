@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.service.PhotosService;
 import com.org.concordia.photoapi.service.PhotosServiceImpl;
 import com.org.concordia.photoapi.service.UsersService;
@@ -35,10 +36,12 @@ public class removeUserFavPhotosServlet extends HttpServlet {
 				photosService.removeUserFavPhotos(userId, photoId);
 			} else {
 				ObjectMapper mapper = new ObjectMapper();
-				String jsonString = mapper.writeValueAsString("Please check username: " + username);
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error","Please check username: " + username);
+				String jsonString = mapper.writeValueAsString(responseForUser);
 				System.out.println(jsonString);
 				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
+				resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				resp.getWriter().write(jsonString);
 			}
 

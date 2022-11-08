@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.service.UsersService;
 import com.org.concordia.photoapi.service.UsersServiceImpl;
 
@@ -27,6 +29,8 @@ public class ValidateUserServlet extends HttpServlet {
 		
 		String password = req.getParameter("password");
 		System.out.println(password);
+		
+		ObjectMapper mapper = new ObjectMapper();
 		
 		//Encoded password should be from UI, this code is for test purpose only
 //		Encoder encoder = Base64.getEncoder();
@@ -51,20 +55,26 @@ public class ValidateUserServlet extends HttpServlet {
 				String passwordFromDB = userService.getPasswordByUsername(username);
 				if(passwordFromDB.equals(password))
 				{
-					String jsonString = "User Authenticated";
+					ResponseForUserCreation responseForUser = new ResponseForUserCreation("success","User Authenticated");
+					String jsonString = mapper.writeValueAsString(responseForUser);
 		            System.out.println(jsonString);
+		            resp.setStatus(HttpServletResponse.SC_OK);
 					resp.getWriter().write(jsonString);
 				}
 				else
 				{
-					String jsonString = "Please check the password entered";
+					ResponseForUserCreation responseForUser = new ResponseForUserCreation("error","Please check the password entered");
+					String jsonString = mapper.writeValueAsString(responseForUser);
 		            System.out.println(jsonString);
+		        	resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 					resp.getWriter().write(jsonString);
 				}
 			}	
 			else {
-				String jsonString = "User Authentication Failed";
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error","User Authentication Failed");
+				String jsonString = mapper.writeValueAsString(responseForUser);
 	            System.out.println(jsonString);
+	        	resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				resp.getWriter().write(jsonString);
 			}
         } catch (JsonProcessingException e) {

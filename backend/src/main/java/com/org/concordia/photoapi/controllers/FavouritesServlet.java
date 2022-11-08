@@ -3,6 +3,7 @@ package com.org.concordia.photoapi.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.service.PhotosService;
 import com.org.concordia.photoapi.service.PhotosServiceImpl;
 import com.org.concordia.photoapi.service.UsersService;
@@ -43,11 +44,16 @@ public class FavouritesServlet extends HttpServlet {
 				}
 				else
 				{
-					jsonString = mapper.writeValueAsString("User "+username+ "don't have any favourite photos");
+					ResponseForUserCreation responseForUser = new ResponseForUserCreation("error","User "+username+ "don't have any favourite photos");
+					jsonString = mapper.writeValueAsString(responseForUser);
+					resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				}
 
 			} else {
-				jsonString = mapper.writeValueAsString("Please check username: " + username);
+				
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error", "User " + username + " does not exists in the system");
+				jsonString = mapper.writeValueAsString(responseForUser);
+				resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
 
 			System.out.println(jsonString);
