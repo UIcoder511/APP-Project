@@ -33,19 +33,17 @@ public class PhotosServlet extends HttpServlet {
 				System.out.println(photos.size());
 				System.out.println(photos.get(0).getPhotoId());
 				jsonString = mapper.writeValueAsString(photos);
-			}
-			else
-			{
-				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error","No photos found in DB");
+			} else {
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error", "No photos found in DB");
 				jsonString = mapper.writeValueAsString(responseForUser);
 				resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
-			
+
 			System.out.println(jsonString);
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("UTF-8");
 			resp.getWriter().write(jsonString);
-			
+
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

@@ -258,7 +258,7 @@ public class PhotosDaoImpl implements PhotosDao {
     try {
       stmt = conn.createStatement();
       String noOfLikeOfPhotoSQL =
-        "SELECT photo_id  FROM likes where photo_id ='" + photoId + "'";
+        "SELECT photo_id FROM likes where photo_id ='" + photoId + "'";
       ResultSet rs = stmt.executeQuery(noOfLikeOfPhotoSQL);
       while (rs.next()) {
         noOfLikes++;

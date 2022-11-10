@@ -34,16 +34,15 @@ public class addUserFavPhotosServlet extends HttpServlet {
 			int userId = userService.getUserIdByUsername(username);
 			if (userId != -1) {
 				photosService.addUserFavPhotos(userId, photoId);
-			}
-			else
-			{
+			} else {
 				ObjectMapper mapper = new ObjectMapper();
-				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error", "User " + username + " does not exists in the system");
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error",
+						"User " + username + " does not exists in the system");
 				String jsonString = mapper.writeValueAsString(responseForUser);
 				resp.setContentType("application/json");
-			    resp.setCharacterEncoding("UTF-8");
-			    resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-			    resp.getWriter().write(jsonString);
+				resp.setCharacterEncoding("UTF-8");
+				resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				resp.getWriter().write(jsonString);
 			}
 
 		} catch (Exception e) {

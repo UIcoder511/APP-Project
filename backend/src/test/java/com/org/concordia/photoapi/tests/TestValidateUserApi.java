@@ -68,10 +68,14 @@ public class TestValidateUserApi extends BaseSetup {
   @Test
   public void userAuthenticationFailure()
     throws JsonParseException, JsonMappingException, IOException {
+	
+	String username = "test";
+	String password = "test";
+	
     String getMessageAsResponse = given()
       .when()
-      .queryParam("username", "test")
-      .queryParams("password", "test")
+      .queryParam("username", username)
+      .queryParams("password", password)
       .get("/validate-user")
       .then()
       .statusCode(500)
@@ -89,7 +93,7 @@ public class TestValidateUserApi extends BaseSetup {
     Assert.assertEquals(response.getType(), "error");
     Assert.assertEquals(
       response.getMessage(),
-      "User test already exists in the system"
+      "User " + username + " does not exists in the system"
     );
   }
 }

@@ -3,19 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi">
+      <class name="com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi">
         <methods>
-          <include name="getUserFavPhotosWithInvalidUser"/>
+          <include name="getLikedPhotos"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi -->
-      <class name="com.org.concordia.photoapi.tests.TestValidateUserApi">
-        <methods>
-          <include name="userAuthenticationWrongPassword"/>
-          <include name="setup"/>
-          <include name="userAuthenticationFailure"/>
-        </methods>
-      </class> <!-- com.org.concordia.photoapi.tests.TestValidateUserApi -->
+      </class> <!-- com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

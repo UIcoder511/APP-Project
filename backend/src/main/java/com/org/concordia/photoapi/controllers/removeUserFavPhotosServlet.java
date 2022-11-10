@@ -36,7 +36,8 @@ public class removeUserFavPhotosServlet extends HttpServlet {
 				photosService.removeUserFavPhotos(userId, photoId);
 			} else {
 				ObjectMapper mapper = new ObjectMapper();
-				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error","Please check username: " + username);
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error",
+						"Please check username: " + username);
 				String jsonString = mapper.writeValueAsString(responseForUser);
 				System.out.println(jsonString);
 				resp.setContentType("application/json");

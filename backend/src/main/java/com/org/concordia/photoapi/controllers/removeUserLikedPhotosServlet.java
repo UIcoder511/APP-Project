@@ -35,11 +35,10 @@ public class removeUserLikedPhotosServlet extends HttpServlet {
 			System.out.println(userId);
 			if (userId != -1) {
 				photosService.removeUserLikedPhotos(userId, photoId);
-			}
-			else
-			{
+			} else {
 				ObjectMapper mapper = new ObjectMapper();
-				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error","Please check username: " + username);
+				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error",
+						"Please check username: " + username);
 				String jsonString = mapper.writeValueAsString(responseForUser);
 				System.out.println(jsonString);
 				resp.setContentType("application/json");
@@ -47,7 +46,6 @@ public class removeUserLikedPhotosServlet extends HttpServlet {
 				resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				resp.getWriter().write(jsonString);
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
