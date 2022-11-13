@@ -3,12 +3,85 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
+      <class name="com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi">
+        <methods>
+          <include name="setup"/>
+          <include name="addPhotosLikedByUser"/>
+          <include name="getUserLikedPhotosWithInvalidUser"/>
+          <include name="getLikedPhotos"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi -->
+      <class name="com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi">
+        <methods>
+          <include name="addPhotosLikedByInvalidUser"/>
+          <include name="setup"/>
+          <include name="removePhotosDislikedByInvalidUser"/>
+          <include name="addPhotosLikedByUser"/>
+          <include name="removePhotosDislikedByUser"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi -->
+      <class name="com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi">
+        <methods>
+          <include name="addUserFavPhotosWithInvalidUser"/>
+          <include name="setup"/>
+          <include name="removeUserFavPhotosWithInvalidUser"/>
+          <include name="removeUserFavPhotos"/>
+          <include name="addUserFavPhotos"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi -->
+      <class name="com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi">
+        <methods>
+          <include name="getUserFavPhotosWithInvalidUser"/>
+          <include name="setup"/>
+          <include name="getFavPhotos"/>
+          <include name="addUserFavPhotos"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi -->
+      <class name="com.org.concordia.photoapi.tests.TestAddNewUserApi">
+        <methods>
+          <include name="addNewUserSuccess"/>
+          <include name="setup"/>
+          <include name="addNewUserFailure"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestAddNewUserApi -->
+      <class name="com.org.concordia.photoapi.tests.TestValidateUserApi">
+        <methods>
+          <include name="userAuthenticationWrongPassword"/>
+          <include name="userAuthenticationSuccess"/>
+          <include name="setup"/>
+          <include name="userAuthenticationFailure"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestValidateUserApi -->
+      <class name="com.org.concordia.photoapi.tests.TestGetAllPhotosApi">
+        <methods>
+          <include name="showAllPhotosToUser"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestGetAllPhotosApi -->
+      <class name="com.org.concordia.photoapi.tests.TestGetLikesOfAllPhotosApi">
+        <methods>
+          <include name="setup"/>
+          <include name="getLikedPhotos"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestGetLikesOfAllPhotosApi -->
+      <class name="com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin">
+        <methods>
+          <include name="setup"/>
+          <include name="userDetailsAfterLogin"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin -->
       <class name="com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi">
         <methods>
           <include name="getLikedPhotos"/>
           <include name="setup"/>
         </methods>
       </class> <!-- com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi -->
+      <class name="com.org.concordia.photoapi.tests.TestGetAllPhotosByPhotographer">
+        <methods>
+          <include name="showAllPhotosToUserByPhotographer"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.org.concordia.photoapi.tests.TestGetAllPhotosByPhotographer -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

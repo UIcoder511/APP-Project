@@ -2,10 +2,10 @@ package com.org.concordia.photoapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.gateways.PhotographerGateway;
+import com.org.concordia.photoapi.gateways.PhotographerGatewayImpl;
 import com.org.concordia.photoapi.model.Photo;
 import com.org.concordia.photoapi.model.Photographer;
-import com.org.concordia.photoapi.service.PhotographerService;
-import com.org.concordia.photoapi.service.PhotographerServiceImpl;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,13 +22,13 @@ import javax.servlet.http.HttpServletResponse;
 public class getPhotographersServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;
-  private PhotographerService photographerService = new PhotographerServiceImpl();
+  private PhotographerGateway photographerGateway = new PhotographerGatewayImpl();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
     try {
-      List<Photographer> photographers = photographerService.getPhotographers();
+      List<Photographer> photographers = photographerGateway.getPhotographers();
 
       ObjectMapper mapper = new ObjectMapper();
       String jsonString = mapper.writeValueAsString(photographers);

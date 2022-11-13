@@ -1,4 +1,4 @@
-package com.org.concordia.photoapi.dao;
+package com.org.concordia.photoapi.gateways;
 
 import com.org.concordia.photoapi.model.Photo;
 import com.org.concordia.photoapi.model.Photographer;
@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotographerDaoImpl implements PhotographerDao {
+public class PhotographerGatewayImpl implements PhotographerGateway {
 
   private static Connection conn = null;
 

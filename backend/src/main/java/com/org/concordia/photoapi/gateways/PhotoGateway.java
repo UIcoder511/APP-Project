@@ -1,16 +1,16 @@
-package com.org.concordia.photoapi.service;
+package com.org.concordia.photoapi.gateways;
 
 import com.org.concordia.photoapi.model.Photo;
 import java.util.List;
 
-public interface PhotosService {
+public interface PhotoGateway {
   public List<Photo> getPhotos();
+
+  public Photo getPhotoById(int photoId);
 
   public List<Photo> getUserFavouritePhotos(int userId);
 
   public List<Photo> getUserLikedPhotos(int userId);
-
-  public Photo getPhotoById(int photoId);
 
   public int getNoOfLikesOfPhoto(int photoId);
 

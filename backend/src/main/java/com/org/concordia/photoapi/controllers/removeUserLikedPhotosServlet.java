@@ -9,18 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.gateways.PhotoGateway;
+import com.org.concordia.photoapi.gateways.PhotoGatewayImpl;
+import com.org.concordia.photoapi.gateways.UserGateway;
+import com.org.concordia.photoapi.gateways.UserGatewayImpl;
 import com.org.concordia.photoapi.model.ResponseForUserCreation;
-import com.org.concordia.photoapi.service.PhotosService;
-import com.org.concordia.photoapi.service.PhotosServiceImpl;
-import com.org.concordia.photoapi.service.UsersService;
-import com.org.concordia.photoapi.service.UsersServiceImpl;
 
 @WebServlet(name = "removeUserLikedPhotosServlet", urlPatterns = "/remove-liked-photos")
 public class removeUserLikedPhotosServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2872241476921678269L;
-	private PhotosService photosService = new PhotosServiceImpl();
-	private UsersService userService = new UsersServiceImpl();
+	private PhotoGateway photosGateway = new PhotoGatewayImpl();
+	private UserGateway usersGateway = new UserGatewayImpl();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,10 +31,10 @@ public class removeUserLikedPhotosServlet extends HttpServlet {
 		System.out.println(photoId);
 
 		try {
-			int userId = userService.getUserIdByUsername(username);
+			int userId = usersGateway.getUserIdByUsername(username);
 			System.out.println(userId);
 			if (userId != -1) {
-				photosService.removeUserLikedPhotos(userId, photoId);
+				photosGateway.removeUserLikedPhotos(userId, photoId);
 			} else {
 				ObjectMapper mapper = new ObjectMapper();
 				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error",
