@@ -20,19 +20,22 @@ public class PhotographerMapperImpl implements PhotographerMapper {
 
     try {
     	
-    	ResultSet rs= photographerGateway.getPhotosByPhotographerId1(photographerId);
+    	ResultSet rs= photographerGateway.getPhotosByPhotographerId(photographerId);
     	if(rs!=null)
     	{
-	        Photo photo = new Photo();
-	        photo.setPhotoId(rs.getInt("photo_id"));
-	        photo.setPhotographerId(rs.getInt("photographer_id"));
-	        photo.setAvgColor(rs.getString("avg_color"));
-	        photo.setTitle(rs.getString("title"));
-	        photo.setImageMediumSize(rs.getString("imageMediumSize"));
-	        photo.setImageLargeSize(rs.getString("imageLargeSize"));
-	        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
-	
-	        listOfPhotosByPhotographerName.add(photo);
+    		while(rs.next())
+    		{
+    			Photo photo = new Photo();
+    	        photo.setPhotoId(rs.getInt("photo_id"));
+    	        photo.setAvgColor(rs.getString("avg_color"));
+    	        photo.setTitle(rs.getString("title"));
+    	        photo.setImageMediumSize(rs.getString("imageMediumSize"));
+    	        photo.setImageLargeSize(rs.getString("imageLargeSize"));
+    	        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
+    	
+    	        listOfPhotosByPhotographerName.add(photo);
+    		}
+	        
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
@@ -47,17 +50,19 @@ public List<Photographer> getListOfPhotographers() {
 
     try {
     	
-    	ResultSet rs= photographerGateway.getPhotographers1();
+    	ResultSet rs= photographerGateway.getPhotographers();
     			
     	if(rs!=null)
     	{
     		
-	        Photographer photographer = new Photographer();
-	        photographer.setPhotographerId(rs.getInt("photographer_id"));
-	        photographer.setphotographerName(rs.getString("p_name"));
-	        photographer.setphotographerUrl(rs.getString("p_url"));
-	
-	        listOfPhotographers.add(photographer);
+    		while(rs.next())
+    		{
+		        Photographer photographer = new Photographer();
+		        photographer.setPhotographerId(rs.getInt("photographer_id"));
+		        photographer.setphotographerName(rs.getString("p_name"));
+		        photographer.setphotographerUrl(rs.getString("p_url"));
+		        
+    		}
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());

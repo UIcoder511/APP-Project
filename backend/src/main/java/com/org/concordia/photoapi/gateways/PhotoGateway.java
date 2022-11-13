@@ -1,34 +1,25 @@
 package com.org.concordia.photoapi.gateways;
 
-import com.org.concordia.photoapi.model.Photo;
-
 import java.sql.ResultSet;
-import java.util.List;
 
 public interface PhotoGateway {
-  public List<Photo> getPhotos();
 
-  public List<Photo> getUserFavouritePhotos(int userId);
+	public ResultSet getPhotos();
 
-  public List<Photo> getUserLikedPhotos(int userId);
+	public ResultSet getUserFavouritePhotos(int userId);
 
-  public List<Photo> getPhotos(int photoId);
+	public ResultSet getUserLikedPhotos(int userId);
 
-  public int getNoOfLikesOfPhoto(int photoId);
+	public ResultSet getPhotos(int photoId);
 
-  public void addUserLikedPhotos(int userId, int photoId);
+	public ResultSet getNoOfLikesOfPhoto(int photoId);
 
-  public void addUserFavPhotos(int userId, int photoId);
+	public void addUserLikedPhotos(int userId, int photoId);
 
-  public void removeUserLikedPhotos(int userId, int photoId);
+	public void addUserFavPhotos(int userId, int photoId);
 
-  public void removeUserFavPhotos(int userId, int photoId);
-  
-  public ResultSet getPhotos1();
+	public void removeUserLikedPhotos(int userId, int photoId);
 
-  public ResultSet getUserFavouritePhotos1(int userId);
+	public void removeUserFavPhotos(int userId, int photoId);
 
-  public ResultSet getUserLikedPhotos1(int userId);
-
-  public ResultSet getPhotos1(int photoId);
 }

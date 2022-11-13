@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import PhotographerCards from "./../../components/PhotographerCards/PhotographerCards";
-import axios from "axios";
+
+import { GlobalContext } from "./../../Init";
 
 const PhotographerPage = () => {
-  const [photographersData, setPhotographersData] = useState([]);
-
-  const getAllPhotographers = () => {
-    axios.get("/photo-api/get-photographers-with-photos").then(({ data }) => {
-      // console.log(data);
-      setPhotographersData(data);
-    });
-  };
-
-  useEffect(() => {
-    getAllPhotographers();
-  }, []);
+  const {
+    state: { photographers },
+  } = React.useContext(GlobalContext);
 
   return (
     <>
-      <PhotographerCards photographers={photographersData} />
+      <PhotographerCards photographers={photographers} />
     </>
   );
 };

@@ -55,7 +55,7 @@ const LoginRegisterForm = ({ loginUser, registerUser }) => {
       registerUser(data.username, data.password)
         .then((data) => {
           console.log(data);
-          setAPIMessage(data);
+          setAPIMessage(data.data);
         })
         .catch((data) => {
           console.log(data);

@@ -15,21 +15,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.org.concordia.photoapi.gateways.PhotoGateway;
-import com.org.concordia.photoapi.gateways.PhotoGatewayImpl;
+import com.org.concordia.photoapi.mappers.PhotoMapper;
+import com.org.concordia.photoapi.mappers.PhotoMapperImpl;
 import com.org.concordia.photoapi.model.Photo;
 
 @WebServlet(name = "sendImageServlet", urlPatterns = "/assets/*")
 public class SendImageServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2872241476921678269L;
-	private PhotoGateway photosGateway = new PhotoGatewayImpl();
+	private PhotoMapper photosMapper = new PhotoMapperImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			String imagesBase = Paths.get("").toAbsolutePath().toString() + "\\resources\\photos";
-			List<Photo> photos = photosGateway.getPhotos();
+			List<Photo> photos = photosMapper.getPhotos();
 
 			if (photos.size() != 0) {
 				System.out.println(photos.size());

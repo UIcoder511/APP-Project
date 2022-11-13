@@ -9,18 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.org.concordia.photoapi.gateways.PhotoGateway;
-import com.org.concordia.photoapi.gateways.PhotoGatewayImpl;
-import com.org.concordia.photoapi.gateways.UserGateway;
-import com.org.concordia.photoapi.gateways.UserGatewayImpl;
+import com.org.concordia.photoapi.mappers.PhotoMapper;
+import com.org.concordia.photoapi.mappers.PhotoMapperImpl;
+import com.org.concordia.photoapi.mappers.UserMapper;
+import com.org.concordia.photoapi.mappers.UserMapperImpl;
 import com.org.concordia.photoapi.model.ResponseForUserCreation;
 
 @WebServlet(name = "addUserFavPhotosServlet", urlPatterns = "/add-fav-photos")
 public class addUserFavPhotosServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2872241476921678269L;
-	private PhotoGateway photosGateway = new PhotoGatewayImpl();
-	private UserGateway usersGateway = new UserGatewayImpl();
+	private PhotoMapper photosMapper = new PhotoMapperImpl();
+	private UserMapper usersMapper = new UserMapperImpl();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,9 +31,9 @@ public class addUserFavPhotosServlet extends HttpServlet {
 		System.out.println(photoId);
 
 		try {
-			int userId = usersGateway.getUserIdByUsername(username);
+			int userId = usersMapper.getUserIdByUsername(username);
 			if (userId != -1) {
-				photosGateway.addUserFavPhotos(userId, photoId);
+				photosMapper.addUserFavPhotos(userId, photoId);
 			} else {
 				ObjectMapper mapper = new ObjectMapper();
 				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error",

@@ -8,101 +8,169 @@ import java.util.List;
 import com.org.concordia.photoapi.gateways.PhotoGateway;
 import com.org.concordia.photoapi.gateways.PhotoGatewayImpl;
 import com.org.concordia.photoapi.model.Photo;
-import com.org.concordia.photoapi.model.Photographer;
 
 public class PhotoMapperImpl implements PhotoMapper {
+
+	private PhotoGateway photosGateway = new PhotoGatewayImpl();
+
+	@Override
+	public List<Photo> getPhotos() {
+		List<Photo> listOfPhotos = null;
+		try {
+			ResultSet rs = photosGateway.getPhotos();
+
+			if (rs != null) {
+				listOfPhotos = getListOfPhotos(rs);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return listOfPhotos;
+	}
+
+	@Override
+	public List<Photo> getPhotos(int photoId) {
+		List<Photo> listOfPhotos = null;
+		try {
+			ResultSet rs = photosGateway.getPhotos();
+
+			if (rs != null) {
+				listOfPhotos = getListOfPhotos(rs);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return listOfPhotos;
+	}
+
+	@Override
+	public List<Photo> getUserFavouritePhotos(int userId) {
+		List<Photo> listOfPhotos = null;
+		try {
+			ResultSet rs = photosGateway.getUserFavouritePhotos(userId);
+			if (rs != null) {
+
+				listOfPhotos = getListPhotosByLikesAndFavQuery(rs);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return listOfPhotos;
+	}
+
+	@Override
+	public List<Photo> getUserLikedPhotos(int userId) {
+		List<Photo> listOfPhotos = null;
+		try {
+			ResultSet rs = photosGateway.getUserLikedPhotos(userId);
+			if (rs != null) {
+
+				listOfPhotos = getListPhotosByLikesAndFavQuery(rs);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return listOfPhotos;
+	}
+
+	private static List<Photo> getListOfPhotos(ResultSet rs) {
+
+		List<Photo> listOfPhotos = new ArrayList<Photo>();
+
+		try {
+
+			if (rs != null) {
+				while(rs.next())
+				{
+					Photo photo = new Photo();
+					photo.setPhotoId(rs.getInt("photo_id"));
+					photo.setAvgColor(rs.getString("avg_color"));
+					photo.setTitle(rs.getString("title"));
+					photo.setImageMediumSize(rs.getString("imageMediumSize"));
+					photo.setImageLargeSize(rs.getString("imageLargeSize"));
+					photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
 	
-  private PhotoGateway photosGateway = new PhotoGatewayImpl();
+					listOfPhotos.add(photo);
+				}
+			}
 
-  @Override
-  public List<Photo> getPhotos() {
-    List<Photo> listOfPhotos;
-    ResultSet rs  = photosGateway.getPhotos1();
-    
-    listOfPhotos = getListOfPhotos(rs);
-    		
-    return listOfPhotos;
-  }
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 
-  @Override
-  public List<Photo> getPhotos(int photoId) {
-    List<Photo> listOfPhotos;
-    ResultSet rs  = photosGateway.getPhotos1(photoId);
-    
-    listOfPhotos = getListOfPhotos(rs);
+		return listOfPhotos;
+	}
 
-    return listOfPhotos;
-  }
+	private static List<Photo> getListPhotosByLikesAndFavQuery(ResultSet rs) {
+		List<Photo> listOfPhotos = new ArrayList<Photo>();
 
-  @Override
-  public List<Photo> getUserFavouritePhotos(int userId) {
-    List<Photo> listOfPhotos;
+		try {
+			if (rs != null) {
+				while(rs.next())
+				{
+					Photo photo = new Photo();
+					photo.setPhotoId(rs.getInt("photo_id"));
+					photo.setAvgColor(rs.getString("avg_color"));
+					photo.setTitle(rs.getString("title"));
+					photo.setImageMediumSize(rs.getString("imageMediumSize"));
+					photo.setImageLargeSize(rs.getString("imageLargeSize"));
+					photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
+					
+					listOfPhotos.add(photo);
 
-    ResultSet rs = photosGateway.getUserFavouritePhotos1(userId);
-    
-    listOfPhotos = getListPhotosByLikesAndFavQuery(rs);
+				}
+				
+			}
 
-    return listOfPhotos;
-  }
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 
-  @Override
-  public List<Photo> getUserLikedPhotos(int userId) {
-    List<Photo> listOfPhotos;
+		return listOfPhotos;
+	}
 
-    ResultSet rs = photosGateway.getUserLikedPhotos1(userId);
-    
-    listOfPhotos = getListPhotosByLikesAndFavQuery(rs);
+	@Override
+	public int getNoOfLikesOfPhoto(int photoId) {
+		int noOfLikes = 0;
+		ResultSet rs = photosGateway.getNoOfLikesOfPhoto(photoId);
 
-    return listOfPhotos;
-  }
+		try {
 
-  private static List<Photo> getListOfPhotos(ResultSet rs) {
-	  
-	  List<Photo> listOfPhotos = new ArrayList<Photo>();
-	  
-	  try
-	  {
-        Photo photo = new Photo();
-        photo.setPhotoId(rs.getInt("photo_id"));
-        photo.setPhotographer(
-          new Photographer(
-            rs.getInt("photographer_id"),
-            rs.getString("p_name"),
-            rs.getString("p_url")
-          )
-        );
-        photo.setAvgColor(rs.getString("avg_color"));
-        photo.setTitle(rs.getString("title"));
-        photo.setImageMediumSize(rs.getString("imageMediumSize"));
-        photo.setImageLargeSize(rs.getString("imageLargeSize"));
-        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
+			if (rs != null) {
 
-        listOfPhotos.add(photo);
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
+				while (rs.next()) {
+					noOfLikes++;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
-    return listOfPhotos;
-  }
+		return noOfLikes;
+	}
 
-  private static List<Photo> getListPhotosByLikesAndFavQuery(ResultSet rs) {
-    List<Photo> listOfPhotos = new ArrayList<Photo>();
+	@Override
+	public void addUserLikedPhotos(int userId, int photoId) {
+		photosGateway.addUserLikedPhotos(userId, photoId);
 
-    try {
-	        Photo photo = new Photo();
-	        photo.setPhotoId(rs.getInt("photo_id"));
-	        photo.setPhotographerId(rs.getInt("photographer_id"));
-	        photo.setAvgColor(rs.getString("avg_color"));
-	        photo.setTitle(rs.getString("title"));
-	        photo.setImageMediumSize(rs.getString("imageMediumSize"));
-	        photo.setImageLargeSize(rs.getString("imageLargeSize"));
-	        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
-	
-	        listOfPhotos.add(photo);
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
+	}
 
-    return listOfPhotos;
-  }
+	@Override
+	public void addUserFavPhotos(int userId, int photoId) {
+		photosGateway.addUserFavPhotos(userId, photoId);
+
+	}
+
+	@Override
+	public void removeUserLikedPhotos(int userId, int photoId) {
+		photosGateway.removeUserLikedPhotos(userId, photoId);
+
+	}
+
+	@Override
+	public void removeUserFavPhotos(int userId, int photoId) {
+		photosGateway.removeUserFavPhotos(userId, photoId);
+
+	}
 }

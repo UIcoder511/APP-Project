@@ -15,15 +15,13 @@ const PhotographerCards = ({ photographers = [] }) => {
         margin: "-10px",
       }}
     >
-      {photographers.map(
-        ({ photographer: { photographerName, photographerId }, photos }) => (
-          <PhotographerCard
-            key={photographerId}
-            photos={photos}
-            photographerName={photographerName}
-          />
-        )
-      )}
+      {photographers.map(({ photographerName, photographerId, photos }) => (
+        <PhotographerCard
+          key={photographerId}
+          photos={photos}
+          photographerName={photographerName}
+        />
+      ))}
     </Box>
   );
 };

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestGetLikesOfAllPhotosApi extends BaseSetup {
-	public static final int photoId1 = 14006742;
+	public static final int photoId1 = 14173145;
 	public static final int photoId2 = 14155604;
 
 	@Test(priority = 0)

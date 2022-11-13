@@ -46,11 +46,11 @@ public class TestDataDeletionFromDB {
 		
 		//Favourites
 		
-		photosSql = "DELETE FROM Favourites where user_id=? and photo_id=?";
+		photosSql = "DELETE FROM Favourites where photo_id=?";
 
 		try (PreparedStatement pstmt = conn.prepareStatement(photosSql)) {
-			 pstmt.setInt(1, 11);
-			 pstmt.setInt(2, 1234567);
+//			 pstmt.setInt(1, 11);
+			 pstmt.setInt(1, 1234567);
 			pstmt.executeUpdate();
 			
 			System.out.println("Test deletion done for Favourites");
@@ -61,11 +61,10 @@ public class TestDataDeletionFromDB {
 		
 		
 		//Likes
-		photosSql = "DELETE FROM Likes where user_id =? and photo_id=?";
+		photosSql = "DELETE FROM Likes where photo_id=?";
 
 		try (PreparedStatement pstmt = conn.prepareStatement(photosSql)) {
-			 pstmt.setInt(1, 11);
-			 pstmt.setInt(2, 1234567);
+			 pstmt.setInt(1, 1234567);
 			pstmt.executeUpdate();
 			
 			System.out.println("Test deletion done for Likes");

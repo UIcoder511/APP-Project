@@ -26,7 +26,8 @@ function store(state, action) {
       return { ...state, user: action.payload };
     }
     case storeActions.SET_PHOTOS: {
-      return { ...state, photos: action.payload || [] };
+      const { photos, photographers } = action.payload;
+      return { ...state, photos, photographers };
     }
     case storeActions.SET_FAV_PHOTOS: {
       return {
@@ -70,13 +71,29 @@ const Init = () => {
   const [state, dispatch] = React.useReducer(store, {
     user: getUserObjectFromLocalStorage(),
     photos: [],
+    photographers: [],
     photoLikesMap: {},
   });
 
   const getAllPhotos = () => {
-    axios.get("/photo-api/get-all-photos").then(({ data }) => {
-      // console.log(data);
-      dispatch({ type: storeActions.SET_PHOTOS, payload: data });
+    axios.get("/photo-api/get-photographers-with-photos").then(({ data }) => {
+      console.log(data);
+
+      const photos = data?.reduce((acc, { photos, ...rest }) => {
+        const photosWithPhotograherData = photos.map((d) => ({
+          ...d,
+          ...rest,
+        }));
+
+        return [...acc, ...(photosWithPhotograherData || [])];
+      }, []);
+
+      const photographers = data;
+
+      dispatch({
+        type: storeActions.SET_PHOTOS,
+        payload: { photos, photographers },
+      });
     });
   };
 

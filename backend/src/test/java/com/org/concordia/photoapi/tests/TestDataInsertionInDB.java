@@ -52,11 +52,11 @@ public class TestDataInsertionInDB {
 		}
 		
 		//Favourites Data
-		photosSql = "INSERT INTO Favourites(user_id,photo_id) VALUES(?,?)";
+		photosSql = "INSERT INTO Favourites(photo_id) VALUES(?)";
 
 		try (PreparedStatement pstmt = conn.prepareStatement(photosSql)) {
-			 pstmt.setInt(1, 11);
-			 pstmt.setInt(2, 1234567);
+//			 pstmt.setInt(1, 11);
+			 pstmt.setInt(1, 1234567);
 			pstmt.executeUpdate();
 			
 			System.out.println("Test insertion done for Favourites");
@@ -66,11 +66,11 @@ public class TestDataInsertionInDB {
 		}
 		
 		//Likes Data
-		photosSql = "INSERT INTO Likes(user_id,photo_id) VALUES(?,?)";
+		photosSql = "INSERT INTO Likes(photo_id) VALUES(?)";
 
 		try (PreparedStatement pstmt = conn.prepareStatement(photosSql)) {
-			 pstmt.setInt(1, 11);
-			 pstmt.setInt(2, 1234567);
+//			 pstmt.setInt(1, 11);
+			 pstmt.setInt(1, 1234567);
 			pstmt.executeUpdate();
 			
 			System.out.println("Test insertion done for Likes");

@@ -4,60 +4,63 @@ import java.util.ArrayList;
 
 public class User {
 
-	private int userId;
-	private String username;
-	private String password;
-	private ArrayList<Integer> favourite;
-	private ArrayList<Integer> like;
-	
-	public User() {}
+  private int userId;
+  private String username;
+  private String password;
+  private ArrayList<Integer> favouriteIds;
+  private ArrayList<Integer> likeIds;
 
-	public User(int userId, String username, ArrayList<Integer> favourite,ArrayList<Integer> like) {
-		this.userId = userId;
-		this.username = username;
-		this.favourite=favourite;
-		this.like=like;
-	}
+  public User() {}
 
-	public String getPassword() {
-		return password;
-	}
+  public User(
+    int userId,
+    String username,
+    ArrayList<Integer> favouriteIds,
+    ArrayList<Integer> likeIds
+  ) {
+    this.userId = userId;
+    this.username = username;
+    this.favouriteIds = favouriteIds;
+    this.likeIds = likeIds;
+  }
 
-	public String getUsername() {
-		return username;
-	}
+  public String getPassword() {
+    return password;
+  }
 
-	public int getUserId() {
-		return userId;
-	}
+  public String getUsername() {
+    return username;
+  }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+  public int getUserId() {
+    return userId;
+  }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-	public ArrayList<Integer> getFavourite() {
-		return favourite;
-	}
+  public void setUserId(int userId) {
+    this.userId = userId;
+  }
 
-	public void setFavourite(ArrayList<Integer> favourite) {
-		this.favourite = favourite;
-	}
+  public ArrayList<Integer> getFavourite() {
+    return favouriteIds;
+  }
 
-	public ArrayList<Integer> getLike() {
-		return like;
-	}
+  public void setFavourite(ArrayList<Integer> favouriteIds) {
+    this.favouriteIds = favouriteIds;
+  }
 
-	public void setLike(ArrayList<Integer> like) {
-		this.like = like;
-	}
+  public ArrayList<Integer> getLike() {
+    return likeIds;
+  }
 
-
+  public void setLike(ArrayList<Integer> likeIds) {
+    this.likeIds = likeIds;
+  }
 }

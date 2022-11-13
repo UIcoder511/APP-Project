@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.org.concordia.photoapi.gateways.UserGateway;
-import com.org.concordia.photoapi.gateways.UserGatewayImpl;
+import com.org.concordia.photoapi.mappers.UserMapper;
+import com.org.concordia.photoapi.mappers.UserMapperImpl;
 import com.org.concordia.photoapi.model.ResponseForUserCreation;
 
 @WebServlet(name = "validateUserServlet", urlPatterns = "/validate-user")
 public class ValidateUserServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2872241476921678269L;
-	private UserGateway usersGateway = new UserGatewayImpl();
+	private UserMapper usersMapper = new UserMapperImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,13 +31,13 @@ public class ValidateUserServlet extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 
 		try {
-			int user_id = usersGateway.getUserIdByUsername(username);
+			int user_id = usersMapper.getUserIdByUsername(username);
 			resp.setContentType("application/json");
 			resp.setCharacterEncoding("UTF-8");
 
 			if (user_id != -1) {
 				// check password
-				String passwordFromDB = usersGateway.getPasswordByUsername(username);
+				String passwordFromDB = usersMapper.getPasswordByUsername(username);
 				if (passwordFromDB.equals(password)) {
 					ResponseForUserCreation responseForUser = new ResponseForUserCreation("success",
 							"User Authenticated");
