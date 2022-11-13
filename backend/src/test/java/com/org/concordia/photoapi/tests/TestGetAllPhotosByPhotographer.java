@@ -26,7 +26,7 @@ public class TestGetAllPhotosByPhotographer extends BaseSetup {
 		List<Photographer> photographers = mapper.readValue(getAllPhotosInResponse,
 				new TypeReference<List<Photographer>>() {
 				});
-		
+
 		for (int index = 0; index < photographers.size(); index++) {
 			System.out.println(photographers.get(index).getphotographerId());
 			if (photographers.get(index).getphotographerId() == 1234) {

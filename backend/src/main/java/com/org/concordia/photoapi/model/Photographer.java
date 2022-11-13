@@ -3,7 +3,6 @@ package com.org.concordia.photoapi.model;
 import java.util.List;
 
 public class Photographer {
-
 	private Integer photographerId;
 	private String photographerName;
 	private String photographerUrl;

@@ -6,11 +6,11 @@ public interface PhotoGateway {
 
 	public ResultSet getPhotos();
 
+	public ResultSet getPhotoById(int photoId);
+
 	public ResultSet getUserFavouritePhotos(int userId);
 
 	public ResultSet getUserLikedPhotos(int userId);
-
-	public ResultSet getPhotos(int photoId);
 
 	public ResultSet getNoOfLikesOfPhoto(int photoId);
 

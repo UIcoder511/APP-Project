@@ -6,12 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.org.concordia.photoapi.model.Photo;
 import com.org.concordia.photoapi.util.DBConnect;
 
 public class PhotoGatewayImpl implements PhotoGateway {
 
 	private static Connection conn = DBConnect.getDBConnection();
-
+	
 	@Override
 	public ResultSet getPhotos() {
 
@@ -21,11 +22,11 @@ public class PhotoGatewayImpl implements PhotoGateway {
 	}
 
 	@Override
-	public ResultSet getPhotos(int photoId) {
+	public ResultSet getPhotoById(int photoId) {
 
-		String photosSQL = "SELECT * FROM Photos p INNER JOIN Photographer ph ON p.photographer_id = ph.photographer_id and p.photo_id='"
+		String photosSQL = "SELECT * FROM Photos p.photo_id='"
 				+ photoId + "'";
-
+		
 		return getPhotosByQuery(photosSQL);
 	}
 
@@ -40,7 +41,6 @@ public class PhotoGatewayImpl implements PhotoGateway {
 	@Override
 	public ResultSet getUserLikedPhotos(int userId) {
 		String likesSQL = "SELECT * from Photos p, Likes l where p.photo_id=l.photo_id and l.user_id='" + userId + "'";
-
 		return getListPhotosByLikesAndFavQuery(likesSQL);
 	}
 

@@ -30,18 +30,27 @@ public class PhotoMapperImpl implements PhotoMapper {
 	}
 
 	@Override
-	public List<Photo> getPhotos(int photoId) {
-		List<Photo> listOfPhotos = null;
+	public Photo getPhotoById(int photoId) {
+		Photo photo = new Photo();
 		try {
 			ResultSet rs = photosGateway.getPhotos();
 
 			if (rs != null) {
-				listOfPhotos = getListOfPhotos(rs);
+				while (rs.next()) {
+					photo.setPhotoId(rs.getInt("photo_id"));
+					photo.setAvgColor(rs.getString("avg_color"));
+					photo.setTitle(rs.getString("title"));
+					photo.setImageMediumSize(rs.getString("imageMediumSize"));
+					photo.setImageLargeSize(rs.getString("imageLargeSize"));
+					photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
+
+				}
 			}
-		} catch (Exception e) {
+
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return listOfPhotos;
+		return photo;
 	}
 
 	@Override
@@ -81,8 +90,7 @@ public class PhotoMapperImpl implements PhotoMapper {
 		try {
 
 			if (rs != null) {
-				while(rs.next())
-				{
+				while (rs.next()) {
 					Photo photo = new Photo();
 					photo.setPhotoId(rs.getInt("photo_id"));
 					photo.setAvgColor(rs.getString("avg_color"));
@@ -90,7 +98,7 @@ public class PhotoMapperImpl implements PhotoMapper {
 					photo.setImageMediumSize(rs.getString("imageMediumSize"));
 					photo.setImageLargeSize(rs.getString("imageLargeSize"));
 					photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
-	
+
 					listOfPhotos.add(photo);
 				}
 			}
@@ -107,8 +115,7 @@ public class PhotoMapperImpl implements PhotoMapper {
 
 		try {
 			if (rs != null) {
-				while(rs.next())
-				{
+				while (rs.next()) {
 					Photo photo = new Photo();
 					photo.setPhotoId(rs.getInt("photo_id"));
 					photo.setAvgColor(rs.getString("avg_color"));
@@ -116,11 +123,11 @@ public class PhotoMapperImpl implements PhotoMapper {
 					photo.setImageMediumSize(rs.getString("imageMediumSize"));
 					photo.setImageLargeSize(rs.getString("imageLargeSize"));
 					photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
-					
+
 					listOfPhotos.add(photo);
 
 				}
-				
+
 			}
 
 		} catch (SQLException e) {
