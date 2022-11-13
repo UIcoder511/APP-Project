@@ -12,3 +12,8 @@ To run tests:
 2. Tests are written using Rest Assured and TestNG tools in Java
 3. To run test in IDE, you can use eclipse and install TestNG from eclipse marketplace.Once successfully installed, select the tests folder(src/test/java) on right click you should be able to see option to run tests as "TestNG tests".
 
+In command line:
+![image](https://user-images.githubusercontent.com/52369694/201550845-ff327544-dd37-479f-8e98-8c4e826e50a0.png)
+
+In eclipse:
+![image](https://user-images.githubusercontent.com/52369694/201550933-3a77cbed-ab85-4ad7-a7a4-31b8364d6e42.png)
