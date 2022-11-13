@@ -43,27 +43,19 @@ public class PhotographerGatewayImpl implements PhotographerGateway {
           "\t"
         );
 
-        Photo photo = new Photo();
-        photo.setPhotoId(rs.getInt("photo_id"));
-        photo.setPhotographerId(rs.getInt("photographer_id"));
-        photo.setAvgColor(rs.getString("avg_color"));
-        photo.setTitle(rs.getString("title"));
-        photo.setImageMediumSize(rs.getString("imageMediumSize"));
-        photo.setImageLargeSize(rs.getString("imageLargeSize"));
-        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
-
-        listOfPhotosByPhotographerName.add(photo);
+//        Photo photo = new Photo();
+//        photo.setPhotoId(rs.getInt("photo_id"));
+//        photo.setPhotographerId(rs.getInt("photographer_id"));
+//        photo.setAvgColor(rs.getString("avg_color"));
+//        photo.setTitle(rs.getString("title"));
+//        photo.setImageMediumSize(rs.getString("imageMediumSize"));
+//        photo.setImageLargeSize(rs.getString("imageLargeSize"));
+//        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
+//
+//        listOfPhotosByPhotographerName.add(photo);
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
-      //    } finally {
-      //      try {
-      //        if (conn != null) {
-      //          conn.close();
-      //        }
-      //      } catch (SQLException ex) {
-      //        System.out.println(ex.getMessage());
-      //      }
     }
 
     return listOfPhotosByPhotographerName;
@@ -98,16 +90,76 @@ public class PhotographerGatewayImpl implements PhotographerGateway {
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
-      //    } finally {
-      //      try {
-      //        if (conn != null) {
-      //          conn.close();
-      //        }
-      //      } catch (SQLException ex) {
-      //        System.out.println(ex.getMessage());
-      //      }
     }
 
     return listOfPhotographers;
   }
+
+@Override
+public ResultSet getPhotosByPhotographerId1(int photographerId) {
+	
+	 Statement stmt = null;
+	 ResultSet rs = null;
+	 
+	 try {
+	      conn = DBConnect.getDBConnection();
+	      String photosByPhotographerNameSQL =
+	        "SELECT * FROM Photos p where p.photographer_id=" + photographerId;
+
+	      stmt = conn.createStatement();
+	      rs = stmt.executeQuery(photosByPhotographerNameSQL);
+	      while (rs.next()) {
+	        System.out.println(
+	          rs.getInt("photo_id") +
+	          "\t" +
+	          rs.getInt("photographer_id") +
+	          "\t" +
+	          rs.getString("avg_color") +
+	          "\t" +
+	          rs.getString("title") +
+	          "\t" +
+	          rs.getString("imageMediumSize") +
+	          "\t" +
+	          rs.getString("imageLargeSize") +
+	          "\t" +
+	          rs.getString("imageOrignalSize") +
+	          "\t"
+	        );
+
+	      }
+	    } catch (SQLException e) {
+	      System.out.println(e.getMessage());
+	    }
+
+	 return rs;
+}
+
+@Override
+public ResultSet getPhotographers1() {
+	
+	 Statement stmt = null;
+	 ResultSet rs = null;
+	 
+		try {
+		      conn = DBConnect.getDBConnection();
+		      String sql = "SELECT * FROM Photographer";
+	
+		      stmt = conn.createStatement();
+		      rs = stmt.executeQuery(sql);
+		      while (rs.next()) {
+		        System.out.println(
+		          rs.getInt("photographer_id") +
+		          "\t" +
+		          rs.getString("p_name") +
+		          "\t" +
+		          rs.getString("p_url") +
+		          "\t"
+		        );
+		      }
+		    } catch (SQLException e) {
+		      System.out.println(e.getMessage());
+		    }
+		
+		 return rs;
+	}
 }

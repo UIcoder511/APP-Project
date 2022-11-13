@@ -15,8 +15,6 @@ public class PhotoGatewayImpl implements PhotoGateway {
 
   private static Connection conn = DBConnect.getDBConnection();
 
-  //	private static List<Photo> listOfPhotos = new ArrayList<Photo>();
-
   @Override
   public List<Photo> getPhotos() {
     List<Photo> listOfPhotos;
@@ -51,11 +49,7 @@ public class PhotoGatewayImpl implements PhotoGateway {
       "SELECT * from Photos p, Favourites f where p.photo_id=f.photo_id and f.user_id='" +
       userId +
       "'";
-
-    //      + "(SELECT p.* FROM Photos p, Favourites f where f.user_id='" +
-    //      userId +
-    //      "' and p.photo_id=f.photo_id";
-
+    
     listOfPhotos = getListPhotosByLikesAndFavQuery(favSQL);
 
     return listOfPhotos;
@@ -69,11 +63,7 @@ public class PhotoGatewayImpl implements PhotoGateway {
       "SELECT * from Photos p, Likes l where p.photo_id=l.photo_id and l.user_id='" +
       userId +
       "'";
-
-    //      "SELECT p.* FROM Photos p,Likes l where l.user_id='" +
-    //      userId +
-    //      "' and p.photo_id=l.photo_id ";
-
+    
     listOfPhotos = getListPhotosByLikesAndFavQuery(likesSQL);
 
     return listOfPhotos;
@@ -104,7 +94,6 @@ public class PhotoGatewayImpl implements PhotoGateway {
 
         Photo photo = new Photo();
         photo.setPhotoId(rs.getInt("photo_id"));
-        //				photo.setPhotographerId(rs.getInt("photographer_id"));
         photo.setPhotographer(
           new Photographer(
             rs.getInt("photographer_id"),
@@ -122,14 +111,6 @@ public class PhotoGatewayImpl implements PhotoGateway {
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
-      //    } finally {
-      //      try {
-      //        if (conn != null) {
-      //          conn.close();
-      //        }
-      //      } catch (SQLException ex) {
-      //        System.out.println(ex.getMessage());
-      //      }
     }
 
     return listOfPhotos;
@@ -172,14 +153,6 @@ public class PhotoGatewayImpl implements PhotoGateway {
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
-      //    } finally {
-      //      try {
-      //        if (conn != null) {
-      //          conn.close();
-      //        }
-      //      } catch (SQLException ex) {
-      //        System.out.println(ex.getMessage());
-      //      }
     }
 
     return listOfPhotos;
@@ -267,5 +240,91 @@ public class PhotoGatewayImpl implements PhotoGateway {
       System.out.println(e.getMessage());
     }
     return noOfLikes;
+  }
+
+@Override
+public ResultSet getPhotos1() {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ResultSet getUserFavouritePhotos1(int userId) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ResultSet getUserLikedPhotos1(int userId) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public ResultSet getPhotos1(int photoId) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+private static ResultSet getPhotosByQuery(String sqlQuery) {
+    Statement stmt = null;
+    ResultSet rs = null;
+    
+    try {
+      stmt = conn.createStatement();
+      rs = stmt.executeQuery(sqlQuery);
+      while (rs.next()) {
+        System.out.println(
+          rs.getInt("photo_id") +
+          "\t" +
+          rs.getString("avg_color") +
+          "\t" +
+          rs.getString("title") +
+          "\t" +
+          rs.getString("imageMediumSize") +
+          "\t" +
+          rs.getString("imageLargeSize") +
+          "\t" +
+          rs.getString("imageOrignalSize") +
+          "\t"
+        );
+      }
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+    }
+
+    return rs;
+       
+  }
+
+  private static ResultSet getListPhotosByLikesAndFavQuery1(String sqlQuery) {
+	  Statement stmt = null;
+	   ResultSet rs = null;
+	    
+    try {
+      stmt = conn.createStatement();
+      rs = stmt.executeQuery(sqlQuery);
+      System.out.println("-----------------------");
+      while (rs.next()) {
+        System.out.println(
+          rs.getInt("photo_id") +
+          "\t" +
+          rs.getString("avg_color") +
+          "\t" +
+          rs.getString("title") +
+          "\t" +
+          rs.getString("imageMediumSize") +
+          "\t" +
+          rs.getString("imageLargeSize") +
+          "\t" +
+          rs.getString("imageOrignalSize") +
+          "\t"
+        );
+      }
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+    }
+
+    return rs;
   }
 }
