@@ -45,7 +45,7 @@ public class PhotographerDaoImpl implements PhotographerDao {
 
         Photo photo = new Photo();
         photo.setPhotoId(rs.getInt("photo_id"));
-        photo.setPhotographerId(rs.getInt("photographer_id"));
+
         photo.setAvgColor(rs.getString("avg_color"));
         photo.setTitle(rs.getString("title"));
         photo.setImageMediumSize(rs.getString("imageMediumSize"));
@@ -90,9 +90,14 @@ public class PhotographerDaoImpl implements PhotographerDao {
         );
 
         Photographer photographer = new Photographer();
+        List<Photo> photos = getPhotosByPhotographerId(
+          rs.getInt("photographer_id")
+        );
+
         photographer.setPhotographerId(rs.getInt("photographer_id"));
         photographer.setphotographerName(rs.getString("p_name"));
         photographer.setphotographerUrl(rs.getString("p_url"));
+        photographer.setPhotos(photos);
 
         listOfPhotographers.add(photographer);
       }

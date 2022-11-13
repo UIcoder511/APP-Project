@@ -49,8 +49,9 @@ const ImageCards = ({
           avgColor,
           imageMediumSize,
           photoId,
-          photographer: { photographerName, photographerId },
-
+          photographerName,
+          photographerId,
+          imageOrignalSize,
           title,
         }) => (
           <ImageCard
@@ -58,6 +59,7 @@ const ImageCards = ({
             isLiked={user.like?.includes(photoId)}
             isBookmarked={user.favourite?.includes(photoId)}
             thumbnailSrc={imageMediumSize}
+            orignalSrc={imageOrignalSize}
             noOfLikes={photoLikesMap?.[photoId]}
             photographerName={photographerName}
             imageBgColor={avgColor}

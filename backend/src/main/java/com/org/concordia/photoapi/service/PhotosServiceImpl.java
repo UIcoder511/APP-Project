@@ -21,9 +21,9 @@ public class PhotosServiceImpl implements PhotosService {
   }
 
   @Override
-  public List<Photo> getPhotos(int photoId) {
+  public Photo getPhotoById(int photoId) {
     try {
-      return photosDao.getPhotos(photoId);
+      return photosDao.getPhotoById(photoId);
     } catch (Exception ex) {
       //throw photo-api custom exception here
       //log

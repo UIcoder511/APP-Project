@@ -2,9 +2,13 @@ package com.org.concordia.photoapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.org.concordia.photoapi.service.PhotosService;
-import com.org.concordia.photoapi.service.PhotosServiceImpl;
+import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.model.Photographer;
+import com.org.concordia.photoapi.service.PhotographerService;
+import com.org.concordia.photoapi.service.PhotographerServiceImpl;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,26 +16,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
-  name = "getNoOfLikesOfPhotoServlet",
-  urlPatterns = "/get-likes-of-photo"
+  name = "getPhotographersServlet",
+  urlPatterns = "/get-photographers-with-photos"
 )
-public class getNoOfLikesOfPhotoServlet extends HttpServlet {
+public class getPhotographersServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;
-  private PhotosService photosService = new PhotosServiceImpl();
+  private PhotographerService photographerService = new PhotographerServiceImpl();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
-    int photoId = Integer.parseInt(req.getParameter("photoId"));
-
     try {
-      int noOfLikes = photosService.getNoOfLikesOfPhoto(photoId);
-
-      System.out.println(photoId + ":" + noOfLikes);
+      List<Photographer> photographers = photographerService.getPhotographers();
 
       ObjectMapper mapper = new ObjectMapper();
-      String jsonString = mapper.writeValueAsString(noOfLikes);
+      String jsonString = mapper.writeValueAsString(photographers);
       System.out.println(jsonString);
       resp.setContentType("application/json");
       resp.setCharacterEncoding("UTF-8");

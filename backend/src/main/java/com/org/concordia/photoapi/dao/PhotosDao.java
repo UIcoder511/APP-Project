@@ -6,11 +6,11 @@ import java.util.List;
 public interface PhotosDao {
   public List<Photo> getPhotos();
 
+  public Photo getPhotoById(int photoId);
+
   public List<Photo> getUserFavouritePhotos(int userId);
 
   public List<Photo> getUserLikedPhotos(int userId);
-
-  public List<Photo> getPhotos(int photoId);
 
   public int getNoOfLikesOfPhoto(int photoId);
 

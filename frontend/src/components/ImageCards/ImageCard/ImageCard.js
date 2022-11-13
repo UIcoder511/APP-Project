@@ -4,13 +4,15 @@ import Card from "../../../ui/Card/Card";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { IconButtonStyled } from "./ImageCard.style.js";
-import { getPhotoPath } from "../../../utils/Util";
+import { downloadImage, getPhotoPath } from "../../../utils/Util";
 import axios from "axios";
 
 const ImageCard = ({
   thumbnailSrc = "",
+  orignalSrc = "",
   isLiked = false,
   isBookmarked = false,
   noOfLikes = 0,
@@ -118,6 +120,15 @@ const ImageCard = ({
                   ) : (
                     <FavoriteBorderIcon />
                   )}
+                </IconButtonStyled>
+              </Tooltip>
+              <Tooltip disableInteractive title={"Download Image"}>
+                <IconButtonStyled
+                  onClick={() => {
+                    downloadImage(getPhotoPath(orignalSrc), photoId);
+                  }}
+                >
+                  <FileDownloadOutlinedIcon />
                 </IconButtonStyled>
               </Tooltip>
             </Box>

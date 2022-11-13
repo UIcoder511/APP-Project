@@ -10,7 +10,7 @@ public interface PhotosService {
 
   public List<Photo> getUserLikedPhotos(int userId);
 
-  public List<Photo> getPhotos(int photoId);
+  public Photo getPhotoById(int photoId);
 
   public int getNoOfLikesOfPhoto(int photoId);
 

@@ -15,32 +15,106 @@ public class PhotosDaoImpl implements PhotosDao {
 
   private static Connection conn = DBConnect.getDBConnection();
 
-  //	private static List<Photo> listOfPhotos = new ArrayList<Photo>();
-
   @Override
   public List<Photo> getPhotos() {
-    List<Photo> listOfPhotos;
+    List<Photo> listOfPhotos = new ArrayList<Photo>();
 
-    String photosSQL =
-      "SELECT * FROM Photos p INNER JOIN Photographer ph ON p.photographer_id = ph.photographer_id";
+    String photosSQL = "SELECT * FROM Photos";
 
-    listOfPhotos = getListOfPhotosByQuery(photosSQL);
+    Statement stmt;
+
+    try {
+      stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery(photosSQL);
+      while (rs.next()) {
+        System.out.println(
+          rs.getInt("photo_id") +
+          "\t" +
+          rs.getString("avg_color") +
+          "\t" +
+          rs.getString("title") +
+          "\t" +
+          rs.getString("imageMediumSize") +
+          "\t" +
+          rs.getString("imageLargeSize") +
+          "\t" +
+          rs.getString("imageOrignalSize") +
+          "\t"
+        );
+
+        Photo photo = new Photo();
+        photo.setPhotoId(rs.getInt("photo_id"));
+        photo.setAvgColor(rs.getString("avg_color"));
+        photo.setTitle(rs.getString("title"));
+        photo.setImageMediumSize(rs.getString("imageMediumSize"));
+        photo.setImageLargeSize(rs.getString("imageLargeSize"));
+        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
+
+        listOfPhotos.add(photo);
+      }
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+      //    } finally {
+      //      try {
+      //        if (conn != null) {
+      //          conn.close();
+      //        }
+      //      } catch (SQLException ex) {
+      //        System.out.println(ex.getMessage());
+      //      }
+    }
 
     return listOfPhotos;
   }
 
   @Override
-  public List<Photo> getPhotos(int photoId) {
-    List<Photo> listOfPhotos;
+  public Photo getPhotoById(int photoId) {
+    Photo photo = new Photo();
 
     String photosSQL =
-      "SELECT * FROM Photos p INNER JOIN Photographer ph ON p.photographer_id = ph.photographer_id and p.photo_id='" +
-      photoId +
-      "'";
+      "SELECT * FROM Photos p  WHERE p.photo_id='" + photoId + "'";
 
-    listOfPhotos = getListOfPhotosByQuery(photosSQL);
+    Statement stmt;
 
-    return listOfPhotos;
+    try {
+      stmt = conn.createStatement();
+      ResultSet rs = stmt.executeQuery(photosSQL);
+      while (rs.next()) {
+        System.out.println(
+          rs.getInt("photo_id") +
+          "\t" +
+          rs.getString("avg_color") +
+          "\t" +
+          rs.getString("title") +
+          "\t" +
+          rs.getString("imageMediumSize") +
+          "\t" +
+          rs.getString("imageLargeSize") +
+          "\t" +
+          rs.getString("imageOrignalSize") +
+          "\t"
+        );
+
+        photo.setPhotoId(rs.getInt("photo_id"));
+        photo.setAvgColor(rs.getString("avg_color"));
+        photo.setTitle(rs.getString("title"));
+        photo.setImageMediumSize(rs.getString("imageMediumSize"));
+        photo.setImageLargeSize(rs.getString("imageLargeSize"));
+        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
+      }
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
+      //    } finally {
+      //      try {
+      //        if (conn != null) {
+      //          conn.close();
+      //        }
+      //      } catch (SQLException ex) {
+      //        System.out.println(ex.getMessage());
+      //      }
+    }
+
+    return photo;
   }
 
   @Override
@@ -79,62 +153,6 @@ public class PhotosDaoImpl implements PhotosDao {
     return listOfPhotos;
   }
 
-  private static List<Photo> getListOfPhotosByQuery(String sqlQuery) {
-    Statement stmt;
-    List<Photo> listOfPhotos = new ArrayList<Photo>();
-
-    try {
-      stmt = conn.createStatement();
-      ResultSet rs = stmt.executeQuery(sqlQuery);
-      while (rs.next()) {
-        System.out.println(
-          rs.getInt("photo_id") +
-          "\t" +
-          rs.getString("avg_color") +
-          "\t" +
-          rs.getString("title") +
-          "\t" +
-          rs.getString("imageMediumSize") +
-          "\t" +
-          rs.getString("imageLargeSize") +
-          "\t" +
-          rs.getString("imageOrignalSize") +
-          "\t"
-        );
-
-        Photo photo = new Photo();
-        photo.setPhotoId(rs.getInt("photo_id"));
-        //				photo.setPhotographerId(rs.getInt("photographer_id"));
-        photo.setPhotographer(
-          new Photographer(
-            rs.getInt("photographer_id"),
-            rs.getString("p_name"),
-            rs.getString("p_url")
-          )
-        );
-        photo.setAvgColor(rs.getString("avg_color"));
-        photo.setTitle(rs.getString("title"));
-        photo.setImageMediumSize(rs.getString("imageMediumSize"));
-        photo.setImageLargeSize(rs.getString("imageLargeSize"));
-        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
-
-        listOfPhotos.add(photo);
-      }
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-      //    } finally {
-      //      try {
-      //        if (conn != null) {
-      //          conn.close();
-      //        }
-      //      } catch (SQLException ex) {
-      //        System.out.println(ex.getMessage());
-      //      }
-    }
-
-    return listOfPhotos;
-  }
-
   private static List<Photo> getListPhotosByLikesAndFavQuery(String sqlQuery) {
     Statement stmt;
     List<Photo> listOfPhotos = new ArrayList<Photo>();
@@ -161,7 +179,7 @@ public class PhotosDaoImpl implements PhotosDao {
 
         Photo photo = new Photo();
         photo.setPhotoId(rs.getInt("photo_id"));
-        photo.setPhotographerId(rs.getInt("photographer_id"));
+
         photo.setAvgColor(rs.getString("avg_color"));
         photo.setTitle(rs.getString("title"));
         photo.setImageMediumSize(rs.getString("imageMediumSize"));
