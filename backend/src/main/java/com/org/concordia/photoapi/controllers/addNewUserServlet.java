@@ -14,13 +14,15 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.org.concordia.photoapi.gateways.UserGateway;
 import com.org.concordia.photoapi.gateways.UserGatewayImpl;
+import com.org.concordia.photoapi.mappers.UserMapper;
+import com.org.concordia.photoapi.mappers.UserMapperImpl;
 import com.org.concordia.photoapi.model.ResponseForUserCreation;
 
 @WebServlet(name = "addNewUserServlet", urlPatterns = "/add-user")
 public class addNewUserServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2872241476921678269L;
-	private UserGateway usersGateway = new UserGatewayImpl();
+	private UserMapper usersMapper = new UserMapperImpl();
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,9 +42,9 @@ public class addNewUserServlet extends HttpServlet {
 		ResponseForUserCreation responseForUser = null;
 
 		try {
-			int userId = usersGateway.getUserIdByUsername(username);
+			int userId = usersMapper.getUserIdByUsername(username);
 			if (userId == -1) {
-				if (usersGateway.addUser(username, password)) {
+				if (usersMapper.addUser(username, password)) {
 					responseForUser = new ResponseForUserCreation("success", "User successfully created");
 				}
 			} else {

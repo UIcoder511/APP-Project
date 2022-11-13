@@ -1,19 +1,21 @@
 package com.org.concordia.photoapi.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.org.concordia.photoapi.gateways.PhotographerGateway;
-import com.org.concordia.photoapi.gateways.PhotographerGatewayImpl;
-import com.org.concordia.photoapi.model.Photo;
-import com.org.concordia.photoapi.model.Photographer;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.mappers.PhotographerMapper;
+import com.org.concordia.photoapi.mappers.PhotographerMapperImpl;
+import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.model.Photographer;
 
 @WebServlet(
   name = "getPhotographersServlet",
@@ -22,13 +24,20 @@ import javax.servlet.http.HttpServletResponse;
 public class getPhotographersServlet extends HttpServlet {
 
   private static final long serialVersionUID = 2872241476921678269L;
-  private PhotographerGateway photographerGateway = new PhotographerGatewayImpl();
+  private PhotographerMapper photographerMapper = new PhotographerMapperImpl();
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
     throws ServletException, IOException {
     try {
-      List<Photographer> photographers = photographerGateway.getPhotographers();
+      List<Photographer> photographers = photographerMapper.getListOfPhotographers();
+      List<Photographer> photographerWithPhotoslist = new ArrayList<Photographer>();
+      
+      for (Photographer photographer : photographers) {
+			List<Photo> photos = photographerMapper.getListOfPhotosByPhotographerId(photographer.getphotographerId());
+			photographer.setPhotos(photos);
+			photographerWithPhotoslist.add(photographer);
+		}
 
       ObjectMapper mapper = new ObjectMapper();
       String jsonString = mapper.writeValueAsString(photographers);

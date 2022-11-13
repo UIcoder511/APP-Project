@@ -13,43 +13,37 @@ public class UserGatewayImpl implements UserGateway {
 	private static Connection conn = DBConnect.getDBConnection();
 
 	@Override
-	public int getUserIdByUsername(String username) {
-		int userId = -1;
-		Statement stmt;
+	public ResultSet getUserIdByUsername(String username) {
+		Statement stmt=null;
+		ResultSet rs=null;
 
 		try {
 			stmt = conn.createStatement();
 			String userIdSql = "SELECT user_id FROM Users where username='" + username + "'";
 
-			ResultSet rs = stmt.executeQuery(userIdSql);
-			while (rs.next()) {
-				userId = rs.getInt("user_id");
-			}
+			rs = stmt.executeQuery(userIdSql);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 
-		return userId;
+		return rs;
 	}
 
 	@Override
-	public String getPasswordByUsername(String username) {
-		String password = "";
-		Statement stmt;
-
+	public ResultSet getPasswordByUsername(String username) {
+		Statement stmt=null;
+		ResultSet rs=null;
+		
 		try {
 			stmt = conn.createStatement();
 			String passwordSql = "SELECT password FROM Users where username='" + username + "'";
 
-			ResultSet rs = stmt.executeQuery(passwordSql);
-			while (rs.next()) {
-				password = rs.getString("password");
-			}
+			rs = stmt.executeQuery(passwordSql);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 
-		return password;
+		return rs;
 	}
 
 	@Override

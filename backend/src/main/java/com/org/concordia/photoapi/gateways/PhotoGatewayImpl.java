@@ -1,289 +1,144 @@
 package com.org.concordia.photoapi.gateways;
 
-import com.org.concordia.photoapi.model.Photo;
-import com.org.concordia.photoapi.model.Photographer;
-import com.org.concordia.photoapi.util.DBConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
+import com.org.concordia.photoapi.model.Photo;
+import com.org.concordia.photoapi.util.DBConnect;
 
 public class PhotoGatewayImpl implements PhotoGateway {
 
-  private static Connection conn = DBConnect.getDBConnection();
+	private static Connection conn = DBConnect.getDBConnection();
+	
+	@Override
+	public ResultSet getPhotos() {
 
-  @Override
-  public List<Photo> getPhotos() {
-    List<Photo> listOfPhotos = new ArrayList<Photo>();
+		String photosSQL = "SELECT * FROM Photos p INNER JOIN Photographer ph ON p.photographer_id = ph.photographer_id";
 
-    String photosSQL = "SELECT * FROM Photos";
+		return getPhotosByQuery(photosSQL);
+	}
 
-    Statement stmt;
+	@Override
+	public ResultSet getPhotoById(int photoId) {
 
-    try {
-      stmt = conn.createStatement();
-      ResultSet rs = stmt.executeQuery(photosSQL);
-      while (rs.next()) {
-        System.out.println(
-          rs.getInt("photo_id") +
-          "\t" +
-          rs.getString("avg_color") +
-          "\t" +
-          rs.getString("title") +
-          "\t" +
-          rs.getString("imageMediumSize") +
-          "\t" +
-          rs.getString("imageLargeSize") +
-          "\t" +
-          rs.getString("imageOrignalSize") +
-          "\t"
-        );
+		String photosSQL = "SELECT * FROM Photos p.photo_id='"
+				+ photoId + "'";
+		
+		return getPhotosByQuery(photosSQL);
+	}
 
-        Photo photo = new Photo();
-        photo.setPhotoId(rs.getInt("photo_id"));
-        photo.setAvgColor(rs.getString("avg_color"));
-        photo.setTitle(rs.getString("title"));
-        photo.setImageMediumSize(rs.getString("imageMediumSize"));
-        photo.setImageLargeSize(rs.getString("imageLargeSize"));
-        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
+	@Override
+	public ResultSet getUserFavouritePhotos(int userId) {
+		String favSQL = "SELECT * from Photos p, Favourites f where p.photo_id=f.photo_id and f.user_id='" + userId
+				+ "'";
 
-        listOfPhotos.add(photo);
-      }
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-      //    } finally {
-      //      try {
-      //        if (conn != null) {
-      //          conn.close();
-      //        }
-      //      } catch (SQLException ex) {
-      //        System.out.println(ex.getMessage());
-      //      }
-    }
+		return getListPhotosByLikesAndFavQuery(favSQL);
+	}
 
-    return listOfPhotos;
-  }
+	@Override
+	public ResultSet getUserLikedPhotos(int userId) {
+		String likesSQL = "SELECT * from Photos p, Likes l where p.photo_id=l.photo_id and l.user_id='" + userId + "'";
+		return getListPhotosByLikesAndFavQuery(likesSQL);
+	}
 
-  @Override
-  public Photo getPhotoById(int photoId) {
-    Photo photo = new Photo();
+	@Override
+	public void addUserLikedPhotos(int userId, int photoId) {
+		try {
+			String addUserLikedSql = "INSERT INTO Likes(user_id,photo_id) values(?,?)";
 
-    String photosSQL =
-      "SELECT * FROM Photos p  WHERE p.photo_id='" + photoId + "'";
+			PreparedStatement pstmt = conn.prepareStatement(addUserLikedSql);
+			pstmt.setInt(1, userId);
+			pstmt.setInt(2, photoId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
-    Statement stmt;
+	@Override
+	public void addUserFavPhotos(int userId, int photoId) {
+		try {
+			String addUserFavSql = "INSERT INTO Favourites(user_id,photo_id) values(?,?)";
 
-    try {
-      stmt = conn.createStatement();
-      ResultSet rs = stmt.executeQuery(photosSQL);
-      while (rs.next()) {
-        System.out.println(
-          rs.getInt("photo_id") +
-          "\t" +
-          rs.getString("avg_color") +
-          "\t" +
-          rs.getString("title") +
-          "\t" +
-          rs.getString("imageMediumSize") +
-          "\t" +
-          rs.getString("imageLargeSize") +
-          "\t" +
-          rs.getString("imageOrignalSize") +
-          "\t"
-        );
+			PreparedStatement pstmt = conn.prepareStatement(addUserFavSql);
+			pstmt.setInt(1, userId);
+			pstmt.setInt(2, photoId);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
-        photo.setPhotoId(rs.getInt("photo_id"));
-        photo.setAvgColor(rs.getString("avg_color"));
-        photo.setTitle(rs.getString("title"));
-        photo.setImageMediumSize(rs.getString("imageMediumSize"));
-        photo.setImageLargeSize(rs.getString("imageLargeSize"));
-        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
-      }
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-      //    } finally {
-      //      try {
-      //        if (conn != null) {
-      //          conn.close();
-      //        }
-      //      } catch (SQLException ex) {
-      //        System.out.println(ex.getMessage());
-      //      }
-    }
+	@Override
+	public void removeUserLikedPhotos(int userId, int photoId) {
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			String removeUserLikedPhotosSql = "DELETE FROM Likes where user_id='" + userId + "' and  photo_id='"
+					+ photoId + "'";
 
-    return photo;
-  }
+			stmt.executeUpdate(removeUserLikedPhotosSql);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
-  @Override
-  public List<Photo> getUserFavouritePhotos(int userId) {
-    List<Photo> listOfPhotos;
+	@Override
+	public void removeUserFavPhotos(int userId, int photoId) {
+		Statement stmt;
+		try {
+			stmt = conn.createStatement();
+			String removeUserFavSql = "DELETE FROM Favourites where user_id='" + userId + "' and  photo_id='" + photoId
+					+ "'";
+			stmt.executeUpdate(removeUserFavSql);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
-    String favSQL =
-      "SELECT * from Photos p, Favourites f where p.photo_id=f.photo_id and f.user_id='" +
-      userId +
-      "'";
+	@Override
+	public ResultSet getNoOfLikesOfPhoto(int photoId) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			String noOfLikeOfPhotoSQL = "SELECT photo_id FROM likes where photo_id ='" + photoId + "'";
+			rs = stmt.executeQuery(noOfLikeOfPhotoSQL);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return rs;
+	}
 
-    //      + "(SELECT p.* FROM Photos p, Favourites f where f.user_id='" +
-    //      userId +
-    //      "' and p.photo_id=f.photo_id";
+	private static ResultSet getPhotosByQuery(String sqlQuery) {
+		Statement stmt = null;
+		ResultSet rs = null;
 
-    listOfPhotos = getListPhotosByLikesAndFavQuery(favSQL);
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sqlQuery);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 
-    return listOfPhotos;
-  }
+		return rs;
 
-  @Override
-  public List<Photo> getUserLikedPhotos(int userId) {
-    List<Photo> listOfPhotos;
+	}
 
-    String likesSQL =
-      "SELECT * from Photos p, Likes l where p.photo_id=l.photo_id and l.user_id='" +
-      userId +
-      "'";
+	private static ResultSet getListPhotosByLikesAndFavQuery(String sqlQuery) {
+		Statement stmt = null;
+		ResultSet rs = null;
 
-    //      "SELECT p.* FROM Photos p,Likes l where l.user_id='" +
-    //      userId +
-    //      "' and p.photo_id=l.photo_id ";
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sqlQuery);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 
-    listOfPhotos = getListPhotosByLikesAndFavQuery(likesSQL);
-
-    return listOfPhotos;
-  }
-
-  private static List<Photo> getListPhotosByLikesAndFavQuery(String sqlQuery) {
-    Statement stmt;
-    List<Photo> listOfPhotos = new ArrayList<Photo>();
-
-    try {
-      stmt = conn.createStatement();
-      ResultSet rs = stmt.executeQuery(sqlQuery);
-      System.out.println("-----------------------");
-      while (rs.next()) {
-        System.out.println(
-          rs.getInt("photo_id") +
-          "\t" +
-          rs.getString("avg_color") +
-          "\t" +
-          rs.getString("title") +
-          "\t" +
-          rs.getString("imageMediumSize") +
-          "\t" +
-          rs.getString("imageLargeSize") +
-          "\t" +
-          rs.getString("imageOrignalSize") +
-          "\t"
-        );
-
-        Photo photo = new Photo();
-        photo.setPhotoId(rs.getInt("photo_id"));
-
-        photo.setAvgColor(rs.getString("avg_color"));
-        photo.setTitle(rs.getString("title"));
-        photo.setImageMediumSize(rs.getString("imageMediumSize"));
-        photo.setImageLargeSize(rs.getString("imageLargeSize"));
-        photo.setImageOrignalSize(rs.getString("imageOrignalSize"));
-
-        listOfPhotos.add(photo);
-      }
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-      //    } finally {
-      //      try {
-      //        if (conn != null) {
-      //          conn.close();
-      //        }
-      //      } catch (SQLException ex) {
-      //        System.out.println(ex.getMessage());
-      //      }
-    }
-
-    return listOfPhotos;
-  }
-
-  @Override
-  public void addUserLikedPhotos(int userId, int photoId) {
-    try {
-      String addUserLikedSql =
-        "INSERT INTO Likes(user_id,photo_id) values(?,?)";
-
-      PreparedStatement pstmt = conn.prepareStatement(addUserLikedSql);
-      pstmt.setInt(1, userId);
-      pstmt.setInt(2, photoId);
-      pstmt.executeUpdate();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  @Override
-  public void addUserFavPhotos(int userId, int photoId) {
-    try {
-      String addUserFavSql =
-        "INSERT INTO Favourites(user_id,photo_id) values(?,?)";
-
-      PreparedStatement pstmt = conn.prepareStatement(addUserFavSql);
-      pstmt.setInt(1, userId);
-      pstmt.setInt(2, photoId);
-      pstmt.executeUpdate();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  @Override
-  public void removeUserLikedPhotos(int userId, int photoId) {
-    Statement stmt;
-    try {
-      stmt = conn.createStatement();
-      String removeUserLikedPhotosSql =
-        "DELETE FROM Likes where user_id='" +
-        userId +
-        "' and  photo_id='" +
-        photoId +
-        "'";
-
-      //change to executeUpdate
-      stmt.executeQuery(removeUserLikedPhotosSql);
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  @Override
-  public void removeUserFavPhotos(int userId, int photoId) {
-    Statement stmt;
-    try {
-      stmt = conn.createStatement();
-      String removeUserFavSql =
-        "DELETE FROM Favourites where user_id='" +
-        userId +
-        "' and  photo_id='" +
-        photoId +
-        "'";
-      stmt.executeQuery(removeUserFavSql);
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  @Override
-  public int getNoOfLikesOfPhoto(int photoId) {
-    Statement stmt;
-    int noOfLikes = 0;
-    try {
-      stmt = conn.createStatement();
-      String noOfLikeOfPhotoSQL =
-        "SELECT photo_id FROM likes where photo_id ='" + photoId + "'";
-      ResultSet rs = stmt.executeQuery(noOfLikeOfPhotoSQL);
-      while (rs.next()) {
-        noOfLikes++;
-      }
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-    return noOfLikes;
-  }
+		return rs;
+	}
 }
