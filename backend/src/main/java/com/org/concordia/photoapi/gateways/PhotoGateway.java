@@ -1,9 +1,9 @@
-package com.org.concordia.photoapi.dao;
+package com.org.concordia.photoapi.gateways;
 
 import com.org.concordia.photoapi.model.Photo;
 import java.util.List;
 
-public interface PhotosDao {
+public interface PhotoGateway {
   public List<Photo> getPhotos();
 
   public List<Photo> getUserFavouritePhotos(int userId);

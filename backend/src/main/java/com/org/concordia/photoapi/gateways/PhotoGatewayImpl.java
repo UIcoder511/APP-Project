@@ -1,4 +1,4 @@
-package com.org.concordia.photoapi.dao;
+package com.org.concordia.photoapi.gateways;
 
 import com.org.concordia.photoapi.model.Photo;
 import com.org.concordia.photoapi.model.Photographer;
@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotosDaoImpl implements PhotosDao {
+public class PhotoGatewayImpl implements PhotoGateway {
 
   private static Connection conn = DBConnect.getDBConnection();
 

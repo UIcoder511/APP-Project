@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.gateways.PhotoGateway;
+import com.org.concordia.photoapi.gateways.PhotoGatewayImpl;
+import com.org.concordia.photoapi.gateways.UserGateway;
+import com.org.concordia.photoapi.gateways.UserGatewayImpl;
 import com.org.concordia.photoapi.model.Photo;
 import com.org.concordia.photoapi.model.ResponseForUserCreation;
 import com.org.concordia.photoapi.model.User;
-import com.org.concordia.photoapi.service.PhotosService;
-import com.org.concordia.photoapi.service.PhotosServiceImpl;
-import com.org.concordia.photoapi.service.UsersService;
-import com.org.concordia.photoapi.service.UsersServiceImpl;
 
 @WebServlet(name = "userDetailsAfterLoginServlet", urlPatterns = "/get-user")
 public class userDetailsAfterLoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2872241476921678269L;
-	private PhotosService photosService = new PhotosServiceImpl();
-	private UsersService userService = new UsersServiceImpl();
+	private PhotoGateway photosGateway = new PhotoGatewayImpl();
+	private UserGateway usersGateway = new UserGatewayImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,10 +37,10 @@ public class userDetailsAfterLoginServlet extends HttpServlet {
 		String jsonString;
 
 		try {
-			int userId = userService.getUserIdByUsername(username);
+			int userId = usersGateway.getUserIdByUsername(username);
 			if (userId != -1) {
-				List<Photo> likedPhotos = photosService.getUserLikedPhotos(userId);
-				List<Photo> favPhotos = photosService.getUserFavouritePhotos(userId);
+				List<Photo> likedPhotos = photosGateway.getUserLikedPhotos(userId);
+				List<Photo> favPhotos = photosGateway.getUserFavouritePhotos(userId);
 
 				System.out.println(likedPhotos.size());
 				System.out.println(favPhotos.size());
