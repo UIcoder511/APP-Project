@@ -2,194 +2,194 @@
 <testng-results ignored="0" total="27" passed="27" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-11-08T23:17:11 GMT-05:00" name="Default suite" finished-at="2022-11-08T23:17:17 GMT-05:00" duration-ms="5594">
+  <suite started-at="2022-11-13T10:40:30 GMT-05:00" name="Default suite" finished-at="2022-11-13T10:40:39 GMT-05:00" duration-ms="8652">
     <groups>
     </groups>
-    <test started-at="2022-11-08T23:17:11 GMT-05:00" name="Default test" finished-at="2022-11-08T23:17:17 GMT-05:00" duration-ms="5594">
+    <test started-at="2022-11-13T10:40:30 GMT-05:00" name="Default test" finished-at="2022-11-13T10:40:39 GMT-05:00" duration-ms="8652">
       <class name="com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-08T23:17:11 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:11 GMT-05:00" duration-ms="411" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-13T10:40:31 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:31 GMT-05:00" duration-ms="691" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="addUserFavPhotos()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-08T23:17:11 GMT-05:00" name="addUserFavPhotos" finished-at="2022-11-08T23:17:13 GMT-05:00" duration-ms="1485" status="PASS">
+        <test-method signature="addUserFavPhotos()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-13T10:40:31 GMT-05:00" name="addUserFavPhotos" finished-at="2022-11-13T10:40:33 GMT-05:00" duration-ms="2209" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addUserFavPhotos -->
-        <test-method signature="removeUserFavPhotos()[pri:1, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-08T23:17:13 GMT-05:00" name="removeUserFavPhotos" finished-at="2022-11-08T23:17:13 GMT-05:00" duration-ms="126" status="PASS">
+        <test-method signature="removeUserFavPhotos()[pri:1, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-13T10:40:33 GMT-05:00" name="removeUserFavPhotos" finished-at="2022-11-13T10:40:34 GMT-05:00" duration-ms="129" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- removeUserFavPhotos -->
-        <test-method signature="addUserFavPhotosWithInvalidUser()[pri:2, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-08T23:17:13 GMT-05:00" name="addUserFavPhotosWithInvalidUser" finished-at="2022-11-08T23:17:13 GMT-05:00" duration-ms="231" status="PASS">
+        <test-method signature="addUserFavPhotosWithInvalidUser()[pri:2, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-13T10:40:34 GMT-05:00" name="addUserFavPhotosWithInvalidUser" finished-at="2022-11-13T10:40:34 GMT-05:00" duration-ms="611" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addUserFavPhotosWithInvalidUser -->
-        <test-method signature="removeUserFavPhotosWithInvalidUser()[pri:3, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-08T23:17:13 GMT-05:00" name="removeUserFavPhotosWithInvalidUser" finished-at="2022-11-08T23:17:13 GMT-05:00" duration-ms="28" status="PASS">
+        <test-method signature="removeUserFavPhotosWithInvalidUser()[pri:3, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi@6c64cb25]" started-at="2022-11-13T10:40:34 GMT-05:00" name="removeUserFavPhotosWithInvalidUser" finished-at="2022-11-13T10:40:34 GMT-05:00" duration-ms="49" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- removeUserFavPhotosWithInvalidUser -->
       </class> <!-- com.org.concordia.photoapi.tests.TestAddAndRemoveFavouritePhotosByUserApi -->
       <class name="com.org.concordia.photoapi.tests.TestValidateUserApi">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestValidateUserApi@478190fc]" started-at="2022-11-08T23:17:13 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:13 GMT-05:00" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestValidateUserApi@478190fc]" started-at="2022-11-13T10:40:34 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:34 GMT-05:00" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="userAuthenticationFailure()[pri:0, instance:com.org.concordia.photoapi.tests.TestValidateUserApi@478190fc]" started-at="2022-11-08T23:17:13 GMT-05:00" name="userAuthenticationFailure" finished-at="2022-11-08T23:17:13 GMT-05:00" duration-ms="26" status="PASS">
+        <test-method signature="userAuthenticationFailure()[pri:0, instance:com.org.concordia.photoapi.tests.TestValidateUserApi@478190fc]" started-at="2022-11-13T10:40:34 GMT-05:00" name="userAuthenticationFailure" finished-at="2022-11-13T10:40:34 GMT-05:00" duration-ms="47" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- userAuthenticationFailure -->
-        <test-method signature="userAuthenticationSuccess()[pri:0, instance:com.org.concordia.photoapi.tests.TestValidateUserApi@478190fc]" started-at="2022-11-08T23:17:13 GMT-05:00" name="userAuthenticationSuccess" finished-at="2022-11-08T23:17:13 GMT-05:00" duration-ms="22" status="PASS">
+        <test-method signature="userAuthenticationSuccess()[pri:0, instance:com.org.concordia.photoapi.tests.TestValidateUserApi@478190fc]" started-at="2022-11-13T10:40:34 GMT-05:00" name="userAuthenticationSuccess" finished-at="2022-11-13T10:40:34 GMT-05:00" duration-ms="32" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- userAuthenticationSuccess -->
-        <test-method signature="userAuthenticationWrongPassword()[pri:0, instance:com.org.concordia.photoapi.tests.TestValidateUserApi@478190fc]" started-at="2022-11-08T23:17:13 GMT-05:00" name="userAuthenticationWrongPassword" finished-at="2022-11-08T23:17:13 GMT-05:00" duration-ms="22" status="PASS">
+        <test-method signature="userAuthenticationWrongPassword()[pri:0, instance:com.org.concordia.photoapi.tests.TestValidateUserApi@478190fc]" started-at="2022-11-13T10:40:34 GMT-05:00" name="userAuthenticationWrongPassword" finished-at="2022-11-13T10:40:34 GMT-05:00" duration-ms="37" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- userAuthenticationWrongPassword -->
       </class> <!-- com.org.concordia.photoapi.tests.TestValidateUserApi -->
       <class name="com.org.concordia.photoapi.tests.TestGetLikesOfAllPhotosApi">
-        <test-method signature="getLikedPhotos()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetLikesOfAllPhotosApi@79e2c065]" started-at="2022-11-08T23:17:13 GMT-05:00" name="getLikedPhotos" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="300" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getLikedPhotos -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetLikesOfAllPhotosApi@79e2c065]" started-at="2022-11-08T23:17:13 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:13 GMT-05:00" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetLikesOfAllPhotosApi@79e2c065]" started-at="2022-11-13T10:40:34 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:34 GMT-05:00" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
+        <test-method signature="getLikedPhotos()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetLikesOfAllPhotosApi@79e2c065]" started-at="2022-11-13T10:40:34 GMT-05:00" name="getLikedPhotos" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="453" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getLikedPhotos -->
       </class> <!-- com.org.concordia.photoapi.tests.TestGetLikesOfAllPhotosApi -->
       <class name="com.org.concordia.photoapi.tests.TestDataInsertionInDB">
-        <test-method is-config="true" signature="insertTestDataInDB()[pri:0, instance:com.org.concordia.photoapi.tests.TestDataInsertionInDB@564fabc8]" started-at="2022-11-08T23:17:10 GMT-05:00" name="insertTestDataInDB" finished-at="2022-11-08T23:17:11 GMT-05:00" duration-ms="702" status="PASS">
+        <test-method is-config="true" signature="insertTestDataInDB()[pri:0, instance:com.org.concordia.photoapi.tests.TestDataInsertionInDB@564fabc8]" started-at="2022-11-13T10:40:30 GMT-05:00" name="insertTestDataInDB" finished-at="2022-11-13T10:40:30 GMT-05:00" duration-ms="857" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- insertTestDataInDB -->
       </class> <!-- com.org.concordia.photoapi.tests.TestDataInsertionInDB -->
       <class name="com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@16d04d3d]" started-at="2022-11-08T23:17:14 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@16d04d3d]" started-at="2022-11-13T10:40:35 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="addUserFavPhotos()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@16d04d3d]" started-at="2022-11-08T23:17:14 GMT-05:00" name="addUserFavPhotos" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="135" status="PASS">
+        <test-method signature="addUserFavPhotos()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@16d04d3d]" started-at="2022-11-13T10:40:35 GMT-05:00" name="addUserFavPhotos" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="192" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addUserFavPhotos -->
-        <test-method signature="getFavPhotos()[pri:1, instance:com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@16d04d3d]" started-at="2022-11-08T23:17:14 GMT-05:00" name="getFavPhotos" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="28" status="PASS">
+        <test-method signature="getFavPhotos()[pri:1, instance:com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@16d04d3d]" started-at="2022-11-13T10:40:35 GMT-05:00" name="getFavPhotos" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="88" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getFavPhotos -->
-        <test-method signature="getUserFavPhotosWithInvalidUser()[pri:2, instance:com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@16d04d3d]" started-at="2022-11-08T23:17:14 GMT-05:00" name="getUserFavPhotosWithInvalidUser" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="18" status="PASS">
+        <test-method signature="getUserFavPhotosWithInvalidUser()[pri:2, instance:com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi@16d04d3d]" started-at="2022-11-13T10:40:35 GMT-05:00" name="getUserFavPhotosWithInvalidUser" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="21" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getUserFavPhotosWithInvalidUser -->
       </class> <!-- com.org.concordia.photoapi.tests.TestGetAllFavPhotosByUsernameApi -->
       <class name="com.org.concordia.photoapi.tests.TestDBConnection">
-        <test-method signature="closeConnection()[pri:0, instance:com.org.concordia.photoapi.tests.TestDBConnection@49ec71f8]" started-at="2022-11-08T23:17:14 GMT-05:00" name="closeConnection" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="0" status="PASS">
+        <test-method signature="closeConnection()[pri:0, instance:com.org.concordia.photoapi.tests.TestDBConnection@49ec71f8]" started-at="2022-11-13T10:40:35 GMT-05:00" name="closeConnection" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- closeConnection -->
-        <test-method signature="setupConnection()[pri:0, instance:com.org.concordia.photoapi.tests.TestDBConnection@49ec71f8]" started-at="2022-11-08T23:17:14 GMT-05:00" name="setupConnection" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="0" status="PASS">
+        <test-method signature="setupConnection()[pri:0, instance:com.org.concordia.photoapi.tests.TestDBConnection@49ec71f8]" started-at="2022-11-13T10:40:35 GMT-05:00" name="setupConnection" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupConnection -->
       </class> <!-- com.org.concordia.photoapi.tests.TestDBConnection -->
       <class name="com.org.concordia.photoapi.tests.TestAddNewUserApi">
-        <test-method signature="deleteNewUserCreated()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddNewUserApi@1d2adfbe]" started-at="2022-11-08T23:17:14 GMT-05:00" name="deleteNewUserCreated" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="97" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- deleteNewUserCreated -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddNewUserApi@1d2adfbe]" started-at="2022-11-08T23:17:14 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddNewUserApi@1d2adfbe]" started-at="2022-11-13T10:40:35 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="addNewUserSuccess()[pri:1, instance:com.org.concordia.photoapi.tests.TestAddNewUserApi@1d2adfbe]" started-at="2022-11-08T23:17:14 GMT-05:00" name="addNewUserSuccess" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="123" status="PASS">
+        <test-method signature="deleteNewUserCreated()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddNewUserApi@1d2adfbe]" started-at="2022-11-13T10:40:35 GMT-05:00" name="deleteNewUserCreated" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteNewUserCreated -->
+        <test-method signature="addNewUserSuccess()[pri:1, instance:com.org.concordia.photoapi.tests.TestAddNewUserApi@1d2adfbe]" started-at="2022-11-13T10:40:35 GMT-05:00" name="addNewUserSuccess" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="113" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addNewUserSuccess -->
-        <test-method signature="addNewUserFailure()[pri:2, instance:com.org.concordia.photoapi.tests.TestAddNewUserApi@1d2adfbe]" started-at="2022-11-08T23:17:14 GMT-05:00" name="addNewUserFailure" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="24" status="PASS">
+        <test-method signature="addNewUserFailure()[pri:2, instance:com.org.concordia.photoapi.tests.TestAddNewUserApi@1d2adfbe]" started-at="2022-11-13T10:40:35 GMT-05:00" name="addNewUserFailure" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="32" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addNewUserFailure -->
       </class> <!-- com.org.concordia.photoapi.tests.TestAddNewUserApi -->
       <class name="com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi">
-        <test-method signature="addPhotosLikedByUser()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@8f4ea7c]" started-at="2022-11-08T23:17:14 GMT-05:00" name="addPhotosLikedByUser" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="118" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addPhotosLikedByUser -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@8f4ea7c]" started-at="2022-11-08T23:17:14 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@8f4ea7c]" started-at="2022-11-13T10:40:35 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="getLikedPhotos()[pri:1, instance:com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@8f4ea7c]" started-at="2022-11-08T23:17:14 GMT-05:00" name="getLikedPhotos" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="29" status="PASS">
+        <test-method signature="addPhotosLikedByUser()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@8f4ea7c]" started-at="2022-11-13T10:40:35 GMT-05:00" name="addPhotosLikedByUser" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="110" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addPhotosLikedByUser -->
+        <test-method signature="getLikedPhotos()[pri:1, instance:com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@8f4ea7c]" started-at="2022-11-13T10:40:35 GMT-05:00" name="getLikedPhotos" finished-at="2022-11-13T10:40:35 GMT-05:00" duration-ms="75" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getLikedPhotos -->
-        <test-method signature="getUserLikedPhotosWithInvalidUser()[pri:2, instance:com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@8f4ea7c]" started-at="2022-11-08T23:17:14 GMT-05:00" name="getUserLikedPhotosWithInvalidUser" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="29" status="PASS">
+        <test-method signature="getUserLikedPhotosWithInvalidUser()[pri:2, instance:com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi@8f4ea7c]" started-at="2022-11-13T10:40:35 GMT-05:00" name="getUserLikedPhotosWithInvalidUser" finished-at="2022-11-13T10:40:36 GMT-05:00" duration-ms="50" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getUserLikedPhotosWithInvalidUser -->
       </class> <!-- com.org.concordia.photoapi.tests.TestGetAllLikedPhotosByUsernameApi -->
       <class name="com.org.concordia.photoapi.tests.TestGetAllPhotosByPhotographer">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllPhotosByPhotographer@436813f3]" started-at="2022-11-08T23:17:14 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:14 GMT-05:00" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="showAllPhotosToUserByPhotographer()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllPhotosByPhotographer@436813f3]" started-at="2022-11-08T23:17:14 GMT-05:00" name="showAllPhotosToUserByPhotographer" finished-at="2022-11-08T23:17:15 GMT-05:00" duration-ms="1050" status="PASS">
+        <test-method signature="showAllPhotosToUserByPhotographer()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllPhotosByPhotographer@436813f3]" started-at="2022-11-13T10:40:36 GMT-05:00" name="showAllPhotosToUserByPhotographer" finished-at="2022-11-13T10:40:37 GMT-05:00" duration-ms="1452" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- showAllPhotosToUserByPhotographer -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllPhotosByPhotographer@436813f3]" started-at="2022-11-13T10:40:36 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:36 GMT-05:00" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
       </class> <!-- com.org.concordia.photoapi.tests.TestGetAllPhotosByPhotographer -->
       <class name="com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi">
-        <test-method signature="getLikedPhotos()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi@74fe5c40]" started-at="2022-11-08T23:17:15 GMT-05:00" name="getLikedPhotos" finished-at="2022-11-08T23:17:15 GMT-05:00" duration-ms="12" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi@74fe5c40]" started-at="2022-11-13T10:40:37 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:37 GMT-05:00" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="getLikedPhotos()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi@74fe5c40]" started-at="2022-11-13T10:40:37 GMT-05:00" name="getLikedPhotos" finished-at="2022-11-13T10:40:37 GMT-05:00" duration-ms="17" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getLikedPhotos -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi@74fe5c40]" started-at="2022-11-08T23:17:15 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:15 GMT-05:00" duration-ms="0" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
       </class> <!-- com.org.concordia.photoapi.tests.TestGetLikesOfAPhotosApi -->
       <class name="com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin@3febb011]" started-at="2022-11-08T23:17:15 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:15 GMT-05:00" duration-ms="1" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="userDetailsAfterLogin()[pri:0, instance:com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin@3febb011]" started-at="2022-11-08T23:17:15 GMT-05:00" name="userDetailsAfterLogin" finished-at="2022-11-08T23:17:15 GMT-05:00" duration-ms="40" status="PASS">
+        <test-method signature="userDetailsAfterLogin()[pri:0, instance:com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin@3febb011]" started-at="2022-11-13T10:40:37 GMT-05:00" name="userDetailsAfterLogin" finished-at="2022-11-13T10:40:37 GMT-05:00" duration-ms="58" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- userDetailsAfterLogin -->
-      </class> <!-- com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin -->
-      <class name="com.org.concordia.photoapi.tests.TestGetAllPhotosApi">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllPhotosApi@131774fe]" started-at="2022-11-08T23:17:16 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:16 GMT-05:00" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin@3febb011]" started-at="2022-11-13T10:40:37 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:37 GMT-05:00" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="showAllPhotosToUser()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllPhotosApi@131774fe]" started-at="2022-11-08T23:17:16 GMT-05:00" name="showAllPhotosToUser" finished-at="2022-11-08T23:17:17 GMT-05:00" duration-ms="876" status="PASS">
+      </class> <!-- com.org.concordia.photoapi.tests.TestUserDetailsAfterLogin -->
+      <class name="com.org.concordia.photoapi.tests.TestGetAllPhotosApi">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllPhotosApi@131774fe]" started-at="2022-11-13T10:40:38 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:38 GMT-05:00" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="showAllPhotosToUser()[pri:0, instance:com.org.concordia.photoapi.tests.TestGetAllPhotosApi@131774fe]" started-at="2022-11-13T10:40:38 GMT-05:00" name="showAllPhotosToUser" finished-at="2022-11-13T10:40:39 GMT-05:00" duration-ms="1266" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- showAllPhotosToUser -->
       </class> <!-- com.org.concordia.photoapi.tests.TestGetAllPhotosApi -->
       <class name="com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi">
-        <test-method signature="addPhotosLikedByUser()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-08T23:17:15 GMT-05:00" name="addPhotosLikedByUser" finished-at="2022-11-08T23:17:16 GMT-05:00" duration-ms="143" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- addPhotosLikedByUser -->
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-08T23:17:15 GMT-05:00" name="setup" finished-at="2022-11-08T23:17:15 GMT-05:00" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-13T10:40:37 GMT-05:00" name="setup" finished-at="2022-11-13T10:40:37 GMT-05:00" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="removePhotosDislikedByUser()[pri:1, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-08T23:17:16 GMT-05:00" name="removePhotosDislikedByUser" finished-at="2022-11-08T23:17:16 GMT-05:00" duration-ms="105" status="PASS">
+        <test-method signature="addPhotosLikedByUser()[pri:0, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-13T10:40:37 GMT-05:00" name="addPhotosLikedByUser" finished-at="2022-11-13T10:40:38 GMT-05:00" duration-ms="480" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addPhotosLikedByUser -->
+        <test-method signature="removePhotosDislikedByUser()[pri:1, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-13T10:40:38 GMT-05:00" name="removePhotosDislikedByUser" finished-at="2022-11-13T10:40:38 GMT-05:00" duration-ms="148" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- removePhotosDislikedByUser -->
-        <test-method signature="addPhotosLikedByInvalidUser()[pri:2, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-08T23:17:16 GMT-05:00" name="addPhotosLikedByInvalidUser" finished-at="2022-11-08T23:17:16 GMT-05:00" duration-ms="17" status="PASS">
+        <test-method signature="addPhotosLikedByInvalidUser()[pri:2, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-13T10:40:38 GMT-05:00" name="addPhotosLikedByInvalidUser" finished-at="2022-11-13T10:40:38 GMT-05:00" duration-ms="51" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addPhotosLikedByInvalidUser -->
-        <test-method signature="removePhotosDislikedByInvalidUser()[pri:3, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-08T23:17:16 GMT-05:00" name="removePhotosDislikedByInvalidUser" finished-at="2022-11-08T23:17:16 GMT-05:00" duration-ms="18" status="PASS">
+        <test-method signature="removePhotosDislikedByInvalidUser()[pri:3, instance:com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi@10e31a9a]" started-at="2022-11-13T10:40:38 GMT-05:00" name="removePhotosDislikedByInvalidUser" finished-at="2022-11-13T10:40:38 GMT-05:00" duration-ms="64" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- removePhotosDislikedByInvalidUser -->
       </class> <!-- com.org.concordia.photoapi.tests.TestAddAndRemoveLikedPhotosByUserApi -->
       <class name="com.org.concordia.photoapi.tests.TestDataDeletionFromDB">
-        <test-method is-config="true" signature="deleteTestDataFromDB()[pri:0, instance:com.org.concordia.photoapi.tests.TestDataDeletionFromDB@158d2680]" started-at="2022-11-08T23:17:17 GMT-05:00" name="deleteTestDataFromDB" finished-at="2022-11-08T23:17:17 GMT-05:00" duration-ms="722" status="PASS">
+        <test-method is-config="true" signature="deleteTestDataFromDB()[pri:0, instance:com.org.concordia.photoapi.tests.TestDataDeletionFromDB@158d2680]" started-at="2022-11-13T10:40:39 GMT-05:00" name="deleteTestDataFromDB" finished-at="2022-11-13T10:40:40 GMT-05:00" duration-ms="500" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- deleteTestDataFromDB -->

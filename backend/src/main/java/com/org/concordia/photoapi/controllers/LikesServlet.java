@@ -2,12 +2,12 @@ package com.org.concordia.photoapi.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.org.concordia.photoapi.gateways.PhotoGateway;
+import com.org.concordia.photoapi.gateways.PhotoGatewayImpl;
+import com.org.concordia.photoapi.gateways.UserGateway;
+import com.org.concordia.photoapi.gateways.UserGatewayImpl;
 import com.org.concordia.photoapi.model.Photo;
 import com.org.concordia.photoapi.model.ResponseForUserCreation;
-import com.org.concordia.photoapi.service.PhotosService;
-import com.org.concordia.photoapi.service.PhotosServiceImpl;
-import com.org.concordia.photoapi.service.UsersService;
-import com.org.concordia.photoapi.service.UsersServiceImpl;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LikesServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 2872241476921678269L;
-	private PhotosService photosService = new PhotosServiceImpl();
-	private UsersService userService = new UsersServiceImpl();
+	private PhotoGateway photosGateway = new PhotoGatewayImpl();
+	private UserGateway usersGateway = new UserGatewayImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,11 +32,10 @@ public class LikesServlet extends HttpServlet {
 		String jsonString;
 
 		try {
-			int userId = userService.getUserIdByUsername(username);
+			int userId = usersGateway.getUserIdByUsername(username);
 			if (userId != -1) {
-				List<Photo> photos = photosService.getUserLikedPhotos(userId);
+				List<Photo> photos = photosGateway.getUserLikedPhotos(userId);
 
-				// System.out.println(photos.get(0).getPhotoId());
 				jsonString = mapper.writeValueAsString(photos);
 			} else {
 				ResponseForUserCreation responseForUser = new ResponseForUserCreation("error",

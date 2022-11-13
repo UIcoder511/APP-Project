@@ -1,4 +1,4 @@
-package com.org.concordia.photoapi.dao;
+package com.org.concordia.photoapi.gateways;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 
 import com.org.concordia.photoapi.util.DBConnect;
 
-public class UsersDaoImpl implements UserDao {
+public class UserGatewayImpl implements UserGateway {
 
 	private static Connection conn = DBConnect.getDBConnection();
 
