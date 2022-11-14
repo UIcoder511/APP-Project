@@ -4,6 +4,7 @@ import photo from "../../assets/photo.jpeg";
 import { Box } from "@mui/material";
 import axios from "axios";
 import { GlobalContext } from "./../../Init";
+import endpoints from "./../../endpoints";
 
 const ImageCards = ({
   photos = [],
@@ -15,8 +16,8 @@ const ImageCards = ({
 }) => {
   const handleLikeButton = (photoId, isAlreadyLiked) => {
     const url = isAlreadyLiked
-      ? "/photo-api/remove-liked-photos?"
-      : "/photo-api/add-liked-photos?";
+      ? endpoints.REMOVE_LIKED_PHOTOS_FROM_USER
+      : endpoints.ADD_LIKED_PHOTOS_FROM_USER;
     return axios
       .post(url + "username=" + user.username + "&photoId=" + photoId)
       .then((data) => {
@@ -26,8 +27,8 @@ const ImageCards = ({
   };
   const handleBookmarkButton = (photoId, isAlreadyBookmarked) => {
     const url = isAlreadyBookmarked
-      ? "/photo-api/remove-fav-photos?"
-      : "/photo-api/add-fav-photos?";
+      ? endpoints.REMOVE_FAV_PHOTOS_FROM_USER
+      : endpoints.ADD_FAV_PHOTOS_FROM_USER;
     return axios
       .post(url + "username=" + user.username + "&photoId=" + photoId)
       .then((data) => {
