@@ -1,9 +1,69 @@
 # APP-Project
 
+
+
 ### Dependencies
 - Node.js v16.13.2 https://nodejs.org/en/
 - 
 
+
+### API Used:
+pexels photos - `https://api.pexels.com/v1/curated?page=1&per_page=50`
+
+JSON Response : 
+```json
+{
+  "page": 1,
+  "per_page": 50,
+  "photos": [
+    {
+      "id": 14367476,
+      "width": 3955,
+      "height": 5932,
+      "url": "https://www.pexels.com/photo/sea-landscape-man-beach-14367476/",
+      "photographer": "Feyza Yıldırım",
+      "photographer_url": "https://www.pexels.com/@feyzayildirimphoto",
+      "photographer_id": 50964441,
+      "avg_color": "#C5CACD",
+      "src": {
+        "original": "https://images.pexels.com/photos/14367476/pexels-photo-14367476.jpeg",
+        "large2x": "https://images.pexels.com/photos/14367476/pexels-photo-14367476.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "large": "https://images.pexels.com/photos/14367476/pexels-photo-14367476.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+        "medium": "https://images.pexels.com/photos/14367476/pexels-photo-14367476.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "small": "https://images.pexels.com/photos/14367476/pexels-photo-14367476.jpeg?auto=compress&cs=tinysrgb&h=130",
+        "portrait": "https://images.pexels.com/photos/14367476/pexels-photo-14367476.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+        "landscape": "https://images.pexels.com/photos/14367476/pexels-photo-14367476.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        "tiny": "https://images.pexels.com/photos/14367476/pexels-photo-14367476.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+      },
+      "liked": false,
+      "alt": ""
+    },
+    {
+      "id": 14331960,
+      "width": 2505,
+      "height": 3336,
+      "url": "https://www.pexels.com/photo/woman-in-black-and-white-floral-long-sleeve-shirt-14331960/",
+      "photographer": "Lany-Jade Mondou",
+      "photographer_url": "https://www.pexels.com/@lany",
+      "photographer_id": 135943481,
+      "avg_color": "#29201B",
+      "src": {
+        "original": "https://images.pexels.com/photos/14331960/pexels-photo-14331960.jpeg",
+        "large2x": "https://images.pexels.com/photos/14331960/pexels-photo-14331960.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "large": "https://images.pexels.com/photos/14331960/pexels-photo-14331960.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+        "medium": "https://images.pexels.com/photos/14331960/pexels-photo-14331960.jpeg?auto=compress&cs=tinysrgb&h=350",
+        "small": "https://images.pexels.com/photos/14331960/pexels-photo-14331960.jpeg?auto=compress&cs=tinysrgb&h=130",
+        "portrait": "https://images.pexels.com/photos/14331960/pexels-photo-14331960.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1200&w=800",
+        "landscape": "https://images.pexels.com/photos/14331960/pexels-photo-14331960.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=627&w=1200",
+        "tiny": "https://images.pexels.com/photos/14331960/pexels-photo-14331960.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280"
+      },
+      "liked": false,
+      "alt": ""
+    },
+    ...
+    ],
+}
+```
 
 > Follow below steps to run and test the system
 
