@@ -10,6 +10,7 @@ import java.sql.SQLException;
 public class DBConnect {
 
   private static Connection conn = null;
+  private final static String DB_PATH = "\\resources\\photos.db";
 
   // create a singleton connection
   static {
@@ -17,8 +18,7 @@ public class DBConnect {
       // get the relative path of DB file
       Path currentRelativePath = Paths.get("");
       String dbRelativePath =
-        currentRelativePath.toAbsolutePath().toString() +
-        "\\resources\\photos.db";
+        currentRelativePath.toAbsolutePath().toString() + DB_PATH;
       String url = "jdbc:sqlite:" + dbRelativePath;
       System.out.println(url);
       // create a connection to the database

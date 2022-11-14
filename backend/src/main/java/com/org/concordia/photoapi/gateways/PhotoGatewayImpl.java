@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.org.concordia.photoapi.model.Photo;
 import com.org.concordia.photoapi.util.DBConnect;
 
 public class PhotoGatewayImpl implements PhotoGateway {
