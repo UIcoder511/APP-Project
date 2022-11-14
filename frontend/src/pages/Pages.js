@@ -37,18 +37,19 @@ export const pageToSectionMap = {
 };
 
 const getCurrentPage = (key) => {
+  let comopnent = null;
   switch (key) {
     case pageToSectionMap.EXPLORE:
-      return <ExplorePage />;
+      comopnent = <ExplorePage />;
     case pageToSectionMap.PHOTOGRAPHER:
-      return <PhotographerPage />;
+      comopnent = <PhotographerPage />;
     case pageToSectionMap.LIKED:
-      return <LikedPage />;
+      comopnent = <LikedPage />;
     case pageToSectionMap.SAVED:
-      return <MyCollectionPage />;
+      comopnent = <MyCollectionPage />;
 
     default:
-      return null;
+      return comopnent;
   }
 };
 
