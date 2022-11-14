@@ -4,7 +4,10 @@
 
 ### Dependencies
 - Node.js v16.13.2 https://nodejs.org/en/
-- 
+- Steps to install apache maven in windows: https://mkyong.com/maven/how-to-install-maven-in-windows/
+- Steps to install maven in eclipse : https://www.toolsqa.com/maven/how-to-install-maven-eclipse-ide/
+- All depedencies used in backend(java-maven project) is placed in pom.xml file: https://github.com/mikasa511/APP-Project/blob/master/backend/pom.xml
+- To install dependencies locally: Go to project/backend and run maven command- mvn clean and then mvn install in eclipse or cmd. 
 
 
 ### API Used:
@@ -90,6 +93,9 @@ npm start
 
 ---
 ### Testing:
+Please Note: Tomcat server should up and running to run the tests green. Running tests will only do data insertion and deletion but will not up the server.
+Server should be run by running command in cmd as mentioned in above steps.
+
 1. Open command line in backend folder and run commands: 
 ```
 mvn clean
