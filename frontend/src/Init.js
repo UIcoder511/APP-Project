@@ -6,6 +6,7 @@ import {
   getUserObjectFromLocalStorage,
   setUserObjectFromLocalStorage,
 } from "./utils/Util";
+import endpoints from "./endpoints";
 
 export const GlobalContext = React.createContext();
 
@@ -76,7 +77,7 @@ const Init = () => {
   });
 
   const getAllPhotos = () => {
-    axios.get("/photo-api/get-photographers-with-photos").then(({ data }) => {
+    axios.get(endpoints.GET_PHOTOGRAPHERS_WITH_PHOTOS).then(({ data }) => {
       console.log(data);
 
       const photos = data?.reduce((acc, { photos, ...rest }) => {
@@ -99,7 +100,7 @@ const Init = () => {
 
   const getAllFavPhotosForUser = () => {
     axios
-      .get("/photo-api/get-fav-photos?username=" + state.user?.username)
+      .get(endpoints.GET_FAV_PHOTOS_OF_USER + state.user?.username)
       .then(({ data }) => {
         // console.log(data);
         dispatch({
@@ -110,7 +111,7 @@ const Init = () => {
   };
   const getAllLikedPhotosForUser = () => {
     axios
-      .get("/photo-api/get-liked-photos?username=" + state.user?.username)
+      .get(endpoints.GET_LIKED_PHOTOS_OF_USER + state.user?.username)
       .then(({ data }) => {
         // console.log(data);
         dispatch({
@@ -121,7 +122,7 @@ const Init = () => {
   };
 
   const getLikedPhotosMap = () => {
-    axios.get("/photo-api/get-likes-of-all-photos").then(({ data }) => {
+    axios.get(endpoints.GET_LIKES_OF_ALL_PHOTOS).then(({ data }) => {
       // console.log(data);
       dispatch({
         type: storeActions.SET_LIKES_OF_ALL_PHOTOS,
@@ -131,15 +132,13 @@ const Init = () => {
   };
 
   const getLikesOfPhoto = (photoId) => {
-    axios
-      .get("/photo-api/get-likes-of-photo?photoId=" + photoId)
-      .then(({ data }) => {
-        // console.log(data);
-        dispatch({
-          type: storeActions.SET_LIKE_PHOTO,
-          payload: { photoId, noOfLikes: data || 0 },
-        });
+    axios.get(endpoints.GET_LIKES_OF_PHOTO + photoId).then(({ data }) => {
+      // console.log(data);
+      dispatch({
+        type: storeActions.SET_LIKE_PHOTO,
+        payload: { photoId, noOfLikes: data || 0 },
       });
+    });
   };
 
   useEffect(() => {
