@@ -15,8 +15,8 @@ import org.json.JSONTokener;
 
 public class JSONReader {
 
-	private final String resourceNameForPhotos = ".\\resources\\photos.json";
-	private final String resourceNameForPhotographer = ".\\resources\\photographer.json";
+	private final static String PHOTOS_JSON_PATH = ".\\resources\\photos.json";
+	private final static String PHOTOGRAPHER_JSON_PATH = ".\\resources\\photographer.json";
 	private static Connection conn = null;
 
 	public void selectAll(Connection conn) throws SQLException {
@@ -73,9 +73,9 @@ public class JSONReader {
 		FileReader fr = null;
 
 		try {
-			fr = new FileReader(new File(resourceNameForPhotographer));
+			fr = new FileReader(new File(PHOTOGRAPHER_JSON_PATH));
 		} catch (FileNotFoundException e) {
-			System.out.println("Cannot find resource file " + resourceNameForPhotographer);
+			System.out.println("Cannot find resource file " + PHOTOGRAPHER_JSON_PATH);
 		}
 
 		JSONTokener tokener = new JSONTokener(fr);
@@ -100,9 +100,9 @@ public class JSONReader {
 		FileReader fr = null;
 
 		try {
-			fr = new FileReader(new File(resourceNameForPhotos));
+			fr = new FileReader(new File(PHOTOS_JSON_PATH));
 		} catch (FileNotFoundException e) {
-			System.out.println("Cannot find resource file " + resourceNameForPhotos);
+			System.out.println("Cannot find resource file " + PHOTOS_JSON_PATH);
 		}
 
 		JSONTokener tokener = new JSONTokener(fr);

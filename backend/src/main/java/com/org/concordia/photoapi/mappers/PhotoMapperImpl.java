@@ -15,18 +15,17 @@ public class PhotoMapperImpl implements PhotoMapper {
 
 	@Override
 	public List<Photo> getPhotos() {
-		List<Photo> listOfPhotos = null;
 		try {
 			ResultSet rs = photosGateway.getPhotos();
 
-			if (rs != null) {
-				listOfPhotos = getListOfPhotos(rs);
-			}
+			//refactoring
+			return (rs != null) ? getListOfPhotos(rs) : null;
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
-		return listOfPhotos;
+		return null;
 	}
 
 	@Override
@@ -55,32 +54,31 @@ public class PhotoMapperImpl implements PhotoMapper {
 
 	@Override
 	public List<Photo> getUserFavouritePhotos(int userId) {
-		List<Photo> listOfPhotos = null;
+		
 		try {
 			ResultSet rs = photosGateway.getUserFavouritePhotos(userId);
-			if (rs != null) {
 
-				listOfPhotos = getListPhotosByLikesAndFavQuery(rs);
-			}
+			//refactoring
+			return  (rs != null) ? getListPhotosByLikesAndFavQuery(rs) : null;
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return listOfPhotos;
+		return null;
 	}
 
 	@Override
 	public List<Photo> getUserLikedPhotos(int userId) {
-		List<Photo> listOfPhotos = null;
+
 		try {
 			ResultSet rs = photosGateway.getUserLikedPhotos(userId);
-			if (rs != null) {
-
-				listOfPhotos = getListPhotosByLikesAndFavQuery(rs);
-			}
+			
+			return (rs != null) ? getListPhotosByLikesAndFavQuery(rs) : null;
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return listOfPhotos;
+		return null;
 	}
 
 	private static List<Photo> getListOfPhotos(ResultSet rs) {
