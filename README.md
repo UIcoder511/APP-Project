@@ -1,5 +1,7 @@
 # APP-Project
-
+Person Responsible:
+Raveena Choudhary - 40232370
+Umangkumar Maheshbhai Patel - 40228475
 
 
 ### Dependencies
