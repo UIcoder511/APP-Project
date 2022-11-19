@@ -119,3 +119,8 @@ In command line:
 
 In eclipse:
 ![image](https://user-images.githubusercontent.com/52369694/201550933-3a77cbed-ab85-4ad7-a7a4-31b8364d6e42.png)
+
+###Refactoring
+Some Refactoring strategies used: 
+`Used to refactor code` : inline temp, inline temp, Replace Magic Number with Symbolic Constant (Constant Strings)
+`Used from the beggining` (for good practices) : Rename Method, Hide Method, Parameterize Method, Extract method
